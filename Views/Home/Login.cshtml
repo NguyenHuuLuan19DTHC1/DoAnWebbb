@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<link href="~/Content/styleLogin.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="login-wrap">
+    <div class="login-html">
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+        <input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab">Forgot Password</label>
+        <div class="login-form">
+
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <div class="sign-in-htm">
+
+                    <div class="group">
+                        <label for="user" class="label">Username or Email</label>
+                        <input id="user" type="text" class="input" name="USERNAME">
+                        @ViewData["Error1"]
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Password</label>
+                        <input id="pass" type="password" class="input" data-type="password" name="PASS">
+                        @ViewData["Error2"]
+                    </div>
+                    <a href="#" class="group">
+                        <input type="submit" class="button" value="Đăng nhập">
+                    </a>
+                    <div class="group">
+                        @Html.ActionLink("Đăng ký", "Register")
+                    </div>
+
+                    <div class="hr"></div>
+                    <h5 style="color:red; text-align:center"> @ViewBag.ThongBao</h5>
+
+                </div>
+
+            }
+            <div class="for-pwd-htm">
+                <div class="group">
+                    <label for="user" class="label">Username or Email</label>
+                    <input id="user" type="text" class="input">
+                </div>
+                <a href="https://localhost:44359/Home/Login" class="group">
+                    <input type="submit" class="button" value="Reset Password">
+                </a>
+                <div class="hr"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

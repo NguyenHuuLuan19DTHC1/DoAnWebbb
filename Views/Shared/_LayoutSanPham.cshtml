@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/bootstrap_SP.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    @*<link href="~/Content/shop-homepage.css" rel="stylesheet">*@
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <header class="header_section">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg custom_nav-container ">
+                <a class="navbar-brand" href="@Url.Action("Index","Home")">
+                    <span>
+                        Digitals Store
+                    </span>
+                </a>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav  mx-auto ">
+
+                    </ul>
+                    <div class="user_option">
+                        <form class="form-inline">
+                            @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { @class = "form-inline" }))
+                            {
+                                <div class="container h-100">
+                                    <div class="d-flex justify-content-center h-100">
+                                        <div class="searchbar">
+                                            <input class="search_input" value="@ViewBag.Keyword" type="text" name="searchString" placeholder="Search...">
+                                            <a href="#" class="search_icon">
+                                                <i class="fa fa-search"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </form>
+                        <a href="" class="user_link">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </a>
+                        <a href="@Url.Action("GioHang","GioHang")" class="user_link">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        </a>
+                        @using demoWeb.Models
+                        @if (Session["TaiKhoanKH"] != null)
+                        {
+                            NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanKH"];
+                            <a>Xin Chào: @tk.HOVATEN</a>
+                            <a href="@Url.Action("LogOut", "Home")" class="order_online">
+                                Đăng Xuất
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Login","Home")" class="order_online">
+                                Đăng nhập
+                            </a>
+                        }
+
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+    </header>
+    <div class="container1">
+        @RenderBody()
+        <hr />
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+</body>
+</html>

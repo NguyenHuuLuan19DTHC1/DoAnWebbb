@@ -1,0 +1,74 @@
+﻿@using DoAnWebbb.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<SANPHAM>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/New.cshtml";
+}
+<body>
+    <section class="food_section">
+        <div class="container">
+            <div class="filters-content">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-sm-6 col-lg-4 all pizza">
+
+                            <div class="box">
+                                <div>
+                                    <div class="img-box">
+                                        <img src="@item.HINH" alt="thumbnails" />
+                                    </div>
+                                    <div class="detail-box">
+                                        <h5>
+                                            @item.TENSANPHAM
+                                        </h5>
+
+                                        <div class="options">
+                                            <h6>
+                                                <bdo>$</bdo>@String.Format("{0:0,0}", item.GIABAN) <bdo>VNĐ</bdo>
+                                            </h6>
+                                            <a class="btn btn-success" href="@Url.Action("ThemGioHang", "GioHang",new { @id = item.MASANPHAM, @strURL = Request.Url.ToString() })">Đặt mua</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div>
+        <div>
+            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /
+            @Model.PageCount
+        </div>
+        <div class="MenuTrang">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new
+            {
+                page = page
+            }))
+        </div>
+    </div>
+    <style>
+        .MenuTrang li {
+            display: inline;
+        }
+    </style>
+    <style type="text/css">
+        #mau-nut a {
+            clear: both;
+            background-color: orange;
+            color: snow;
+        }
+
+            #mau-nut a:hover {
+                background-color: darkcyan;
+                color: snow;
+            }
+    </style>
+
+</body>

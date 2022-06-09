@@ -1,0 +1,131 @@
+﻿@model IEnumerable<DoAnWebbb.Models.GioHang>
+
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Responsive Shopping Cart design</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/Cart_Style.css" rel="stylesheet">
+</head>
+<body>
+
+    <table>
+
+        @foreach (var item in Model)
+        {
+            <div class="wrapper">
+                <div class="project">
+                    <div class="shop">
+                        <div class="box">
+                            <img src="@item.Hinh">
+                            <div class="content">
+                                <h2>@Html.DisplayFor(modelItem => item.TenSP) </h2>
+                                @using (Html.BeginForm("CapNhapGioHang", "GioHang", new { @id = item.MaSP }))
+                                {
+                                    <h4>
+                                        Giá: @String.Format("{0:0,0}", item.GiaSP) VNĐ <br />Số lượng tồn: @Html.DisplayFor(modelItem => item.SoLuongTon)
+                                        <br />Đặt Mua: <input id="txtSoLuong" type="number" min="1" max="@item.SoLuongTon" name="txtSoLuong" value="@item.SoLuong" />
+                                        <br> <input type="submit" value="Cập Nhập" class="btn btn-success" />
+                                    </h4>
+
+
+                                    @*<p class="unit">Số Lượng: <input type="number" min="1" max="@item.SoLuongTon" name="SoLuong" value="@item.SoLuong"></p>*@
+                                    <p class="btn-area"><i aria-hidden="true" class="fa fa-trash"></i> <span class="btn2">@Html.ActionLink("Xoá", "XoaGioHang", new { @id = item.MaSP })</span></p>
+
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--code ở đây-->
+
+                </div>
+            </div>
+
+        }
+
+    </table>
+    <div class="right-bar">
+        <p><span>Số Loại Sản Phẩm</span> <span>@ViewBag.TongSoLuongSanPham</span></p>
+        <hr>
+        <p><span>Tổng Số Sản Phẩm</span> <span>@ViewBag.TongSoLuong</span></p>
+        <hr>
+        <p><span>Tổng Tiền</span> <span>@String.Format("{0:0,0}", @ViewBag.TongTien) VNĐ</span></p>
+
+        <hr>
+        <a href="@Url.Action("DatHang","GioHang")"><i class="fa fa-shopping-cart"></i>Đặt Hàng</a>
+        <hr>
+        @Html.ActionLink("Xoá Giỏ Hàng", "XoaTatCaGioHang")
+    </div>
+
+</body>
+
+
+@using DoAnWebbb.Models
+<h2 style="text-align:center;font-family:'Times New Roman' ">Thông Tin Đặt Hàng</h2>
+@{
+    NGUOIDUNG pm = (NGUOIDUNG)Session["TaiKhoanKH"];
+    //NGUOIDUNG pm = new NGUOIDUNG();
+}
+<form action="/GioHang/DatHang" method="post" id="formInput" onsubmit="return submitValidate(this)">
+    <p id="messageValidate" class="text-danger"></p>
+    <table align="center" style="margin-left:35%">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+
+            <tr style="height:40px">
+                <td style="color: black;">Họ Tên:</td>
+                <td>
+                    @*<p style="padding-top:7%">@pm.HOVATEN</p>*@
+                    <input id="DHHOVATEN" type="text" class="form-control" name="DHHOVATEN" value="@pm.HOVATEN" />
+                </td>
+            </tr>
+            
+            <tr style="height:40px">
+                <td style="color: black;">Email:</td>
+                <td>
+                    @*<p style="padding-top:7%">@pm.GMAIL</p>*@
+                    <input id="DHGMAIL" type="text" class="form-control" name="DHGMAIL" value="@pm.GMAIL" />
+                </td>
+            </tr>
+            <tr style="height:40px">
+                <td style="color: black;">Đỉa Chỉ:</td>
+                <td>
+                    @*<p style="padding-top:7%">@pm.DIACHI</p>*@
+                    <input id="DIACHIGIAOHANG" type="text" class="form-control" name="DIACHIGIAOHANG" value="@pm.DIACHI" />
+                </td>
+            </tr>
+            <tr style="height:40px">
+                <td style="color: black;">Điện Thoại:</td>
+                <td>
+                    @*<p style="padding-top:7%">@pm.SDT</p>*@
+                    <input id="DHSDT" type="text" class="form-control" name="DHSDT" value="@pm.SDT" />
+                </td>
+            </tr>
+            <tr style="height:40px">
+                <td style="color: black;">Ngày Đặt:</td>
+                <td style="font-weight:bold; color: black">
+                    <p name="DHNGAYGIO" id="DHNGAYGIO" style="padding-top:7%">@DateTime.Now.ToShortDateString()</p>
+                    @*<input type="date" name="ngaydat" id="ngaydat" value="@DateTime.Now" />*@
+                </td>
+            </tr>
+
+            <tr style="height:40px">
+                <td style="font-weight: bold; color: black">
+                    <input style="margin-left:105%" type="submit" value="Xác Nhận" class="btn btn-success" />
+                </td>
+            </tr>
+            <tr style="height:40px">
+                <td style="font-weight: bold; color: black">
+                    <a style="margin-left:90%" href="@Url.Action("ThanhToanMoMo","GioHang")" class="btn btn-success">Thanh Toán MoMo</a>
+                </td>
+            </tr>
+
+        }
+    </table>
+    </form>

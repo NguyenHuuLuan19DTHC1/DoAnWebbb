@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "XacNhanOTP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>XacNhanOTP</h2>
+
+
+<input type="text" id="nhapOTP" placeholder="Nhap OTP" class="form-control" />
+<a href="#" onclick="KiemTraOTP()" class=" btn btn-primary">Xac Nhan</a>
+@*@Url.Action("Login", "Home")*@
+<script>
+
+    var KiemTraOTP = function () {
+        var otp = $("#NhapOTP").val();
+
+        $.ajax({
+            url: "/Home/XacNhanOTP",
+            data: { otp: otp },
+            type: "POST",
+            success: function (data) {
+                debugger
+                if (data == true) {
+                    alert("Xac Nhan Thanh Cong");
+                    window.location = "/Home/Login";
+                }
+                else {
+                    alert("Xac Nhan Khong Thanh Cong");
+                   
+                }
+            }
+        })
+    }
+</script>
+

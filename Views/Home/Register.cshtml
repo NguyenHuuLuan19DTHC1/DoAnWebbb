@@ -1,0 +1,162 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+
+<link href="~/Content/styleLogin.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="login-wrap">
+    <div class="login-html">
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign Up</label>
+
+        <input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab"></label>
+        <div id="registerForm" class="login-form">
+
+            @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { id = "formInput", @class = "form-control" }))
+            {
+                @Html.ValidationSummary(true)
+                <div class="sign-in-htm">
+                    <div class="group">
+                        @ViewData["CheckMail"]
+                    </div>
+                    <div class="group">
+                        <label for="ten" class="label">Họ và tên</label>
+                        <input id="HOVATEN" type="text" class="form-control" name="HOVATEN">
+                    </div>
+
+                    <div class="group">
+                        <label for="mail" class="label">Gmail</label>
+                        <input id="GMAIL" type="email" class="form-control" name="GMAIL">
+
+                    </div>
+                    <div class="group">
+                        <label for="Pass" class="label">Mật khẩu</label>
+                        <input id="PASS" type="password" class="form-control" name="PASS">
+                    </div>
+                    <div class="group">
+                        <label for="rePass" class="label">Xác nhận mật khẩu</label>
+                        <input id="rePass" type="password" class="form-control" name="rePass">
+                    </div>
+                    <div class="group">
+                        <label for="sdt" class="label">Số điện thoại</label>
+                        <input id="SDT" type="tel" class="form-control" name="SDT">
+
+                    </div>
+                    <div class="group">
+
+                        <label for="gioitinh" class="label">Giới tính</label>
+                        @*<input id="GIOITINH" type="number" class="form-control" name="GIOITINH">*@
+                        <input name="GIOITINH" type="radio" value="1" />Nam
+                        <input name="GIOITINH" type="radio" value="0" />Nữ
+                    </div>
+
+                    <div class="group">
+                        <label for="day" class="label">Ngày tháng năm sinh</label>
+                        <input id="NAMSINH" type="date" class="form-control" name="NAMSINH">
+
+                    </div>
+                    <div class="group">
+                        <label for="diachi" class="label">Địa chỉ</label>
+                        <input id="DIACHI" type="text" class="form-control" name="DIACHI">
+
+                    </div>
+                    <a href="#" class="group">
+                        <input type="submit" class="button" value="Đăng ký">
+                    </a>
+                    @*<button class="btnSignUp" type="submit">Đăng Ký</button>*@
+
+                    <a href="@Url.Action("Login","Home")" class="group">
+                        <input type="button" class="button" value="Đăng Nhập">
+                    </a>
+                    <div class="button"></div>
+                    <h5 style="color:red; text-align:center"> @ViewBag.ThongBao</h5>
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+
+        $(document).ready(function () {
+            $("#formInput").validate({
+                rules: {
+                    HOVATEN: {
+                        required: true
+                    },
+                    GMAIL: {
+                        required: true,
+                        email: true
+
+                    },
+                    PASS: {
+                        required: true,
+                        minlength: 6
+                    },
+                    rePass: {
+                        equalTo: "#PASS"
+                    },
+                    SDT: {
+                        required: true,
+                        minlength: 8,
+                        //length: 12
+                        //phoneValidate: true
+                    },
+                    NAMSINH: {
+                        required: true,
+
+                    },
+                    GIOITINH: {
+                        required: true,
+                        
+                    },
+                    DIACHI: {
+                        required: true,
+                        
+                    }
+
+                },
+                messages: {
+                    HOVATEN: {
+                        required: "Không được để trống"
+                    },
+                    GMAIL: {
+                        required: "Email đăng nhập không được để trống",
+                        email: "Định email Dạng Sai",
+
+                    },
+                    PASS: {
+                        minlength: "Mật khẩu phải dài ít nhất 6 ký tự",
+                        required: "Mật khẩu không được để trống"
+                    },
+                    rePass: {
+                        equalTo: "Mật khẩu và mật khẩu xác nhận phải giống nhau"
+                    },
+                    SDT: {
+                        required: "Số ĐT Không Được Trống",
+                        minlength: "Số Điện Thoại Phải Lớn Hơn 8 Chữ Số"
+                        //length: "hihi"
+                    },
+                    NAMSINH: {
+                        required: "Không được để trống",
+                    },
+                    GIOITINH: {
+                        required: "Không được để trống",
+                    },
+                    DIACHI: {
+                        required: "Địa chỉ không được để trống",
+                    }
+                }
+            })
+        });
+    </script>
+}
+
+
+

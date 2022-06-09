@@ -1,0 +1,346 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" href="images/favicon.png" type="">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title> Digitals Store </title>
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
+
+    <!--owl slider stylesheet -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <!-- nice select  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
+    <!-- font awesome style -->
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="~/Content/responsive.css" rel="stylesheet" />
+    <link href="~/Content/styleSearch.css" rel="stylesheet" />
+
+
+</head>
+<body>
+    <header class="header_section" style="background-color:black">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg custom_nav-container ">
+                <a class="navbar-brand" href="@Url.Action("Index","Home")">
+                    <span>
+                        Digitals Store
+                    </span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class=""> </span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav  mx-auto ">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="@Url.Action("Index","Home")">Trang chủ <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <style>
+                                /* Kiểu nút Dropdown */
+                                .dropbtn {
+                                    background-color: #00000000;
+                                    color: white;
+                                    font-weight: normal;
+                                    padding: 5px;
+                                    font-size: 16px;
+                                    border: none;
+                                    cursor: pointer;
+                                }
+
+                                /* Dùng trong <div> để định vị nội dung thả xuống */
+                                .dropdown {
+                                    position: relative;
+                                    display: inline-block;
+                                }
+                                /*
+                                / * Nội dung thả xuống (Ẩn theo mặc định) * /*/
+                                .dropdown-content {
+                                    display: none;
+                                    position: absolute;
+                                    background-color: black;
+                                    min-width: 160px;
+                                    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                                    z-index: 99;
+                                }
+                                    /*
+                                / * Liên kết bên trong danh sách thả xuống * /*/
+                                    .dropdown-content a {
+                                        color: white;
+                                        padding: 12px 16px;
+                                        text-decoration: none;
+                                        display: block;
+                                    }
+                                        /*
+                                / * Thay đổi định dạng của liên kết thả xuống khi di chuột qua * /*/
+                                        .dropdown-content a:hover {
+                                            background-color: white;
+                                            color: black;
+                                        }
+                                /*
+                                / * Hiển thị menu thả xuống khi di chuột * /*/
+                                .dropdown:hover .dropdown-content {
+                                    display: block;
+                                    color: chocolate;
+                                }
+                                /*
+                                / * Thay đổi màu nền của nút thả xuống khi nội dung được hiển thị * /*/
+                                .dropdown:hover .dropbtn {
+                                    color: chocolate;
+                                }
+                            </style>
+                            <div class="dropdown">
+
+                                <button href="@Url.Action("Index","SanPhamBan")" class="dropbtn">SẢN PHẨM</button>
+                                <div class="dropdown-content">
+                                    <a href="@Url.Action("Index","SanPhamBan")">Tất cả sản phẩm</a>
+                                    @*<a href="@Url.Action("2","SPTheoHang", "SanPhamBan")">Nikon</a>
+                                        <a href="@Url.Action("1","SPTheoHang", "SanPhamBan")">Canon</a>
+                                        <a href="@Url.Action("3","SPTheoHang", "SanPhamBan")">Sony</a>
+                                        <a href="@Url.Action("4","SPTheoHang", "SanPhamBan")">Fuji</a>
+                                        <a href="@Url.Action("5","SPTheoHang", "SanPhamBan")">Pentax</a>*@
+                                    <a href="#">Nikon</a>
+                                    <a href="#">Canon</a>
+                                    <a href="#">Sony</a>
+                                    <a href="#">Fuji</a>
+                                    <a href="#">Pentax</a>
+                                </div>
+
+                            </div>
+                            @*<a class="nav-link" href="@Url.Action("SanPham","Home")">Sản phẩm</a>*@
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("TongQuan","Home")">Tổng quan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Liên hệ</a>
+                        </li>
+                    </ul>
+                    <div class="user_option">
+                        <form class="form-inline">
+                            @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { @class = "form-inline" }))
+                            {
+                                <div class="container h-100">
+                                    <div class="d-flex justify-content-center h-100">
+                                        <div class="searchbar">
+                                            <input class="search_input" value="@ViewBag.Keyword" type="text" name="searchString" placeholder="Search...">
+                                            <button href="#" type="submit" class="search_icon">
+                                                <i style="color:black" class="fa fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </form>
+                        <a href="@Url.Action("Info","NguoiDung")" class="user_link">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </a>
+                        <a href="@Url.Action("GioHang","GioHang")" class="user_link">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        </a>
+                        @using DoAnWebbb.Models
+                        @if (Session["TaiKhoanKH"] != null)
+                        {
+                            NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanKH"];
+                            <a style="color:orange">Xin Chào:<br /> @tk.HOVATEN</a>
+                            <a href="@Url.Action("LogOut", "Home")" class="order_online">
+                                Đăng Xuất
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Login","Home")" class="order_online">
+                                Đăng nhập
+                            </a>
+                        }
+
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3" style="margin-top:20px">
+                @Html.Action("HangMay", "SanPhamBan")
+                @Html.Action("LoaiMay", "SanPhamBan")
+                @*<div class="products">
+                        <div class="container">
+                            <div class="col-md-4 products-left">
+                                <div class="filter-price animated wow slideInUp" data-wow-delay=".5s">
+                                    <h3>Filter By Price</h3>
+                                    <ul class="dropdown-menu1">
+                                        <li>
+                                            <a href="">
+                                                <div id="slider-range"></div>
+                                                <input type="text" id="amount" style="border: 0" />
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <script type='text/javascript'>
+                                        //<![CDATA[
+                                        $(window).load(function () {
+                                            $("#slider-range").slider({
+                                                range: true,
+                                                min: 0,
+                                                max: 100000,
+                                                values: [20000, 80000],
+                                                slide: function (event, ui) {
+                                                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                                                }
+                                            });
+                                            $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
+
+
+                                        });//]]>
+                                    </script>
+                                    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+            </div>
+            <div class="col-md-9">
+                <div class="products-right-grid" style="margin-top:22px; margin-left:18px">
+                    <div class="products-right-grids animated wow slideInRight" data-wow-delay=".5s">
+                        <div class="sorting">
+                            <select id="country" onchange="change_country(this.value)" class="frm-field required sect">
+                                <option value="null">Mặc định</option>
+                                <option value="null">Mới</option>
+                                <option value="null">Giá thấp</option>
+                                <option value="null">Giá cao</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div>@RenderBody()</div>
+            </div>
+        </div>
+
+        <hr />
+    </div>
+    <!-- footer section -->
+    <footer class="footer_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 footer-col">
+                    <div class="footer_contact">
+                        <h4>
+                            Liên hệ chúng tôi
+                        </h4>
+                        <div class="contact_link_box">
+                            <a href="https://bitly.com.vn/tdue0o" target="_blank">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <span>
+                                    Vị trí cửa hàng trên Google Map
+                                </span>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                <span>
+                                    Hotline: 0397921794
+                                </span>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                <span>
+                                    hoanphucle2001@gmail.com
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 footer-col">
+                    <div class="footer_detail">
+                        <a href="" class="footer-logo">
+                            Digitals Store
+                        </a>
+                        <p>
+                            “Bạn không thể chỉ hỏi khách hàng xem họ muốn gì và rồi cố đem nó cho họ. Tới lúc bạn hoàn thiện nó, họ đã muốn thứ mới mẻ khác rồi.” – Steve Jobs
+                        </p>
+                        <div class="footer_social">
+                            <a href="">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-pinterest" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 footer-col">
+                    <h4>
+                        Giờ mở cửa
+                    </h4>
+                    <p>
+                        Từ Thứ 2 - Thứ 7
+                    </p>
+                    <p>
+                        10.00 Am -10.00 Pm
+                    </p>
+                </div>
+            </div>
+            <div class="footer-info">
+                <p>
+                    &copy; <span id="displayYear"></span>
+
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- footer section -->
+    <!-- jQery -->
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <!-- popper js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <!-- bootstrap js -->
+    <script src="~/Scripts/bootstrap.js"></script>
+    <!-- owl slider -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+    </script>
+    <!-- isotope js -->
+    <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
+    <!-- nice select -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+    <!-- custom js -->
+    <script src="~/Scripts/custom.js"></script>
+    <!-- Google Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
+    </script>
+    <!-- End Google Map -->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+</body>
+</html>

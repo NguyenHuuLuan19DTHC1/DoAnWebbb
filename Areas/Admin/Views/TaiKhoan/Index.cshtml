@@ -1,0 +1,114 @@
+﻿@using DoAnWebbb.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<DoAnWebbb.Models.NGUOIDUNG>
+
+@{
+    ViewBag.Title = "Thông Tin Tài Khoản";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutHomeAdmin.cshtml";
+}
+
+<div>
+    <div class="box">
+        <h2 style="text-align:center; color: black; margin-top:10px">Quản Lý Tài Khoản</h2>
+        <p>
+            <a class="btn btn-primary" href="@Url.Action("TaoTaiKhoan")" style=" margin-left: 16px">Thêm tài khoản</a>
+        </p>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table id="example1" class="table table-bordered table-hover">
+                <thead style="color:black; text-align:center">
+                    <tr>
+                        <th>
+                            Quyền
+                        </th>
+                        <th>
+                            Tên Tài Khoản
+                        </th>
+                        <th>
+                            Họ Và Tên
+                        </th>
+                        <th>
+                            Giới Tính
+                        </th>
+                        <th>
+                            Năm Sinh
+                        </th>
+                        <th>
+                            Số Điện Thoại
+                        </th>
+                        <th>
+                            Gmail
+                        </th>
+                        <th>
+                            Địa Chỉ
+                        </th>
+                        <th>
+                            Ngày Đăng Ký
+                        </th>
+                        <th>
+                            Trạng thái
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr style="color:black">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.QUYEN.TENQUYEN)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.USERNAME)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HOVATEN)
+                            </td>
+                            <td>
+                                @if (item.GIOITINH == 1)
+                                {
+                                    <p>Nam</p>
+                                }
+                                else
+                                {
+                                    <p>Nữ</p>
+                                }
+                            </td>
+                            <td>
+                                @Html.ValueFor(modelItem => item.NAMSINH, "{0:dd/MM/yyyy}")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SDT)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GMAIL)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DIACHI)
+                            </td>
+                            <td>
+                                @Html.ValueFor(modelItem => item.NGAYDANGKY, "{0:dd/MM/yyyy}")
+                            </td>
+                            <td>
+                                @if (item.TRANGTHAI == 1)
+                                {
+                                    <span class="trangthai label-conhang">Hoạt Động</span>
+                                }
+                                else
+                                {
+                                    <span class="trangthai label-hethang">Khóa</span>
+                                }
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" style="font-size:10px;" href="@Url.Action("Edit", new { id=item.USERNAME })"><i class="fa fa-fw  fa-pen"></i></a>
+                                <a class="btn btn-danger" style="font-size:10px; margin-top:5px" href="@Url.Action("Delete", new { id=item.USERNAME })"><i class="fa fa-fw fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>

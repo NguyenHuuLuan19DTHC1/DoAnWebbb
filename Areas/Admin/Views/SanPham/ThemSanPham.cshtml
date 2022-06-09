@@ -1,0 +1,143 @@
+﻿@model DoAnWebbb.Models.SANPHAM
+
+@{
+    ViewBag.Title = "Thêm Mới Sản Phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutHomeAdmin.cshtml";
+}
+
+<div class="box">
+
+    <h2 style="text-align:center; color: black; margin-top:10px">Thêm Mới Sản Phẩm</h2>
+    <div class="box-body">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal container">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <strong style="color:black">Tên Sản Phẩm</strong>
+                        @Html.EditorFor(model => model.TENSANPHAM, new { htmlAttributes = new { @class = "form-control", id = "name" } })
+                        @Html.ValidationMessageFor(model => model.TENSANPHAM, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div  class="form-group">
+                    <div class="col-md-10">
+                        <strong style="color:black">Thông Số Kỹ Thuật</strong>
+                        <textarea name="Thongso">Thông số kỹ thuật của máy</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <strong style="color:black">Hình Sản Phẩm</strong>
+
+                        @Html.EditorFor(model => model.HINH, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.HINH, "", new { @class = "text-danger" })
+                        <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" />
+                        <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
+
+
+                        @*@Html.EditorFor(model => model.HINH, new { htmlAttributes = new { @class = "HINH" ,id="HINH"} })
+        <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
+        <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" />*@
+
+                    </div>
+                </div>
+                @section upload
+                {
+                    <script>
+                        $(function () {
+                            $('#btnUpload').click(function () {
+                                $('#fileUpload').trigger('click');
+                            });
+                        });
+                        $('#fileUpload').change(function () {
+                            if (window.FormData !== undefined) {
+                                var fileUpload = $('#fileUpload').get(0);
+                                var files = fileUpload.files;
+                                var formData = new FormData();
+                                formData.append('file', files[0]);
+                                $.ajax(
+                                    {
+                                        type: 'POST',
+                                        url: '/SanPham/ProcessUpload',
+                                        contentType: false,
+                                        processData: false,
+                                        data: formData,
+                                        success: function (urlImage) {
+                                            $('#pictureUpload').attr('src', urlImage);
+                                            $('#HINH').val(urlImage);
+                                        },
+                                        error: function (err) {
+                                            alert('Error ', err.statusText);
+                                        }
+                                    }
+                                );
+                            }
+                        });
+                    </script>
+                }
+
+                @*<div class="form-group">
+                        Hình ảnh con
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.MoreImages, new { htmlAttributes = new { data_multiple = "true", @class = "form-control uploadfile" } })
+                            @Html.ValidationMessageFor(model => model.MoreImages, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <strong style="color:black">Số Lượng</strong>
+                        <input class="form-control" min="1" id="soluongton" name="soluongton" type="number" />
+                        @Html.ValidationMessageFor(model => model.SOLUONGTON, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <strong style="color:black">Giá Gốc</strong>
+                        @Html.EditorFor(model => model.GIABAN, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GIABAN, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <strong style="color:black">Giá Giảm</strong>
+                        @Html.EditorFor(model => model.GIAGIAM, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GIAGIAM, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <strong style="color:black">Hãng Máy</strong>
+                        @Html.DropDownList("MaNCC",null , htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <strong style="color:black">Loại Sản Phẩm</strong>
+                        @Html.DropDownList("MALOAI", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input id="check-click" type="submit" value="Tạo" class="tao tao-quyen" />
+                    </div>
+                </div>
+            </div>
+        }
+        <div>
+            <a class="btn btn-primary" style="margin-left:84px; margin-bottom:5px" href="@Url.Action("Index")">Quay về</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "ĐĂNG NHẬP TRANG QUẢN TRỊ";
+    Layout = null;
+}
+<link href="~/Areas/Admin/Content/css/StyleLogin.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<head>
+    <title>Login Admin</title>
+</head>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img src="~/Areas/Admin/Content/img/logo-login.png" id="icon" alt="User Icon" />
+            <h1>Login Admin</h1>
+        </div>
+        <h5 style="color:red; text-align:center"> @ViewBag.ThongBao</h5>
+
+        @using (Html.BeginForm("Login", "LoginAdmin", FormMethod.Post, new { id = "formInput", @class = "form-control" }))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div>
+                <div>
+                    <input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
+                    <br />
+                    @ViewData["Error1"]
+                </div>
+                <div>
+                    <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+                    <br />
+                    @ViewData["Error2"]
+                </div>
+                <div>
+                    <input type="submit" class="fadeIn fourth" value="Đăng nhập" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@*@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#formInput").validate({
+                rules: {
+                    username: {
+                        required: true
+                    },
+                    password: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    username: {
+                        required: "Không được để trống"
+                    },
+                    password: {
+                        required: "Không được để trống",
+                    }
+                }
+            })
+        });
+    </script>
+}*@

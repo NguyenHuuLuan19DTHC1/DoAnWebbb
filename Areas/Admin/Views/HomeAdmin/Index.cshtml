@@ -1,0 +1,208 @@
+﻿@using DoAnWebbb.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<DoAnWebbb.Models.PHIEUMUA>
+
+@{
+    ViewBag.Title = "TRANG QUẢN TRỊ WEBSITE";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutHomeAdmin.cshtml";
+}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Tổng Quan</h1>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+
+    <!-- Tổng đơn hàng -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Đơn Hàng
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.DonHang</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thu Nhập -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Thu Nhập
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@String.Format("{0:0,0}", ViewBag.LoiNhuan) VNĐ</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Khách hàng -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                            Khách hàng
+                        </div>
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">@ViewBag.NguoiDung</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-user fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sản phẩm -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            Sản phẩm
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.SanPham</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-camera-retro fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div col-xl-3 col-md-6 mb-4>
+    <div class="box boxorder">
+        <div class="boxorder-header with-border">
+            <h3 class="box-title">Đơn hàng mới</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="table-responsive">
+                <table class="table no-margin">
+                    <thead>
+                        <tr style="color:black">
+                            <th>
+                                Tài Khoản
+                            </th>
+                            <th>
+                                Họ Và Tên
+                            </th>
+                            <th>
+                                Gmail
+                            </th>
+                            <th>
+                                Số Điện Thoại
+                            </th>
+                            <th>
+                                Địa Chỉ Giao Hàng
+                            </th>
+                            <th>
+                                Ngày Đặt
+                            </th>
+                            <th>
+                                Trạng Thái
+                            </th>
+                            <th>Tác Vụ</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr style="color:black">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.USERNAME)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NGUOIDUNG.HOVATEN)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NGUOIDUNG.GMAIL)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NGUOIDUNG.SDT)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DIACHIGIAOHANG)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NGAYDAT)
+                                </td>
+                                <td>
+                                    @if (item.TRANGTHAI == 0)
+                                    {
+                                        <label class="btn btn-primary">Đang chờ</label> }
+                                    else if (item.TRANGTHAI == 1)
+                                    {
+                                        <label class="btn btn-primary">Xác Nhận</label> }
+                                    else if (item.TRANGTHAI == 2)
+                                    {
+                                        <label class="btn btn-primary">Đang giao</label> }
+                                    else
+                                    {
+                                        <label class="btn btn-success">Hoàn thành</label>}
+                                </td>
+                                <td class="chitietdon">
+                                    <a class="btn btn-primary" style="font-size:10px;" href="@Url.Action("ChiTietDonHang","DonHang",new { id=item.MAPHIEUMUA })"><i class="fa fa-fw fa-pen"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.table-responsive -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix">
+            <a href="@Url.Action("Index", "DonHang") " class="btn btn-sm btn-default btn-flat pull-right">Xem Tất Cả Đơn Hàng</a>
+        </div>
+        <div style="color: black; margin-left: 20px">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount</div>
+        <div class="MenuTrang">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+        </div>
+        <style>
+            .MenuTrang li {
+                display: inline;
+                color: #fff;
+                background-color: #337ab7;
+                border-color: #2e6da4;
+                margin-left: 20px;
+                padding-bottom: 10px;
+            }
+        </style>
+        <!-- /.box-footer -->
+    </div>
+</div>
+
