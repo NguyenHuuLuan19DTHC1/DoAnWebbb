@@ -1,5 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DigitalStore2" Class="MyDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DT\SQLEXPRESS01;Initial Catalog=DigitalStore2;Persist Security Info=True;User ID=hau123" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DigitalStore2ConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DigitalStore" Class="MyDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=LUAN\SQLEXPRESS;Initial Catalog=DigitalStore;User ID=sa;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DigitalStoreConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.TACVU" Member="TACVUs">
+    <Type Name="TACVU">
+      <Column Name="MATACVU" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TENTACVU" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="TACVU_CHITIETTACVU" Member="CHITIETTACVUs" ThisKey="MATACVU" OtherKey="MATACVU" Type="CHITIETTACVU" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CHITIETTACVU" Member="CHITIETTACVUs">
+    <Type Name="CHITIETTACVU">
+      <Column Name="MACTTACVU" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MAQUYEN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MATACVU" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TACVU_CHITIETTACVU" Member="TACVU" ThisKey="MATACVU" OtherKey="MATACVU" Type="TACVU" IsForeignKey="true" />
+      <Association Name="QUYEN_CHITIETTACVU" Member="QUYEN" ThisKey="MAQUYEN" OtherKey="MAQUYEN" Type="QUYEN" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.CT_HOADON" Member="CT_HOADONs">
     <Type Name="CT_HOADON">
       <Column Name="MACTHOADON" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -18,15 +34,6 @@
       <Column Name="SOLUONG" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="PHIEUMUA_CT_PHIEUMUA" Member="PHIEUMUA" ThisKey="MAPHIEUMUA" OtherKey="MAPHIEUMUA" Type="PHIEUMUA" IsForeignKey="true" />
       <Association Name="SANPHAM_CT_PHIEUMUA" Member="SANPHAM" ThisKey="MASANPHAM" OtherKey="MASANPHAM" Type="SANPHAM" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.CHITIETTACVU" Member="CHITIETTACVUs">
-    <Type Name="CHITIETTACVU">
-      <Column Name="MACTTACVU" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="MAQUYEN" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="MATACVU" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="QUYEN_CHITIETTACVU" Member="QUYEN" ThisKey="MAQUYEN" OtherKey="MAQUYEN" Type="QUYEN" IsForeignKey="true" />
-      <Association Name="TACVU_CHITIETTACVU" Member="TACVU" ThisKey="MATACVU" OtherKey="MATACVU" Type="TACVU" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.HOADON" Member="HOADONs">
@@ -110,13 +117,6 @@
       <Association Name="SANPHAM_CT_PHIEUMUA" Member="CT_PHIEUMUAs" ThisKey="MASANPHAM" OtherKey="MASANPHAM" Type="CT_PHIEUMUA" />
       <Association Name="LOAIMAY_SANPHAM" Member="LOAIMAY" ThisKey="MALOAI" OtherKey="MALOAI" Type="LOAIMAY" IsForeignKey="true" />
       <Association Name="NHACUNGCAP_SANPHAM" Member="NHACUNGCAP" ThisKey="MANCC" OtherKey="MANCC" Type="NHACUNGCAP" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TACVU" Member="TACVUs">
-    <Type Name="TACVU">
-      <Column Name="MATACVU" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TENTACVU" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="TACVU_CHITIETTACVU" Member="CHITIETTACVUs" ThisKey="MATACVU" OtherKey="MATACVU" Type="CHITIETTACVU" />
     </Type>
   </Table>
 </Database>

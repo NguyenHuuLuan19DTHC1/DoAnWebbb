@@ -27,7 +27,10 @@ namespace demoWeb.Controllers
             int pageNum = page ?? 1;
             return View(all_sanPham.ToPagedList(pageNum, pageSize));
         }
-
+        public ActionResult TongQuan()
+        {
+            return View();
+        }
 
         public ActionResult About()
         {

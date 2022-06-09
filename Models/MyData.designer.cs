@@ -22,7 +22,7 @@ namespace DoAnWebbb.Models
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DigitalStore2")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DigitalStore")]
 	public partial class MyDataDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -30,15 +30,18 @@ namespace DoAnWebbb.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertTACVU(TACVU instance);
+    partial void UpdateTACVU(TACVU instance);
+    partial void DeleteTACVU(TACVU instance);
+    partial void InsertCHITIETTACVU(CHITIETTACVU instance);
+    partial void UpdateCHITIETTACVU(CHITIETTACVU instance);
+    partial void DeleteCHITIETTACVU(CHITIETTACVU instance);
     partial void InsertCT_HOADON(CT_HOADON instance);
     partial void UpdateCT_HOADON(CT_HOADON instance);
     partial void DeleteCT_HOADON(CT_HOADON instance);
     partial void InsertCT_PHIEUMUA(CT_PHIEUMUA instance);
     partial void UpdateCT_PHIEUMUA(CT_PHIEUMUA instance);
     partial void DeleteCT_PHIEUMUA(CT_PHIEUMUA instance);
-    partial void InsertCHITIETTACVU(CHITIETTACVU instance);
-    partial void UpdateCHITIETTACVU(CHITIETTACVU instance);
-    partial void DeleteCHITIETTACVU(CHITIETTACVU instance);
     partial void InsertHOADON(HOADON instance);
     partial void UpdateHOADON(HOADON instance);
     partial void DeleteHOADON(HOADON instance);
@@ -60,13 +63,10 @@ namespace DoAnWebbb.Models
     partial void InsertSANPHAM(SANPHAM instance);
     partial void UpdateSANPHAM(SANPHAM instance);
     partial void DeleteSANPHAM(SANPHAM instance);
-    partial void InsertTACVU(TACVU instance);
-    partial void UpdateTACVU(TACVU instance);
-    partial void DeleteTACVU(TACVU instance);
     #endregion
 		
 		public MyDataDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["DigitalStore2ConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["DigitalStoreConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -95,6 +95,22 @@ namespace DoAnWebbb.Models
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<TACVU> TACVUs
+		{
+			get
+			{
+				return this.GetTable<TACVU>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CHITIETTACVU> CHITIETTACVUs
+		{
+			get
+			{
+				return this.GetTable<CHITIETTACVU>();
+			}
+		}
+		
 		public System.Data.Linq.Table<CT_HOADON> CT_HOADONs
 		{
 			get
@@ -108,14 +124,6 @@ namespace DoAnWebbb.Models
 			get
 			{
 				return this.GetTable<CT_PHIEUMUA>();
-			}
-		}
-		
-		public System.Data.Linq.Table<CHITIETTACVU> CHITIETTACVUs
-		{
-			get
-			{
-				return this.GetTable<CHITIETTACVU>();
 			}
 		}
 		
@@ -174,12 +182,310 @@ namespace DoAnWebbb.Models
 				return this.GetTable<SANPHAM>();
 			}
 		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TACVU")]
+	public partial class TACVU : INotifyPropertyChanging, INotifyPropertyChanged
+	{
 		
-		public System.Data.Linq.Table<TACVU> TACVUs
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MATACVU;
+		
+		private string _TENTACVU;
+		
+		private EntitySet<CHITIETTACVU> _CHITIETTACVUs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMATACVUChanging(int value);
+    partial void OnMATACVUChanged();
+    partial void OnTENTACVUChanging(string value);
+    partial void OnTENTACVUChanged();
+    #endregion
+		
+		public TACVU()
+		{
+			this._CHITIETTACVUs = new EntitySet<CHITIETTACVU>(new Action<CHITIETTACVU>(this.attach_CHITIETTACVUs), new Action<CHITIETTACVU>(this.detach_CHITIETTACVUs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MATACVU", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MATACVU
 		{
 			get
 			{
-				return this.GetTable<TACVU>();
+				return this._MATACVU;
+			}
+			set
+			{
+				if ((this._MATACVU != value))
+				{
+					this.OnMATACVUChanging(value);
+					this.SendPropertyChanging();
+					this._MATACVU = value;
+					this.SendPropertyChanged("MATACVU");
+					this.OnMATACVUChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENTACVU", DbType="NVarChar(50)")]
+		public string TENTACVU
+		{
+			get
+			{
+				return this._TENTACVU;
+			}
+			set
+			{
+				if ((this._TENTACVU != value))
+				{
+					this.OnTENTACVUChanging(value);
+					this.SendPropertyChanging();
+					this._TENTACVU = value;
+					this.SendPropertyChanged("TENTACVU");
+					this.OnTENTACVUChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TACVU_CHITIETTACVU", Storage="_CHITIETTACVUs", ThisKey="MATACVU", OtherKey="MATACVU")]
+		public EntitySet<CHITIETTACVU> CHITIETTACVUs
+		{
+			get
+			{
+				return this._CHITIETTACVUs;
+			}
+			set
+			{
+				this._CHITIETTACVUs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_CHITIETTACVUs(CHITIETTACVU entity)
+		{
+			this.SendPropertyChanging();
+			entity.TACVU = this;
+		}
+		
+		private void detach_CHITIETTACVUs(CHITIETTACVU entity)
+		{
+			this.SendPropertyChanging();
+			entity.TACVU = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CHITIETTACVU")]
+	public partial class CHITIETTACVU : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MACTTACVU;
+		
+		private System.Nullable<int> _MAQUYEN;
+		
+		private System.Nullable<int> _MATACVU;
+		
+		private EntityRef<TACVU> _TACVU;
+		
+		private EntityRef<QUYEN> _QUYEN;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMACTTACVUChanging(int value);
+    partial void OnMACTTACVUChanged();
+    partial void OnMAQUYENChanging(System.Nullable<int> value);
+    partial void OnMAQUYENChanged();
+    partial void OnMATACVUChanging(System.Nullable<int> value);
+    partial void OnMATACVUChanged();
+    #endregion
+		
+		public CHITIETTACVU()
+		{
+			this._TACVU = default(EntityRef<TACVU>);
+			this._QUYEN = default(EntityRef<QUYEN>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MACTTACVU", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MACTTACVU
+		{
+			get
+			{
+				return this._MACTTACVU;
+			}
+			set
+			{
+				if ((this._MACTTACVU != value))
+				{
+					this.OnMACTTACVUChanging(value);
+					this.SendPropertyChanging();
+					this._MACTTACVU = value;
+					this.SendPropertyChanged("MACTTACVU");
+					this.OnMACTTACVUChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAQUYEN", DbType="Int")]
+		public System.Nullable<int> MAQUYEN
+		{
+			get
+			{
+				return this._MAQUYEN;
+			}
+			set
+			{
+				if ((this._MAQUYEN != value))
+				{
+					if (this._QUYEN.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMAQUYENChanging(value);
+					this.SendPropertyChanging();
+					this._MAQUYEN = value;
+					this.SendPropertyChanged("MAQUYEN");
+					this.OnMAQUYENChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MATACVU", DbType="Int")]
+		public System.Nullable<int> MATACVU
+		{
+			get
+			{
+				return this._MATACVU;
+			}
+			set
+			{
+				if ((this._MATACVU != value))
+				{
+					if (this._TACVU.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMATACVUChanging(value);
+					this.SendPropertyChanging();
+					this._MATACVU = value;
+					this.SendPropertyChanged("MATACVU");
+					this.OnMATACVUChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TACVU_CHITIETTACVU", Storage="_TACVU", ThisKey="MATACVU", OtherKey="MATACVU", IsForeignKey=true)]
+		public TACVU TACVU
+		{
+			get
+			{
+				return this._TACVU.Entity;
+			}
+			set
+			{
+				TACVU previousValue = this._TACVU.Entity;
+				if (((previousValue != value) 
+							|| (this._TACVU.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TACVU.Entity = null;
+						previousValue.CHITIETTACVUs.Remove(this);
+					}
+					this._TACVU.Entity = value;
+					if ((value != null))
+					{
+						value.CHITIETTACVUs.Add(this);
+						this._MATACVU = value.MATACVU;
+					}
+					else
+					{
+						this._MATACVU = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TACVU");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QUYEN_CHITIETTACVU", Storage="_QUYEN", ThisKey="MAQUYEN", OtherKey="MAQUYEN", IsForeignKey=true)]
+		public QUYEN QUYEN
+		{
+			get
+			{
+				return this._QUYEN.Entity;
+			}
+			set
+			{
+				QUYEN previousValue = this._QUYEN.Entity;
+				if (((previousValue != value) 
+							|| (this._QUYEN.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._QUYEN.Entity = null;
+						previousValue.CHITIETTACVUs.Remove(this);
+					}
+					this._QUYEN.Entity = value;
+					if ((value != null))
+					{
+						value.CHITIETTACVUs.Add(this);
+						this._MAQUYEN = value.MAQUYEN;
+					}
+					else
+					{
+						this._MAQUYEN = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("QUYEN");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -591,198 +897,6 @@ namespace DoAnWebbb.Models
 						this._MASANPHAM = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("SANPHAM");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CHITIETTACVU")]
-	public partial class CHITIETTACVU : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MACTTACVU;
-		
-		private System.Nullable<int> _MAQUYEN;
-		
-		private System.Nullable<int> _MATACVU;
-		
-		private EntityRef<QUYEN> _QUYEN;
-		
-		private EntityRef<TACVU> _TACVU;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMACTTACVUChanging(int value);
-    partial void OnMACTTACVUChanged();
-    partial void OnMAQUYENChanging(System.Nullable<int> value);
-    partial void OnMAQUYENChanged();
-    partial void OnMATACVUChanging(System.Nullable<int> value);
-    partial void OnMATACVUChanged();
-    #endregion
-		
-		public CHITIETTACVU()
-		{
-			this._QUYEN = default(EntityRef<QUYEN>);
-			this._TACVU = default(EntityRef<TACVU>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MACTTACVU", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int MACTTACVU
-		{
-			get
-			{
-				return this._MACTTACVU;
-			}
-			set
-			{
-				if ((this._MACTTACVU != value))
-				{
-					this.OnMACTTACVUChanging(value);
-					this.SendPropertyChanging();
-					this._MACTTACVU = value;
-					this.SendPropertyChanged("MACTTACVU");
-					this.OnMACTTACVUChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAQUYEN", DbType="Int")]
-		public System.Nullable<int> MAQUYEN
-		{
-			get
-			{
-				return this._MAQUYEN;
-			}
-			set
-			{
-				if ((this._MAQUYEN != value))
-				{
-					if (this._QUYEN.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMAQUYENChanging(value);
-					this.SendPropertyChanging();
-					this._MAQUYEN = value;
-					this.SendPropertyChanged("MAQUYEN");
-					this.OnMAQUYENChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MATACVU", DbType="Int")]
-		public System.Nullable<int> MATACVU
-		{
-			get
-			{
-				return this._MATACVU;
-			}
-			set
-			{
-				if ((this._MATACVU != value))
-				{
-					if (this._TACVU.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMATACVUChanging(value);
-					this.SendPropertyChanging();
-					this._MATACVU = value;
-					this.SendPropertyChanged("MATACVU");
-					this.OnMATACVUChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QUYEN_CHITIETTACVU", Storage="_QUYEN", ThisKey="MAQUYEN", OtherKey="MAQUYEN", IsForeignKey=true)]
-		public QUYEN QUYEN
-		{
-			get
-			{
-				return this._QUYEN.Entity;
-			}
-			set
-			{
-				QUYEN previousValue = this._QUYEN.Entity;
-				if (((previousValue != value) 
-							|| (this._QUYEN.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._QUYEN.Entity = null;
-						previousValue.CHITIETTACVUs.Remove(this);
-					}
-					this._QUYEN.Entity = value;
-					if ((value != null))
-					{
-						value.CHITIETTACVUs.Add(this);
-						this._MAQUYEN = value.MAQUYEN;
-					}
-					else
-					{
-						this._MAQUYEN = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("QUYEN");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TACVU_CHITIETTACVU", Storage="_TACVU", ThisKey="MATACVU", OtherKey="MATACVU", IsForeignKey=true)]
-		public TACVU TACVU
-		{
-			get
-			{
-				return this._TACVU.Entity;
-			}
-			set
-			{
-				TACVU previousValue = this._TACVU.Entity;
-				if (((previousValue != value) 
-							|| (this._TACVU.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TACVU.Entity = null;
-						previousValue.CHITIETTACVUs.Remove(this);
-					}
-					this._TACVU.Entity = value;
-					if ((value != null))
-					{
-						value.CHITIETTACVUs.Add(this);
-						this._MATACVU = value.MATACVU;
-					}
-					else
-					{
-						this._MATACVU = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("TACVU");
 				}
 			}
 		}
@@ -2516,120 +2630,6 @@ namespace DoAnWebbb.Models
 		{
 			this.SendPropertyChanging();
 			entity.SANPHAM = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TACVU")]
-	public partial class TACVU : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MATACVU;
-		
-		private string _TENTACVU;
-		
-		private EntitySet<CHITIETTACVU> _CHITIETTACVUs;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMATACVUChanging(int value);
-    partial void OnMATACVUChanged();
-    partial void OnTENTACVUChanging(string value);
-    partial void OnTENTACVUChanged();
-    #endregion
-		
-		public TACVU()
-		{
-			this._CHITIETTACVUs = new EntitySet<CHITIETTACVU>(new Action<CHITIETTACVU>(this.attach_CHITIETTACVUs), new Action<CHITIETTACVU>(this.detach_CHITIETTACVUs));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MATACVU", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int MATACVU
-		{
-			get
-			{
-				return this._MATACVU;
-			}
-			set
-			{
-				if ((this._MATACVU != value))
-				{
-					this.OnMATACVUChanging(value);
-					this.SendPropertyChanging();
-					this._MATACVU = value;
-					this.SendPropertyChanged("MATACVU");
-					this.OnMATACVUChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENTACVU", DbType="NVarChar(50)")]
-		public string TENTACVU
-		{
-			get
-			{
-				return this._TENTACVU;
-			}
-			set
-			{
-				if ((this._TENTACVU != value))
-				{
-					this.OnTENTACVUChanging(value);
-					this.SendPropertyChanging();
-					this._TENTACVU = value;
-					this.SendPropertyChanged("TENTACVU");
-					this.OnTENTACVUChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TACVU_CHITIETTACVU", Storage="_CHITIETTACVUs", ThisKey="MATACVU", OtherKey="MATACVU")]
-		public EntitySet<CHITIETTACVU> CHITIETTACVUs
-		{
-			get
-			{
-				return this._CHITIETTACVUs;
-			}
-			set
-			{
-				this._CHITIETTACVUs.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_CHITIETTACVUs(CHITIETTACVU entity)
-		{
-			this.SendPropertyChanging();
-			entity.TACVU = this;
-		}
-		
-		private void detach_CHITIETTACVUs(CHITIETTACVU entity)
-		{
-			this.SendPropertyChanging();
-			entity.TACVU = null;
 		}
 	}
 }

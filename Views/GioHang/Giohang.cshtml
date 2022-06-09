@@ -21,7 +21,7 @@
                 <div class="project">
                     <div class="shop">
                         <div class="box">
-                            <img src="@item.Hinh">
+                            <img src="@item.Hinh" style="width: auto">
                             <div class="content">
                                 <h2>@Html.DisplayFor(modelItem => item.TenSP) </h2>
                                 @using (Html.BeginForm("CapNhapGioHang", "GioHang", new { @id = item.MaSP }))

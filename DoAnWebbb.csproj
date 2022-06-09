@@ -1851,6 +1851,11 @@
     <Content Include="Content\Details_Style.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\images\baner_sao_home.png" />
+    <Content Include="Content\images\Book1_Index.png" />
+    <Content Include="Content\images\Book2_Index.png" />
+    <Content Include="Content\images\Book3_Index.png" />
+    <Content Include="Content\images\Book4_Index.png" />
+    <Content Include="Content\images\Book5_Index.png" />
     <Content Include="Content\images\EF11-24mm f4L USM.png" />
     <Content Include="Content\images\EF14mm f2.8L II USM.png" />
     <Content Include="Content\images\EF16-35mm f2.8L II USM.png" />
@@ -2249,6 +2254,7 @@
     <Content Include="Views\Shared\_LayoutSanPham.cshtml" />
     <Content Include="Views\SanPhamBan\Details.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\TongQuan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
