@@ -22,7 +22,7 @@ namespace DoAnWebbb.Controllers.SendOTP
             //{
             //    if (ModelState.IsValid)
             //    {
-            //        var senderEmail = new MailAddress("haunguyenaaaa6@gmail.com", "Cửa Hàng Máy Ảnh Hutech");
+            //        var senderEmail = new MailAddress("ngluan161121@gmail.com", "VNBookStore");
             //        var receiverEmail = new MailAddress(kh.GMAIL, "Receiver");
             //        var password = "hau121pk";
             //        var sub = "Mã OTP Xác Nhận";

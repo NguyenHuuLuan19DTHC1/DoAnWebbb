@@ -183,9 +183,9 @@ namespace DoAnWebbb.Controllers
                 {
                     if (ModelState.IsValid)
                     {
-                        var senderEmail = new MailAddress("haunguyenaaaa6@gmail.com", "Cửa Hàng Máy Ảnh Hutech");
+                        var senderEmail = new MailAddress("ngluan161121@gmail.com", "VNBookStore");
                         var receiverEmail = new MailAddress(tk.GMAIL, "Receiver");
-                        var password = "Hau121pk@1";
+                        var password = "a01679522971z";
                         var sub = "Xác Nhận Mua Hàng Thành Công";
                         var body = "Đơn hàng " + ctdh.MAPHIEUMUA + " đang được giao đến bạn \nCảm ơn bạn";
                         var smtp = new SmtpClient
@@ -309,9 +309,9 @@ namespace DoAnWebbb.Controllers
                 {
                     if (ModelState.IsValid)
                     {
-                        var senderEmail = new MailAddress("haunguyenaaaa6@gmail.com", "Cửa Hàng Máy Ảnh Hutech");
+                        var senderEmail = new MailAddress("ngluan161121@gmail.com", "VNBookStore");
                         var receiverEmail = new MailAddress(tk.GMAIL, "Receiver");
-                        var password = "Hau121pk@1";
+                        var password = "a01679522971z";// lấy đăng nhập tào lao là chết mẹ vs tao
                         var sub = "Xác Nhận Mua Hàng Thành Công";
                         var body = "Đơn hàng " + ctdh.MAPHIEUMUA + " Đã được thanh toán bằng momo và đang giao điến bạn. \nCảm ơn bạn đã mua sản phẩm";
                         var smtp = new SmtpClient
@@ -358,9 +358,9 @@ namespace DoAnWebbb.Controllers
             //NGUOIDUNG kh = new NGUOIDUNG();
             //try
             //{
-            //    var senderEmail = new MailAddress("haunguyenaaaa6@gmail.com", "Cửa Hàng Máy Ảnh");
+            //    var senderEmail = new MailAddress("ngluan161121@gmail.com", "VNBookStore");
             //    var receiverEmail = new MailAddress(kh.GMAIL, "Receiver");
-            //    var password = "hau121pk";
+            //    var password = "a01679522971z";
             //    var sub = "Xác Nhận Mua Hàng Thành Công";
             //    var body = "Đơn hàng "; //+ ctdh.MAPHIEUMUA + " đang được giao đến bạn \nCảm ơn bạn";
             //    var smtp = new SmtpClient
