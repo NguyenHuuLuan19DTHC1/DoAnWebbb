@@ -33,8 +33,11 @@
                     <a href="#" class="group">
                         <input type="submit" class="button" value="Đăng nhập">
                     </a>
-                    <div class="group">
+                    <div class="group" style="margin-top:0.5cm; display: flex;">
                         @Html.ActionLink("Đăng ký", "Register")
+                        <div style="margin-left:10cm">
+                            @Html.ActionLink("Admin", "Login", "Admin/LoginAdmin")
+                        </div>
                     </div>
 
                     <div class="hr"></div>

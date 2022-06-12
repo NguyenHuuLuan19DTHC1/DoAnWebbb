@@ -11,10 +11,10 @@
 
 <div class="login-wrap">
     <div class="login-html">
-        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign Up</label>
+        <input  id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign Up</label>
 
         <input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab"></label>
-        <div id="registerForm" class="login-form">
+        <div id="registerForm" class="login-form"  >
 
             @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { id = "formInput", @class = "form-control" }))
             {

@@ -2073,7 +2073,6 @@
     <Content Include="Areas\Admin\Views\SanPham\ChiTietSanPham.cshtml" />
     <Content Include="Areas\Admin\Views\SanPham\SuaSanPham.cshtml" />
     <Content Include="Areas\Admin\Views\SanPham\Delete.cshtml" />
-    <Content Include="Content\images\images Asp.Net-20220412T233655Z-001.zip" />
     <None Include="Models\MyData.dbml.layout">
       <DependentUpon>MyData.dbml</DependentUpon>
     </None>

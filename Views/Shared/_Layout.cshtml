@@ -143,9 +143,22 @@
                                 </div>
                             }
                         </form>
-                        <a href="@Url.Action("Info","NguoiDung")" class="user_link">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                        </a>
+                        @using DoAnWebbb.Models
+                        @if (Session["TaiKhoanKH"] != null)
+                        {
+                            NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanKH"];
+                            <a style="color:orange">Xin Chào:<br /> @tk.HOVATEN</a>
+                            <a href="@Url.Action("Info","NguoiDung")" class="user_link">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </a>
+                        }
+                        else
+                        {
+                    <a href="@Url.Action("Login","Home")" class="user_link">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </a>
+                        }
+                        
                         <a href="@Url.Action("GioHang","GioHang")" class="user_link">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         </a>
