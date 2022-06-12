@@ -35,12 +35,12 @@ namespace DoAnWebbb.Controllers
         }
         public ActionResult SPTheoHang(int id)
         {
-            var sanpham = from sp in db.SANPHAMs where sp.MASANPHAM == id select sp;
+            var sanpham = from sp in db.SANPHAMs where sp.MANCC == id select sp;
             return View(sanpham);
         }
         public ActionResult SPTheoLoai(int id)
         {
-            var sanpham = from sp in db.SANPHAMs where sp.MASANPHAM == id select sp; ;
+            var sanpham = from sp in db.SANPHAMs where sp.MALOAI == id select sp; ;
             return View(sanpham);
         }
         public ActionResult Details(int id)

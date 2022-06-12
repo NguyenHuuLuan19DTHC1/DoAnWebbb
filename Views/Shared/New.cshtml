@@ -40,7 +40,7 @@
             <nav class="navbar navbar-expand-lg custom_nav-container ">
                 <a class="navbar-brand" href="@Url.Action("Index","Home")">
                     <span>
-                       VNBookStore
+                        VNBookStore
                     </span>
                 </a>
 
@@ -121,7 +121,7 @@
                                     <a href="@Url.Action("SPTheoLoai/2","SanPhamBan")">Truyện</a>
                                     <a href="@Url.Action("SPTheoLoai/3","SanPhamBan")">Album music</a>
                                     @*<a href="#">Fuji</a>
-                                    <a href="#">Pentax</a>*@
+                                        <a href="#">Pentax</a>*@
                                 </div>
 
                             </div>
@@ -150,9 +150,21 @@
                                 </div>
                             }
                         </form>
-                        <a href="@Url.Action("Info","NguoiDung")" class="user_link">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                        </a>
+                        @using DoAnWebbb.Models
+                        @if (Session["TaiKhoanKH"] != null)
+                        {
+                            NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanKH"];
+                            <a style="color:orange">Xin Chào:<br /> @tk.HOVATEN</a>
+                            <a href="@Url.Action("Info","NguoiDung")" class="user_link">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Login","Home")" class="user_link">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </a>
+                        }
                         <a href="@Url.Action("GioHang","GioHang")" class="user_link">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         </a>
@@ -248,22 +260,22 @@
                             Liên hệ chúng tôi
                         </h4>
                         <div class="contact_link_box">
-                            <a href="https://bitly.com.vn/tdue0o" target="_blank">
+                            <a href="https://goo.gl/maps/5c1Gqrec46uoNPqCA" target="_blank">
                                 <i class="fa fa-map-marker" aria-hidden="true"></i>
                                 <span>
                                     Vị trí cửa hàng trên Google Map
                                 </span>
                             </a>
-                            <a href="">
+                            <a href="@Url.Action("Index","Home")">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <span>
-                                    Hotline: 0397921794
+                                    Hotline: 0377153336
                                 </span>
                             </a>
-                            <a href="">
+                            <a href="@Url.Action("Index","Home")">
                                 <i class="fa fa-envelope" aria-hidden="true"></i>
                                 <span>
-                                    hoanphucle2001@gmail.com
+                                    ngluan161121@gmail.com
                                 </span>
                             </a>
                         </div>
@@ -272,25 +284,25 @@
                 <div class="col-md-4 footer-col">
                     <div class="footer_detail">
                         <a href="" class="footer-logo">
-                            Digitals Store
+                            VnBookStore
                         </a>
                         <p>
                             “Bạn không thể chỉ hỏi khách hàng xem họ muốn gì và rồi cố đem nó cho họ. Tới lúc bạn hoàn thiện nó, họ đã muốn thứ mới mẻ khác rồi.” – Steve Jobs
                         </p>
                         <div class="footer_social">
-                            <a href="">
+                            <a href="https://www.facebook.com/MinhPhatIT">
                                 <i class="fa fa-facebook" aria-hidden="true"></i>
                             </a>
-                            <a href="">
+                            <a href="https://twitter.com/ann_scottkemmis">
                                 <i class="fa fa-twitter" aria-hidden="true"></i>
                             </a>
-                            <a href="">
+                            <a href="https://www.linkedin.com/company/vinfast-us">
                                 <i class="fa fa-linkedin" aria-hidden="true"></i>
                             </a>
-                            <a href="">
+                            <a href="https://www.instagram.com/lalalalisa_m/">
                                 <i class="fa fa-instagram" aria-hidden="true"></i>
                             </a>
-                            <a href="">
+                            <a href="@Url.Action("Index","Home")">
                                 <i class="fa fa-pinterest" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -304,13 +316,13 @@
                         Từ Thứ 2 - Thứ 7
                     </p>
                     <p>
-                        10.00 Am -10.00 Pm
+                        07:00 Am - 11:59 Pm
                     </p>
                 </div>
             </div>
             <div class="footer-info">
                 <p>
-                    &copy; <span id="displayYear"></span>
+                    &copy; <a> Copy Right Team Số Một</a>
 
                 </p>
             </div>
