@@ -20,7 +20,7 @@ namespace demoWeb.Controllers
         public ActionResult Index(int? page, string searchString, string searchKey)
         {
 
-            ViewBag.Keyword = searchString;
+            ViewBag.Key = searchString;
             if (page == null) page = 1;
             var all_sanPham = (from tt in data.SANPHAMs select tt).OrderBy(m => m.NGAYCAPNHAT);
             int pageSize = 6;
