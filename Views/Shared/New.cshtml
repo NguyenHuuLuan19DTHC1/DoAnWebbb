@@ -138,12 +138,13 @@
                         <form class="form-inline">
                             @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { @class = "form-inline" }))
                             {
+                                @Html.ValidationSummary(true)
                                 <div class="container h-100">
                                     <div class="d-flex justify-content-center h-100">
                                         <div class="searchbar">
-                                            <input class="search_input" value="@ViewBag.Keyword" type="text" name="searchString" placeholder="Search...">
-                                            <button href="#" type="submit" class="search_icon">
-                                                <i style="color:black" class="fa fa-search"></i>
+                                            <input  href="@Url.Action("SPTheoLoai/2","SanPhamBan")" class="search_input" type="text" name="searchString" placeholder="Search...">
+                                            <button type="submit" class="search_icon">
+                                                <i  style="color:black" class="fa fa-search"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -266,13 +267,13 @@
                                     Vị trí cửa hàng trên Google Map
                                 </span>
                             </a>
-                            <a href="@Url.Action("Index","Home")">
+                            <a href="tel:0377153336">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <span>
                                     Hotline: 0377153336
                                 </span>
                             </a>
-                            <a href="@Url.Action("Index","Home")">
+                            <a href="mailto:ngluan161121@gmail.com">
                                 <i class="fa fa-envelope" aria-hidden="true"></i>
                                 <span>
                                     ngluan161121@gmail.com

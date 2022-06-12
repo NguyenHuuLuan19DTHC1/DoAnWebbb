@@ -37,13 +37,13 @@
                     </ul>
                     <div class="user_option">
                         <form class="form-inline">
-                            @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { @class = "form-inline" }))
-                            {
+                            @using (Html.BeginForm("SearchName", "SanPhamBan", FormMethod.Get, new { @class = "form-inline" }))
+                            { @Html.ValidationSummary(true)
                                 <div class="container h-100">
                                     <div class="d-flex justify-content-center h-100">
                                         <div class="searchbar">
-                                            <input class="search_input" value="@ViewBag.Keyword" type="text" name="searchString" placeholder="Search...">
-                                            <a href="#" class="search_icon">
+                                            <input class="search_input" value="@ViewBag.Keyword" type="submit" name="searchString" placeholder="Search...">
+                                            <a href="" class="search_icon">
                                                 <i class="fa fa-search"></i>
                                             </a>
                                         </div>

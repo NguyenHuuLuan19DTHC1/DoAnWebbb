@@ -28,6 +28,17 @@ namespace DoAnWebbb.Controllers
             var hangmay = from hang in db.NHACUNGCAPs select hang;
             return PartialView(hangmay);
         }
+        public ActionResult SearchName(FormCollection collection)
+        {
+            var name = collection["search_input"];
+            var SearchName = from s in db.SANPHAMs select s;
+            if (!String.IsNullOrEmpty(name))
+            {
+                SearchName = SearchName.Where(s => s.TENSANPHAM.Contains(name));
+
+            }
+            return View(SearchName);
+        }
         public ActionResult LoaiMay()
         {
             var loaimay = from loai in db.LOAIMAYs select loai;
