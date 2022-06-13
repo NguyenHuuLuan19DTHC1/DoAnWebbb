@@ -13,7 +13,7 @@ namespace DoAnWebbb.Controllers
     {
         // GET: SanPhamBan
         MyDataDataContext db = new MyDataDataContext();
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string searchString)
         {
             ViewBag.MacDinh = db.SANPHAMs.ToList();
             ViewBag.Moi = db.SANPHAMs.ToList().OrderBy(n => n.NGAYCAPNHAT);
@@ -21,7 +21,20 @@ namespace DoAnWebbb.Controllers
             ViewBag.GiaThap = db.SANPHAMs.ToList().OrderBy(n => n.GIAGIAM);
             int pageSize = 9;
             int pageNum = (page ?? 1);
-            return View(db.SANPHAMs.ToPagedList(pageNum, pageSize));
+            /*return View(db.SANPHAMs.ToPagedList(pageNum, pageSize));*/
+            ViewBag.Key = searchString;
+            var SearchName = from s in db.SANPHAMs select s;
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                SearchName = SearchName.Where(s => s.TENSANPHAM.Contains(searchString));
+            }
+            /*else
+            {
+                SearchName = SearchName.Where(s => s.TENSANPHAM.Contains("co"));
+            }*/
+            return View(SearchName.ToPagedList(pageNum, pageSize));
         }
         public ActionResult HangMay()
         {
@@ -50,15 +63,41 @@ namespace DoAnWebbb.Controllers
             var loaimay = from loai in db.LOAIMAYs select loai;
             return PartialView(loaimay);
         }
-        public ActionResult SPTheoHang(int id)
+        public ActionResult SPTheoHang(int id, string searchString)
         {
-            var sanpham = from sp in db.SANPHAMs where sp.MANCC == id select sp;
-            return View(sanpham);
+            ViewBag.Key = searchString;
+            var SearchName = from sp in db.SANPHAMs where sp.MANCC == id select sp;
+            
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                SearchName = SearchName.Where(s => s.TENSANPHAM.Contains(searchString));
+            }
+            /*else
+            {
+                SearchName = SearchName.Where(s => s.TENSANPHAM.Contains("co"));
+            }*/
+            return View(SearchName);
         }
-        public ActionResult SPTheoLoai(int id)
+        public ActionResult SPTheoLoai(int id, string searchString)
         {
-            var sanpham = from sp in db.SANPHAMs where sp.MALOAI == id select sp; ;
-            return View(sanpham);
+            var SearchName = from sp in db.SANPHAMs where sp.MALOAI == id select sp; ;
+            /*return View(sanpham);*/
+            ViewBag.Key = searchString;
+            /*var SearchName = from sp in db.SANPHAMs where sp.MANCC == id select sp;*/
+
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                SearchName = SearchName.Where(s => s.TENSANPHAM.Contains(searchString));
+            }
+            /*else
+            {
+                SearchName = SearchName.Where(s => s.TENSANPHAM.Contains("co"));
+            }*/
+            return View(SearchName);
         }
         public ActionResult Details(int id)
         {

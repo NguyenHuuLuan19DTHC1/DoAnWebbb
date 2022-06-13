@@ -131,21 +131,7 @@
                         </li>
                     </ul>
                     <div class="user_option">
-                        <form class="form-inline">
-                            @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { @class = "form-inline" }))
-                            {
-                                <div class="container h-100">
-                                    <div class="d-flex justify-content-center h-100">
-                                        <div class="searchbar">
-                                            <input class="search_input" value="@ViewBag.Keyword" type="text" name="searchString" placeholder="Search...">
-                                            <button href="#" type="submit" class="search_icon">
-                                                <i style="color:black" class="fa fa-search"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                        </form>
+                        <
                         @using DoAnWebbb.Models
                         @if (Session["TaiKhoanKH"] != null)
                         {
