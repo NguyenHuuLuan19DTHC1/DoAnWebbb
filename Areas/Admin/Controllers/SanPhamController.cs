@@ -46,32 +46,32 @@ namespace DoAnWebbb.Areas.Admin.Controllers
             ViewBag.MaNCC = new SelectList(db.NHACUNGCAPs.ToList().OrderBy(n => n.TENNCCC), "MANCC", "TENNCCC");
             ViewBag.MaLoai = new SelectList(db.LOAIMAYs.ToList().OrderBy(n => n.TENLOAI), "MALOAI", "TENLOAI");
             var E_tensanpham = collection["tensanpham"];
-            var E_thongsokythuat = collection["thongsokythuat"];
+            var E_thongsokythuat = collection["Thongso"];
             var E_anhsanpham = collection["HINH"];
             var E_giaban = Convert.ToDecimal(collection["giaban"]);
             var E_giagiam = Convert.ToDouble(collection["giagiam"]);
             var E_soluongton = collection["soluongton"];
             var E_ngaycapnhat = DateTime.Now;
-    
-            //if (string.IsNullOrEmpty(E_tensanpham) || string.IsNullOrEmpty(E_thongsokythuat))
-            //{
-            //    ViewData["Error"] = "Don't empty!";
-            //    return this.ThemSanPham();
-            //}
-            //else
-            //{
+
+
+            if (string.IsNullOrEmpty(E_soluongton) || string.IsNullOrEmpty(E_anhsanpham) || string.IsNullOrEmpty(E_tensanpham) ||string.IsNullOrEmpty(Convert.ToString(E_giaban))|| /*string.IsNullOrEmpty(E_thongsokythuat)||*/string.IsNullOrEmpty(Convert.ToString(E_giagiam)))
+            {
+                ViewData["Error"] = "Don't empty!";
+                return View("Index");
+            }
+            else
+            {
                 sanpham.TENSANPHAM = E_tensanpham.ToString();
                 sanpham.THONGSOKYTHUAT = E_thongsokythuat;
                 sanpham.HINH = E_anhsanpham;
                 sanpham.GIABAN = E_giaban;
                 sanpham.GIAGIAM = E_giagiam;
                 sanpham.NGAYCAPNHAT = E_ngaycapnhat;
-
                 sanpham.TRANGTHAI = 1;
                 db.SANPHAMs.InsertOnSubmit(sanpham);
                 db.SubmitChanges();
-               
-            //}
+
+            }
             return RedirectToAction("Index");
         }
         public string ProcessUpload(HttpPostedFileBase file)
@@ -80,8 +80,8 @@ namespace DoAnWebbb.Areas.Admin.Controllers
             {
                 return "";
             }
-            file.SaveAs(Server.MapPath("~/Content/images_product/" + file.FileName));
-            return "Content/images_product/" + file.FileName;
+            file.SaveAs(Server.MapPath("~/Content/images/" + file.FileName));
+            return "/Content/images/" + file.FileName;
         }
         public ActionResult SuaSanPham(int id)
         {

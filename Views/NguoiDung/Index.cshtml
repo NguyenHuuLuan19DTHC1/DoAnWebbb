@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutNguoiDung.cshtml";
+}
+
+@using DoAnWebbb.Models
+@if (Session["TaiKhoanKH"] != null)
+{
+    NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanKH"];
+    <input value="@tk.HOVATEN" >
+    <a style="color:orange">Xin Chào:<br /> @tk.HOVATEN <br /></a> 
+    <a style="color:orange">Xin Chào:<br /> @tk.USERNAME <br /></a>
+    <a style="color:orange">Xin Chào:<br /> @tk.SDT <br /></a>
+    <a style="color:orange">Xin Chào:<br /> @tk.NGAYDANGKY <br /></a>
+    <a style="color:orange">Xin Chào:<br /> @tk.GMAIL <br /></a>
+    <a style="color:orange">Xin Chào:<br /> @tk.NAMSINH <br /></a>
+    <a style="color:orange">Xin Chào:<br /> @tk.GIOITINH <br /></a>
+    <a href="@Url.Action("Index","NguoiDung")" class="user_link">
+        <i class="fa fa-user" aria-hidden="true"></i>
+    </a>
+}
+

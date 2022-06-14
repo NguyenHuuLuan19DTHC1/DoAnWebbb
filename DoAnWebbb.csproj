@@ -164,6 +164,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoMo\MoMoSecurity.cs" />
     <Compile Include="Controllers\MoMo\PaymentRequest.cs" />
+    <Compile Include="Controllers\NguoiDungController.cs" />
     <Compile Include="Controllers\SanPhamBanController.cs" />
     <Compile Include="Controllers\SendOTP\SendOTPController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1893,6 +1894,10 @@
     <Content Include="Content\images\Conan100.png" />
     <Content Include="Content\images\Conan49.jpg" />
     <Content Include="Content\images\Conan54.png" />
+    <Content Include="Content\images\CongPhaHoa.png" />
+    <Content Include="Content\images\CongPhaHoa2.png" />
+    <Content Include="Content\images\CongPhaSinh.png" />
+    <Content Include="Content\images\CongPhaSinh2.png" />
     <Content Include="Content\images\Doraemon3.png" />
     <Content Include="Content\images\Doraemon33.png" />
     <Content Include="Content\images\Doraemon4.png" />
@@ -1900,6 +1905,7 @@
     <Content Include="Content\images\KimDong1.png" />
     <Content Include="Content\images\KimDong2.jpg" />
     <Content Include="Content\images\KimDong3.png" />
+    <Content Include="Content\images\KimDong4.png" />
     <Content Include="Content\images\Math.png" />
     <Content Include="Content\images\Red.png" />
     <Content Include="Content\images\rihanna.png" />
@@ -2242,6 +2248,9 @@
     <Content Include="Views\Home\TongQuan.cshtml" />
     <Content Include="Views\Home\LienHe.cshtml" />
     <Content Include="Views\SanPhamBan\SearchName.cshtml" />
+    <Content Include="Views\Shared\_LayoutNguoiDung.cshtml" />
+    <Content Include="Views\NguoiDung\Index.cshtml" />
+    <Content Include="Views\NguoiDung\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
