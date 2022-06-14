@@ -14,7 +14,7 @@ namespace DoAnWebbb.Controllers
 {
     public class GioHangController : Controller
     {
-        // GET: GioHang
+        // GET: GioHang ưqeqư
         MyDataDataContext data = new MyDataDataContext();
 
         public List<GioHang> Laygiohang()
