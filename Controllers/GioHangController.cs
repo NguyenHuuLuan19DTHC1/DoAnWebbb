@@ -36,12 +36,12 @@ namespace DoAnWebbb.Controllers
             {
                 sanpham = new GioHang(id);
                 lstGioHang.Add(sanpham);
-                //return Redirect(strURL);
+               /* return Redirect(strURL);*/
             }
             else
             {
                 sanpham.SoLuong++;
-                //return Redirect(strURL);
+                /*return Redirect(strURL);*/
             }
             return Content("");
         }

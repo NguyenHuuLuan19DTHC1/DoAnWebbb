@@ -18,21 +18,20 @@
                             <div class="box">
                                 <div>
                                     <div class="img-box">
-                                        <img src="@item.HINH" alt="thumbnails" />
+                                        <a href="@Url.Action("Details","Home", new { id = item.MASANPHAM })">
+                                            <img src="@item.HINH" alt="thumbnails" />
+                                        </a>
                                     </div>
                                     <div class="detail-box">
                                         <h5>
                                             @item.TENSANPHAM
                                         </h5>
-                                        <p>
-                                            @item.THONGSOKYTHUAT
-                                        </p>
                                         <div class="options">
                                             <h6>
                                                 <bdo>$</bdo>@String.Format("{0:0,0}", item.GIABAN) <bdo>VNĐ</bdo>
                                             </h6>
-                                            <button class="btnDatMua" data-id="@item.MASANPHAM">Đặt Mua</button>
                                             @*<a class="btn btn-success" href="@Url.Action("ThemGioHang", "GioHang",new { @id = item.MASANPHAM, @strURL = Request.Url.ToString() })">Đặt mua</a>*@
+                                            <button class="btnDatMua" data-id="@item.MASANPHAM">Đặt Mua</button>
                                         </div>
                                     </div>
                                 </div>
@@ -56,3 +55,25 @@
         </style>*@
 
 </body>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(".btnDatMua").click(function () {
+        console.log("hihihi");
+        var id = $(this).attr("data-id")
+        $.ajax({
+
+            type: "GET",
+            data: { id: id },
+            url: "/GioHang/ThemGioHang",
+            success: function (status) {
+
+                alert("Đã thêm vào giỏ hàng")
+            },
+            error: function (err) {
+                alert('Error ', err.statusText);
+            }
+        })
+    })
+
+</script>
+
