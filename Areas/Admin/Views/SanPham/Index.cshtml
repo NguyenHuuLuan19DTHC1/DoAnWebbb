@@ -18,7 +18,7 @@
             <thead style="color:black; text-align:center">
                 <tr>
                     <th>
-                        Hãng Máy
+                        Nhà Cung Cấp
                     </th>
                     <th>
                         Loại Sản Phẩm
@@ -27,7 +27,7 @@
                         Tên Sản Phẩm
                     </th>
                     <th>
-                        Thông Số Kỹ Thuật
+                        Chi Tiết
                     </th>
                     <th>
                         Hình Ảnh
@@ -106,26 +106,17 @@
                 }
             </tbody>
         </table>
+        <div>
+            <div>
+                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /
+                @Model.PageCount
+            </div>
+            <div class="MenuTrang">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new
+                {
+                    page = page
+                }))
+            </div>
+        </div>
     </div>
 </div>
-
-@*<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script>
-        $(".btn-danger").click(function () {
-            console.log("hihihi");
-            var id = $(this).attr("data-id")
-            $.ajax({
-                type: "GET",
-                data: { id: id },
-                url: "/SanPham/Delete",
-                success: function (status) {
-
-                    alert("Đã Xóa Sản Phẩm")
-                },
-                error: function (err) {
-                    alert('Error ', err.statusText);
-                }
-            })
-        })
-
-    </script>*@

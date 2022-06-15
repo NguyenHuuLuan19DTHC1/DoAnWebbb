@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>@ViewBag.Title</title>
-
+    <link href="~/Content/styleSearch.css" rel="stylesheet" />
     <!-- Custom fonts for this template-->
     <link href="~/Areas/Admin/Content/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -67,7 +67,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Các thành phần:</h6>
-                        <a class="collapse-item" href="@Url.Action("Index", "QLHangMay")">Quản lý hãng sản phẩm</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "QLHangMay")">Quản lý NCC</a>
                         <a class="collapse-item" href="@Url.Action("Index", "QLLoaiMay")">Quản lý loại sản phẩm</a>
                         <a class="collapse-item" href="@Url.Action("Index", "SanPham")">Quản lý sản phẩm</a>
                     </div>
@@ -122,6 +122,21 @@
                     <ul class="navbar-nav ml-auto">
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <!-- Nav Item - User Information -->
+                        <form class="form-inline">
+                            @using (Html.BeginForm("SearchName", "SanPham", FormMethod.Get, new { @class = "form-inline" }))
+                            {
+                                <div class="container h-100">
+                                    <div class="d-flex justify-content-center h-100">
+                                        <div class="searchbar">
+                                            <input class="search_input" value="@ViewBag.Keyword" type="text" name="searchString" placeholder="Search...">
+                                            <button href="#" type="submit" class="search_icon">
+                                                <i style="color:black" class="fa fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </form>
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -131,7 +146,7 @@
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">@admin.HOVATEN</span>
                                 }
                                 <img class="img-profile rounded-circle"
-                                     src="~/Areas/Admin/Content/img/undraw_profile.svg">
+                                     src="~/Areas/Admin/Content/img/avatar1.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

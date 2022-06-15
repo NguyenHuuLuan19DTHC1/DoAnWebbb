@@ -19,7 +19,7 @@ namespace DoAnWebbb.Controllers
             ViewBag.Moi = db.SANPHAMs.ToList().OrderBy(n => n.NGAYCAPNHAT);
             ViewBag.GiaCao = db.SANPHAMs.ToList().OrderByDescending(n => n.GIAGIAM);
             ViewBag.GiaThap = db.SANPHAMs.ToList().OrderBy(n => n.GIAGIAM);
-            int pageSize = 9;
+            int pageSize = 12;
             int pageNum = (page ?? 1);
             /*return View(db.SANPHAMs.ToPagedList(pageNum, pageSize));*/
             ViewBag.Key = searchString;
@@ -28,7 +28,7 @@ namespace DoAnWebbb.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                SearchName = SearchName.Where(s => s.TENSANPHAM.Contains(searchString));
+                SearchName = SearchName.Where(s => s.TENSANPHAM.Contains(searchString));               
             }
             /*else
             {
@@ -63,11 +63,12 @@ namespace DoAnWebbb.Controllers
             var loaimay = from loai in db.LOAIMAYs select loai;
             return PartialView(loaimay);
         }
-        public ActionResult SPTheoHang(int id, string searchString)
+        public ActionResult SPTheoHang(int id, string searchString, int? page)
         {
             ViewBag.Key = searchString;
             var SearchName = from sp in db.SANPHAMs where sp.MANCC == id select sp;
-            
+            int pageSize = 12;
+            int pageNum = (page ?? 1);
 
 
             if (!String.IsNullOrEmpty(searchString))
@@ -78,10 +79,12 @@ namespace DoAnWebbb.Controllers
             {
                 SearchName = SearchName.Where(s => s.TENSANPHAM.Contains("co"));
             }*/
-            return View(SearchName);
+            return View(SearchName.ToPagedList(pageNum,pageSize));
         }
-        public ActionResult SPTheoLoai(int id, string searchString)
+        public ActionResult SPTheoLoai(int id, string searchString, int? page)
         {
+            int pageSize = 12;
+            int pageNum = (page ?? 1);
             var SearchName = from sp in db.SANPHAMs where sp.MALOAI == id select sp; ;
             /*return View(sanpham);*/
             ViewBag.Key = searchString;
@@ -97,7 +100,7 @@ namespace DoAnWebbb.Controllers
             {
                 SearchName = SearchName.Where(s => s.TENSANPHAM.Contains("co"));
             }*/
-            return View(SearchName);
+            return View(SearchName.ToPagedList(pageNum, pageSize));
         }
         public ActionResult Details(int id)
         {
