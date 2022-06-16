@@ -2185,6 +2185,8 @@
     <Content Include="Areas\Admin\Views\QLLoaiSach\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\QLLoaiSach\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\SanPham\ChiTietSanPham.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Info.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\ChangePass.cshtml" />
     <None Include="Models\MyData.dbml.layout">
       <DependentUpon>MyData.dbml</DependentUpon>
     </None>
@@ -2304,7 +2306,6 @@
     <Content Include="Views\SanPhamBan\SearchName.cshtml" />
     <Content Include="Views\Shared\_LayoutNguoiDung.cshtml" />
     <Content Include="Views\NguoiDung\Index.cshtml" />
-    <Content Include="Views\NguoiDung\Edit.cshtml" />
     <Content Include="Views\GioHang\XacNhanDonHangThatBai.cshtml" />
     <Content Include="Views\NguoiDung\Info.cshtml" />
     <Content Include="Views\NguoiDung\ChangePass.cshtml" />

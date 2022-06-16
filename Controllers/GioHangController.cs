@@ -331,7 +331,6 @@ namespace DoAnWebbb.Controllers
                 //data.SANPHAMs.InsertOnSubmit(sp);
                 data.PHIEUMUAs.InsertOnSubmit(dh);
                 data.CT_PHIEUMUAs.InsertOnSubmit(ctdh);
-                data.SubmitChanges();
                 try
                 {
                     if (ModelState.IsValid)
@@ -369,6 +368,7 @@ namespace DoAnWebbb.Controllers
                 data.SubmitChanges();
                 Session["GioHang"] = null;
             }
+            data.SubmitChanges();
 
 
             string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());

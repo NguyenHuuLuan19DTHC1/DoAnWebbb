@@ -30,5 +30,35 @@ namespace DoAnWebbb.Areas.Admin.Controllers
             int pageSize = 7;
             return View(db.PHIEUMUAs.ToList().OrderBy(n => n.NGAYDAT).ToPagedList(pageNum, pageSize));
         }
+        public ActionResult Info()
+        {
+            
+            NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanAD"];
+            
+            return View(tk);
+        }
+        public ActionResult ChangePass()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ChangePass(FormCollection collection)
+        {
+            NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanAD"];
+            var nd = from n in db.NGUOIDUNGs where (n.USERNAME == tk.USERNAME) select n;
+            tk.PASS = collection["PassAD"];
+            foreach (var a in nd)
+            {
+                a.PASS = tk.PASS;
+            }
+            UpdateModel(nd);
+            db.SubmitChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult LogOut()
+        {
+            Session["TaiKhoanAD"] = null;
+            return RedirectToAction("Login", "Home");
+        }
     }
 }

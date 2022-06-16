@@ -112,16 +112,11 @@
                                 <button href="@Url.Action("Index","SanPhamBan")" class="dropbtn">SẢN PHẨM</button>
                                 <div class="dropdown-content">
                                     <a href="@Url.Action("Index","SanPhamBan")">Tất cả sản phẩm</a>
-                                    @*<a href="@Url.Action("2","SPTheoHang", "SanPhamBan")">Nikon</a>
-                                        <a href="@Url.Action("1","SPTheoHang", "SanPhamBan")">Canon</a>
-                                        <a href="@Url.Action("3","SPTheoHang", "SanPhamBan")">Sony</a>
-                                        <a href="@Url.Action("4","SPTheoHang", "SanPhamBan")">Fuji</a>
-                                        <a href="@Url.Action("5","SPTheoHang", "SanPhamBan")">Pentax</a>*@
+
                                     <a href="@Url.Action("SPTheoLoai/1","SanPhamBan")">Sách</a>
                                     <a href="@Url.Action("SPTheoLoai/2","SanPhamBan")">Truyện</a>
                                     <a href="@Url.Action("SPTheoLoai/3","SanPhamBan")">Album music</a>
-                                    @*<a href="#">Fuji</a>
-                                        <a href="#">Pentax</a>*@
+
                                 </div>
 
                             </div>
@@ -131,7 +126,7 @@
                             <a class="nav-link" href="@Url.Action("TongQuan","Home")">Tổng quan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Liên hệ</a>
+                            <a class="nav-link" href="@Url.Action("LienHe","Home")">Liên hệ</a>
                         </li>
                     </ul>
                     <div class="user_option">
@@ -235,12 +230,12 @@
                 <div class="products-right-grid" style="margin-top:22px; margin-left:18px">
                     <div class="products-right-grids animated wow slideInRight" data-wow-delay=".5s">
                         <div class="sorting">
-                            <select id="country" onchange="change_country(this.value)" class="frm-field required sect">
-                                <option value="null">Mặc định</option>
-                                <option value="null">Mới</option>
-                                <option value="null">Giá thấp</option>
-                                <option value="null">Giá cao</option>
-                            </select>
+                            @*<select id="country" onchange="change_country(this.value)" class="frm-field required sect">
+                                <option value="@ViewBag.MacDinh">Mặc định</option>
+                                <option value="@ViewBag.Moi">Mới</option>
+                                <option value="@ViewBag.GiaThap">Giá thấp</option>
+                                <option value="@ViewBag.GiaThap">Giá cao</option>
+                            </select>*@
                         </div>
                     </div>
                 </div>

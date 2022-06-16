@@ -2,17 +2,17 @@
 
 @{
     ViewBag.Title = "Info";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutHomeAdmin.cshtml";
 }
 @using DoAnWebbb.Models
 @{
-    NGUOIDUNG pm = (NGUOIDUNG)Session["TaiKhoanKH"];
-    //NGUOIDUNG pm = new NGUOIDUNG();
+    NGUOIDUNG pm = (NGUOIDUNG)Session["TaiKhoanAD"];
 }
+
 <h2 style="text-align:center; color: black; margin-top:10px">Thông tin của bạn</h2>
 <form>
     <p id="messageValidate" class="text-danger"></p>
-    <table align="center" style="margin-left:35%">
+    <table align="center" style="margin-left:25%; width: 40%">
         @using (Html.BeginForm())
         {
             @Html.ValidationSummary(true)
@@ -57,13 +57,12 @@
     </table>
     <div class="form-actions no-color" style="display: flex">
         <div style="margin-left: 10cm">
-            @Html.ActionLink("Back to Home", "Index", "Home")
+            @Html.ActionLink("Back to Home", "Index", "HomeAdmin")
         </div>
-        <div style="margin-left: 15cm">
-
-            @Html.ActionLink("Đổi mật khẩu", "ChangePass", "NguoiDung")
+        <div style="margin-left: 7cm">
+            @Html.ActionLink("Đổi mật khẩu", "ChangePass", "HomeAdmin")
         </div>
     </div>
 
-        
+
 </form>

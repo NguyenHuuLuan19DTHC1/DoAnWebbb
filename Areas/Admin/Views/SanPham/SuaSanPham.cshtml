@@ -53,7 +53,7 @@
                 <div class="form-group">
                     <div class="col-md-10">
                         <strong style="color:black">Giá Giảm</strong>
-                        <input class="form-control" value="@String.Format("{0:0,0}", Model.GIAGIAM)" />
+                        <input class="form-control" type="number" min="0" value ="@String.Format("{0:0,0}", Model.GIAGIAM)" />
                         @Html.ValidationMessageFor(model => model.GIAGIAM, "", new { @class = "text-danger" })
                     </div>
                 </div>

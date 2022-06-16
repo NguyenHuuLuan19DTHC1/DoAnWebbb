@@ -19,7 +19,7 @@ namespace DoAnWebbb.Controllers
             ViewBag.Moi = db.SANPHAMs.ToList().OrderBy(n => n.NGAYCAPNHAT);
             ViewBag.GiaCao = db.SANPHAMs.ToList().OrderByDescending(n => n.GIAGIAM);
             ViewBag.GiaThap = db.SANPHAMs.ToList().OrderBy(n => n.GIAGIAM);
-            int pageSize = 12;
+            int pageSize = 15;
             int pageNum = (page ?? 1);
             /*return View(db.SANPHAMs.ToPagedList(pageNum, pageSize));*/
             ViewBag.Key = searchString;
