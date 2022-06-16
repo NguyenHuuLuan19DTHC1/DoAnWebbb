@@ -1,0 +1,46 @@
+﻿@model DoAnWebbb.Models.NGUOIDUNG
+
+@{
+    ViewBag.Title = "ChangePass";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using DoAnWebbb.Models
+@{
+    NGUOIDUNG pm = (NGUOIDUNG)Session["TaiKhoanKH"];
+    //NGUOIDUNG pm = new NGUOIDUNG();
+}
+
+<h2>ChangePass</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        Mật khẩu cũ
+        <div class="col-md-10">
+            <input disabled type="text" placeholder="@pm.PASS" />
+        </div>
+    </div>
+    <div class="form-group">
+        Mật khẩu mới
+        <div class="col-md-10">
+            <input type="text" required="true"  name="Pass" id="Pass" placeholder="Nhập mật khẩu mới" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

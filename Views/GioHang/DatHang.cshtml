@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<DoAnWebbb.Models.GioHang>
 
 @{
-    ViewBag.Title = "GioHang";
+    ViewBag.Title = "Giỏ hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -12,9 +12,7 @@
     <link href="~/Content/Cart_Style.css" rel="stylesheet">
 </head>
 <body>
-
     <table>
-
         @foreach (var item in Model)
         {
             <div class="wrapper">
@@ -31,11 +29,8 @@
                                         <br />Đặt Mua: <input id="txtSoLuong" type="number" min="1" max="@item.SoLuongTon" name="txtSoLuong" value="@item.SoLuong" />
                                         <br> <input type="submit" value="Cập Nhập" class="btn btn-success" />
                                     </h4>
-
-
                                     @*<p class="unit">Số Lượng: <input type="number" min="1" max="@item.SoLuongTon" name="SoLuong" value="@item.SoLuong"></p>*@
                                     <p class="btn-area"><i aria-hidden="true" class="fa fa-trash"></i> <span class="btn2">@Html.ActionLink("Xoá", "XoaGioHang", new { @id = item.MaSP })</span></p>
-
                                 }
                             </div>
                         </div>
@@ -45,12 +40,12 @@
 
                 </div>
             </div>
-
         }
 
     </table>
     <div class="right-bar">
         <p><span>Số Loại Sản Phẩm</span> <span>@ViewBag.TongSoLuongSanPham</span></p>
+
         <hr>
         <p><span>Tổng Số Sản Phẩm</span> <span>@ViewBag.TongSoLuong</span></p>
         <hr>
@@ -66,7 +61,7 @@
 
 
 @using DoAnWebbb.Models
-<h2 style="text-align:center;font-family:'Times New Roman' ">Thông Tin Đặt Hàng</h2>
+<h2 style="text-align:center;font-family:'Times New Roman' "><br />Thông Tin Đặt Hàng</h2>
 @{
     NGUOIDUNG pm = (NGUOIDUNG)Session["TaiKhoanKH"];
     //NGUOIDUNG pm = new NGUOIDUNG();

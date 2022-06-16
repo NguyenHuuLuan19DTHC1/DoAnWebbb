@@ -132,18 +132,19 @@ namespace DoAnWebbb.Areas.Admin.Controllers
                 db.SubmitChanges();
                 return RedirectToAction("Index");             
         }
-        public ActionResult Delete()
+        public ActionResult Delete(int id)
         {
-            return View("Index");
+            var D_SP = db.SANPHAMs.FirstOrDefault(m => m.MASANPHAM == id);
+            return View(D_SP);
         }
         [HttpPost]
-        public ActionResult Delete (int id)
+        public ActionResult Delete (int id, FormCollection collection)
         {
-            var E_sanpham = db.SANPHAMs.First(m => m.MASANPHAM == id);
-            if (E_sanpham.MASANPHAM == id)
+            var D_sanpham = db.SANPHAMs.First(m => m.MASANPHAM == id);
+            if (D_sanpham.MASANPHAM == id)
             {
-                E_sanpham.TRANGTHAI = 0;
-                db.SANPHAMs.DeleteOnSubmit(E_sanpham);
+                D_sanpham.TRANGTHAI = 0;
+                db.SANPHAMs.DeleteOnSubmit(D_sanpham);
                 db.SubmitChanges();
                 return RedirectToAction("Index");
             }
@@ -151,7 +152,6 @@ namespace DoAnWebbb.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             } 
-            return RedirectToAction("Index");
         }
     }
 }

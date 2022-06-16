@@ -1,0 +1,76 @@
+﻿@model DoAnWebbb.Models.NGUOIDUNG
+
+@{
+    ViewBag.Title = "Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using DoAnWebbb.Models
+@{
+    NGUOIDUNG pm = (NGUOIDUNG)Session["TaiKhoanKH"];
+    //NGUOIDUNG pm = new NGUOIDUNG();
+}
+<h2 style="text-align:center; color: black; margin-top:10px">Thông tin của bạn</h2>
+<form>
+    <p id="messageValidate" class="text-danger"></p>
+    <table align="center" style="margin-left:35%">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+
+            <tr style="height:40px">
+                <td style="color: black;">Họ Tên:</td>
+                <td>
+                    @*<p style="padding-top:7%">@pm.HOVATEN</p>*@
+                    <input disabled id="IHOVATEN" type="text" class="form-control" name="DHHOVATEN" value="@pm.HOVATEN" />
+                </td>
+            </tr>
+            <tr style="height:40px">
+                <td style="color: black;">Mật khẩu:</td>
+                <td>
+                    @*<p style="padding-top:7%">@pm.HOVATEN</p>*@
+                    <input disabled id="IPASS" type="text" class="form-control" name="IPASS" value="@pm.PASS" />
+                </td>
+            </tr>
+            <tr style="height:40px">
+                <td style="color: black;">Email:</td>
+                <td>
+                    @*<p style="padding-top:7%">@pm.GMAIL</p>*@
+                    <input disabled id="IGMAIL" type="text" class="form-control" name="DHGMAIL" value="@pm.GMAIL" />
+                </td>
+            </tr>
+            <tr style="height:40px">
+                <td style="color: black;">Đỉa Chỉ:</td>
+                <td>
+                    @*<p style="padding-top:7%">@pm.DIACHI</p>*@
+                    <input disabled id="IDIACHI" type="text" class="form-control" name="DIACHI" value="@pm.DIACHI" />
+                </td>
+            </tr>
+            <tr style="height:40px">
+                <td style="color: black;">Điện Thoại:</td>
+                <td>
+                    @*<p style="padding-top:7%">@pm.SDT</p>*@
+                    <input disabled id="ISDT" type="text" class="form-control" name="DHSDT" value="@pm.SDT" />
+                </td>
+            </tr>
+            <tr style="height:40px">
+                <td style="color: black;">Giới tính:</td>
+                <td>
+                    @*<p style="padding-top:7%">@pm.SDT</p>*@
+                    <input disabled id="IGIOITINH" type="text" class="form-control" name="IGIOITINH" value="@pm.GIOITINH" />
+                </td>
+            </tr>
+
+        }
+    </table>
+    <div class="form-actions no-color" style="display: flex">
+        <div style="margin-left: 10cm">
+            @Html.ActionLink("Back to Home", "Index", "Home")
+        </div>
+        <div style="margin-left: 15cm">
+
+            @Html.ActionLink("Đổi mật khẩu", "ChangePass", "NguoiDung")
+        </div>
+    </div>
+
+        
+</form>

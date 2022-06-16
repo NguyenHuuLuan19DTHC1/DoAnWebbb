@@ -18,13 +18,16 @@
             <thead style="color:black; text-align:center">
                 <tr>
                     <th>
-                        Nhà Cung Cấp
+                        ID
                     </th>
                     <th>
-                        Loại Sản Phẩm
+                        NCC
                     </th>
                     <th>
-                        Tên Sản Phẩm
+                        Loại 
+                    </th>
+                    <th>
+                        Tên 
                     </th>
                     <th>
                         Chi Tiết
@@ -36,10 +39,10 @@
                         Giá Gốc
                     </th>
                     <th>
-                        Giá Khuyến Mãi
+                        KM
                     </th>
                     <th>
-                        Số Lượng Tồn
+                        SL
                     </th>
                     <th>
                         Ngày Cập Nhật
@@ -57,6 +60,9 @@
                 @foreach (var item in Model)
                 {
                     <tr style="color:black">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MASANPHAM)
+                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.NHACUNGCAP.TENNCCC)
                         </td>

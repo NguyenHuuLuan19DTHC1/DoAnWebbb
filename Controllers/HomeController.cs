@@ -112,6 +112,7 @@ namespace demoWeb.Controllers
         public ActionResult LogOut()
         {
             Session["TaiKhoanKH"] = null;
+            Session["GioHang"] = null;
             return RedirectToAction("Login", "Home");
         }
         //Xác nhận OTP

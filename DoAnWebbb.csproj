@@ -50,9 +50,57 @@
     <Reference Include="Elasticsearch.Net, Version=7.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
       <HintPath>packages\Elasticsearch.Net.7.17.2\lib\net461\Elasticsearch.Net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNetCore.Hosting.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Server.Abstractions, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNetCore.Hosting.Server.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Abstractions, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNetCore.Http.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNetCore.Http.Features.2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Configuration, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Configuration.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Configuration.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Configuration.Binder.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.FileProviders.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Hosting.Abstractions, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Hosting.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Http, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Http.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Logging.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Logging.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Options.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Primitives.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="Nest, Version=7.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
       <HintPath>packages\NEST.7.17.2\lib\net461\Nest.dll</HintPath>
+    </Reference>
+    <Reference Include="NgrokAspNetCore.Lib, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Ngrok.AspNetCore.1.0.6\lib\netstandard2.0\NgrokAspNetCore.Lib.dll</HintPath>
     </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -79,6 +127,9 @@
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encodings.Web.4.5.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -156,8 +207,8 @@
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\PhanQuyenController.cs" />
-    <Compile Include="Areas\Admin\Controllers\QLHangMayController.cs" />
-    <Compile Include="Areas\Admin\Controllers\QLLoaiMayController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QLHangController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QLLoaiSachController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
@@ -2123,13 +2174,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Areas\Admin\Views\QLLoaiMay\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\QLHangMay\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\SanPham\ChiTietSanPham.cshtml" />
+    <Content Include="Areas\Admin\Views\QLLoaiSach\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SanPham\SuaSanPham.cshtml" />
     <Content Include="Areas\Admin\Views\SanPham\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\QLHangMay\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\QLLoaiMay\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\QLHang\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\QLLoaiSach\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\QLHang\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\QLHang\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\QLHang\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\QLLoaiSach\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\QLLoaiSach\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPham\ChiTietSanPham.cshtml" />
     <None Include="Models\MyData.dbml.layout">
       <DependentUpon>MyData.dbml</DependentUpon>
     </None>
@@ -2228,13 +2283,10 @@
     <Content Include="Views\GioHang\GioHangPartial.cshtml" />
     <Content Include="Views\GioHang\returnUrl.cshtml" />
     <Content Include="Views\GioHang\XacNhanDonHang.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Cart.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
-    <Content Include="Views\Home\TinhThanh.cshtml" />
     <Content Include="Views\Home\XacNhanOTP.cshtml" />
     <Content Include="Views\SanPhamBan\HangMay.cshtml" />
     <Content Include="Views\SanPhamBan\Index.cshtml" />
@@ -2253,6 +2305,9 @@
     <Content Include="Views\Shared\_LayoutNguoiDung.cshtml" />
     <Content Include="Views\NguoiDung\Index.cshtml" />
     <Content Include="Views\NguoiDung\Edit.cshtml" />
+    <Content Include="Views\GioHang\XacNhanDonHangThatBai.cshtml" />
+    <Content Include="Views\NguoiDung\Info.cshtml" />
+    <Content Include="Views\NguoiDung\ChangePass.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

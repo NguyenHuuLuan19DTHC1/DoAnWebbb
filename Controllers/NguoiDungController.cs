@@ -14,43 +14,34 @@ namespace DoAnWebbb.Controllers
         // GET: NguoiDung
         public ActionResult Index()
         {
-            var nd = from n in data.NGUOIDUNGs select n;
-            return View(nd);
+            NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanKH"];
+            
+            return View(tk);
         }
-        public ActionResult Edit(string id)
+        public ActionResult Info()
         {
-            var E_nd = data.NGUOIDUNGs.SingleOrDefault(m => m.USERNAME == id);
-            return View(E_nd);
+            NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanKH"];
+
+            return View(tk);
+        }
+        public ActionResult ChangePass()
+        {
+            return View();
         }
         [HttpPost]
-        public ActionResult Edit(string id, FormCollection collection)
+        public ActionResult ChangePass(FormCollection collection)
         {
-            var sv = data.NGUOIDUNGs.SingleOrDefault(m => m.USERNAME == id);
-            /*id = collection[]*/
-            var hoten = collection["HoTen"];
-            var matkhau = collection["Pass"];
-            var gioitinh = collection["GioiTinh"];
-            var namsinh = collection["NamSinh"];
-            var diachi = collection["DiaChi"];
-            sv.USERNAME = id;
-            if (string.IsNullOrEmpty(hoten) || string.IsNullOrEmpty(matkhau) || string.IsNullOrEmpty(diachi) || string.IsNullOrEmpty(gioitinh))
+            NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanKH"];
+            var nd = from n in data.NGUOIDUNGs where (n.USERNAME == tk.USERNAME) select n;
+            tk.PASS = collection["Pass"];
+            foreach(var a in nd)
             {
-                ViewData["Error"] = "Don't empty!";
+                a.PASS = tk.PASS;
             }
-            else
-            {
-                sv.HOVATEN = hoten;
-                sv.GIOITINH = Convert.ToInt32(gioitinh);
-                sv.NAMSINH = Convert.ToDateTime(namsinh);
-                sv.PASS = matkhau;
-                sv.DIACHI = diachi;
-                UpdateModel(sv);
-                data.SubmitChanges();
-                return RedirectToAction("Index");
-            }
-            return this.Edit(id);
+            UpdateModel(nd);
+            data.SubmitChanges();
+            return RedirectToAction("Info");
         }
-
     }
 
 }

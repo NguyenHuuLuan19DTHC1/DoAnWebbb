@@ -1,7 +1,7 @@
 ﻿@model DoAnWebbb.Models.NHACUNGCAP
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "CreateNCC";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutHomeAdmin.cshtml";
 }
 
@@ -18,7 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TENNCCC, "Tên Nhà Cung Cấp", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="text" name="TenNCC" id="TenNCC" required="true" placeholder="Nhập..." / style="width: 50%">
+                <input type="text" name="TenNCC" id="TenNCC" required="true" placeholder="Nhập..."  style="width: 50%"/>
             </div>
         </div>
 
@@ -31,5 +31,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back", "Index")
 </div>

@@ -1,8 +1,105 @@
-﻿
+﻿@model DoAnWebbb.Models.SANPHAM
+
 @{
-    ViewBag.Title = "Chi Tiết Sản Phẩm";
+    ViewBag.Title = "ChiTietSanPham";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutHomeAdmin.cshtml";
 }
 
-<h2>ChiTietSanPham</h2>
+<h2 style="text-align:center; color: black; margin-top:10px">Phân Quyền</h2>
 
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            ID
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MASANPHAM)
+        </dd>
+        <dt>
+            Tên
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENSANPHAM)
+        </dd>
+
+        <dt>
+            Giá
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GIABAN)
+        </dd>
+
+        <dt>
+            Khuyến Mãi
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GIAGIAM)
+        </dd>
+
+        <dt>
+            Chi Tiết
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.THONGSOKYTHUAT)
+        </dd>
+
+        <dt>
+            Bảo Hành
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BAOHANH)
+        </dd>
+
+        <dt>
+            Hình Ảnh
+        </dt>
+
+        <dd>
+            <img src="@Html.DisplayFor(model => model.HINH)" width="125" title="CoverImg" /> 
+        </dd>
+
+        <dt>
+            Ngày Cập Nhật
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYCAPNHAT)
+        </dd>
+
+        <dt>
+            Số Lượng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SOLUONGTON)
+        </dd>
+
+        <dt>
+            Loại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOAIMAY.TENLOAI)
+        </dd>
+
+        <dt>
+            Nhà Cung Cấp
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NHACUNGCAP.TENNCCC)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

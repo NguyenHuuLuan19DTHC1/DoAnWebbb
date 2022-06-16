@@ -89,9 +89,6 @@ namespace DoAnWebbb.Controllers
             /*return View(sanpham);*/
             ViewBag.Key = searchString;
             /*var SearchName = from sp in db.SANPHAMs where sp.MANCC == id select sp;*/
-
-
-
             if (!String.IsNullOrEmpty(searchString))
             {
                 SearchName = SearchName.Where(s => s.TENSANPHAM.Contains(searchString));
