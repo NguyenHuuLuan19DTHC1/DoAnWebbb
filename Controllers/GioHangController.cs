@@ -326,7 +326,7 @@ namespace DoAnWebbb.Controllers
                 dh.DIACHIGIAOHANG = diachi;
                 dh.NGAYDAT = ngaydat;
                 dh.USERNAME = user.USERNAME;
-                ctdh.MAPHIEUMUA = max;
+                /*ctdh.MAPHIEUMUA = max;*/
 
                 //data.SANPHAMs.InsertOnSubmit(sp);
                 data.PHIEUMUAs.InsertOnSubmit(dh);
@@ -337,8 +337,8 @@ namespace DoAnWebbb.Controllers
                     {
                         var senderEmail = new MailAddress("ngluan161121@gmail.com", "VNBookStore");
                         var receiverEmail = new MailAddress(tk.GMAIL, "Receiver");
-                        var password = "notifyurl";
-                        var sub = "Xác Nhận Mua Hàng Thành Công";
+                        var password = "usgjxlkacnydjaru";
+                        var sub = "VNBookStore - Xác Nhận Thanh Toán Thành Công";
                         var body = "Đơn hàng " + ctdh.MAPHIEUMUA + " Đã được thanh toán bằng momo và đang giao điến bạn. \nCảm ơn bạn đã mua sản phẩm";
                         var smtp = new SmtpClient
                         {
@@ -378,43 +378,44 @@ namespace DoAnWebbb.Controllers
             return Redirect(jmessage.GetValue("payUrl").ToString());
         }
 
+
         public ActionResult returnUrl()
         {
             return View();
-            //CT_PHIEUMUA ctdh = new CT_PHIEUMUA();
-            //NGUOIDUNG kh = new NGUOIDUNG();
-            //try
-            //{
-            //    var senderEmail = new MailAddress("ngluan161121@gmail.com", "VNBookStore");
-            //    var receiverEmail = new MailAddress(kh.GMAIL, "Receiver");
-            //    var password = "usgjxlkacnydjaru";
-            //    var sub = "Xác Nhận Mua Hàng Thành Công";
-            //    var body = "Đơn hàng "; //+ ctdh.MAPHIEUMUA + " đang được giao đến bạn \nCảm ơn bạn";
-            //    var smtp = new SmtpClient
-            //    {
-            //        Host = "smtp.gmail.com",
-            //        Port = 587,
-            //        EnableSsl = true,
-            //        DeliveryMethod = SmtpDeliveryMethod.Network,
-            //        UseDefaultCredentials = false,
-            //        Credentials = new NetworkCredential(senderEmail.Address, password)
-            //    };
-            //    using (var mess = new MailMessage(senderEmail, receiverEmail)
-            //    {
-            //        Subject = sub,
-            //        Body = body
-            //    })
-            //    {
-            //        smtp.Send(mess);
-            //    }
+            /*CT_PHIEUMUA ctdh = new CT_PHIEUMUA();
+            NGUOIDUNG kh = new NGUOIDUNG();
+            try
+            {
+                var senderEmail = new MailAddress("ngluan161121@gmail.com", "VNBookStore");
+                var receiverEmail = new MailAddress(kh.GMAIL, "Receiver");
+                var password = "usgjxlkacnydjaru";
+                var sub = "Xác Nhận Mua Hàng Thành Công";
+                var body = "Đơn hàng "; //+ ctdh.MAPHIEUMUA + " đang được giao đến bạn \nCảm ơn bạn";
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(senderEmail.Address, password)
+                };
+                using (var mess = new MailMessage(senderEmail, receiverEmail)
+                {
+                    Subject = sub,
+                    Body = body
+                })
+                {
+                    smtp.Send(mess);
+                }
 
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    return HttpNotFound();
-            //}
-            //return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                return HttpNotFound();
+            }
+            return RedirectToAction("Index", "Home");*/
         }
 
 

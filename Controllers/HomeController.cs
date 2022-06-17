@@ -169,11 +169,6 @@ namespace demoWeb.Controllers
             return View();
         }
 
-        public ActionResult Cart()
-        {
-            ViewBag.Message = "Your Form Login";
-            return View();
-        }
         public ActionResult Details(int id)
         {
             var detail = data.SANPHAMs.Where(m => m.MASANPHAM == id).First();

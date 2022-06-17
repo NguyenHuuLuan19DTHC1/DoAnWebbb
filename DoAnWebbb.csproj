@@ -217,7 +217,7 @@
     <Compile Include="Controllers\MoMo\PaymentRequest.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
     <Compile Include="Controllers\SanPhamBanController.cs" />
-    <Compile Include="Controllers\SendOTP\SendOTPController.cs" />
+    <Compile Include="Controllers\SendOTPController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2309,12 +2309,12 @@
     <Content Include="Views\GioHang\XacNhanDonHangThatBai.cshtml" />
     <Content Include="Views\NguoiDung\Info.cshtml" />
     <Content Include="Views\NguoiDung\ChangePass.cshtml" />
+    <Content Include="Views\SendOTP\SenOTP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Views\Register\" />
-    <Folder Include="Views\SendOTP\" />
     <Folder Include="Views\TaiKhoanKH\" />
   </ItemGroup>
   <ItemGroup>

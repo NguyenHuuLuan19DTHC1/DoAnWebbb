@@ -45,6 +45,11 @@
                         VnBookStore
                     </span>
                 </a>
+                <a class="navbar-brand" href="@Url.Action("SenOTP","SendOTP")">
+                    <span>
+                        Sendotp
+                    </span>
+                </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class=""> </span>
@@ -111,14 +116,14 @@
                             </style>
                             <div class="dropdown">
                                 <a href="@Url.Action("Index","SanPhamBan")">
-                                <button href="" class="dropbtn">SẢN PHẨM</button>
+                                    <button href="" class="dropbtn">SẢN PHẨM</button>
                                 </a>
-                
+
                                 <div class="dropdown-content">
                                     <a href="@Url.Action("Index","SanPhamBan")">Tất cả sản phẩm</a>
                                     <a href="@Url.Action("SPTheoLoai/1","SanPhamBan")">Sách</a>
                                     <a href="@Url.Action("SPTheoLoai/2","SanPhamBan")">Truyện</a>
-                                    <a href="@Url.Action("SPTheoLoai/3","SanPhamBan")">Album music</a>                   
+                                    <a href="@Url.Action("SPTheoLoai/3","SanPhamBan")">Album music</a>
                                 </div>
                             </div>
                             @*<a class="nav-link" href="@Url.Action("SanPham","Home")">Sản phẩm</a>*@
@@ -131,7 +136,7 @@
                         </li>
                     </ul>
                     <div class="user_option">
-                        
+
                         @using DoAnWebbb.Models
                         @if (Session["TaiKhoanKH"] != null)
                         {
