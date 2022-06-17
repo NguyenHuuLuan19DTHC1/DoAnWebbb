@@ -3,6 +3,7 @@ using DoAnWebbb.Models;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Net;
@@ -277,8 +278,8 @@ namespace DoAnWebbb.Controllers
             string serectkey = "H8t28CW4NVT1YgKSuF2ocM91bZUMTOez";
 
             string orderInfo = "ĐH" + DateTime.Now.ToString("yyyyMMddHHss");
-            string returnUrl = "https://localhost:5045/GioHang/returnUrl";
-            string notifyurl = "https://4a0d-2402-800-63a7-f118-146a-68ef-831-f950.ap.ngrok.io/GioHang/SavePayment"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
+            string returnUrl = "https://localhost:44322/GioHang/returnUrl";
+            string notifyurl = "https://259e-2402-800-63a7-f118-7151-5195-a6e9-8113.ap.ngrok.io/GioHang/returnUrl"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
             string amount = TongTien().ToString();
             string orderid = DateTime.Now.Ticks.ToString();
             string requestId = DateTime.Now.Ticks.ToString();
@@ -328,7 +329,7 @@ namespace DoAnWebbb.Controllers
                 dh.USERNAME = user.USERNAME;
                 /*ctdh.MAPHIEUMUA = max;*/
 
-                //data.SANPHAMs.InsertOnSubmit(sp);
+                /*data.SANPHAMs.InsertOnSubmit(sp);*/
                 data.PHIEUMUAs.InsertOnSubmit(dh);
                 data.CT_PHIEUMUAs.InsertOnSubmit(ctdh);
                 try
@@ -366,7 +367,6 @@ namespace DoAnWebbb.Controllers
                 }
 
                 data.SubmitChanges();
-                Session["GioHang"] = null;
             }
             data.SubmitChanges();
 
@@ -374,13 +374,32 @@ namespace DoAnWebbb.Controllers
             string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());
 
             JObject jmessage = JObject.Parse(responseFromMomo);
-
+            Session["momo"] = jmessage;
             return Redirect(jmessage.GetValue("payUrl").ToString());
         }
 
 
         public ActionResult returnUrl()
         {
+            string param = Request.QueryString.ToString().Substring(0, Request.QueryString.ToString().IndexOf("signature") - 1);
+            param = Server.UrlDecode(param);
+            MoMoSecurity crypto = new MoMoSecurity();
+            string serectkey = "H8t28CW4NVT1YgKSuF2ocM91bZUMTOez";
+            string signture = crypto.signSHA256(param, serectkey);
+            if (signture != Request["signature"].ToString())
+            {
+                ViewBag.message = "Thong tin Request khong hop le";
+            }
+            if (Session["momo"].ToString().Contains("errorCode=0"))
+            {
+                ViewBag.message = "Thanh toan that bai";
+            }
+            else
+            {
+                ViewBag.message = "Thanh toan thanh cong";
+                Session["GioHang"] = null;
+            }
+
             return View();
             /*CT_PHIEUMUA ctdh = new CT_PHIEUMUA();
             NGUOIDUNG kh = new NGUOIDUNG();
@@ -425,6 +444,7 @@ namespace DoAnWebbb.Controllers
         public void SavePayment()
         {
             //cập nhật dữ liệu vào db
+
         }
 
 

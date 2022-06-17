@@ -2283,7 +2283,6 @@
     <Content Include="Views\GioHang\DatHang.cshtml" />
     <Content Include="Views\GioHang\Giohang.cshtml" />
     <Content Include="Views\GioHang\GioHangPartial.cshtml" />
-    <Content Include="Views\GioHang\returnUrl.cshtml" />
     <Content Include="Views\GioHang\XacNhanDonHang.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -2310,6 +2309,7 @@
     <Content Include="Views\NguoiDung\Info.cshtml" />
     <Content Include="Views\NguoiDung\ChangePass.cshtml" />
     <Content Include="Views\SendOTP\SenOTP.cshtml" />
+    <Content Include="Views\GioHang\returnUrl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
