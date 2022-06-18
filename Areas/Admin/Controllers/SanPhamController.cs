@@ -56,13 +56,26 @@ namespace DoAnWebbb.Areas.Admin.Controllers
             var E_tensanpham = collection["tensanpham"];
             var E_thongsokythuat = collection["Thongso"];
             var E_anhsanpham = collection["HINH"];
-            var E_giaban = Convert.ToInt32(collection["giaban"]);
-            var E_giagiam = Convert.ToDouble(collection["giagiam"]);
+            if (string.IsNullOrEmpty(collection["giagiam"]))
+            {
+                var E_giagiam = 0;
+                sanpham.GIAGIAM = E_giagiam;
+                var E_giaban = Convert.ToInt32(collection["giaban"]);
+                sanpham.GIABAN = E_giaban;
+
+            }
+            else
+            {
+                var E_giagiam = Convert.ToInt32(collection["giagiam"]);
+                sanpham.GIAGIAM = E_giagiam;
+                sanpham.GIABAN = E_giagiam;
+
+            }
             var E_soluongton = collection["soluongton"];
             var E_ngaycapnhat = DateTime.Now;
 
 
-            if (string.IsNullOrEmpty(E_soluongton) || string.IsNullOrEmpty(E_anhsanpham) || string.IsNullOrEmpty(E_tensanpham) ||string.IsNullOrEmpty(Convert.ToString(E_giaban))||  string.IsNullOrEmpty(Convert.ToString(E_giagiam)))
+            if (string.IsNullOrEmpty(E_soluongton) || string.IsNullOrEmpty(E_anhsanpham) || string.IsNullOrEmpty(E_tensanpham) )
             {
                 ViewData["Error"] = "Don't empty!";
                 return this.ThemSanPham();
@@ -73,8 +86,6 @@ namespace DoAnWebbb.Areas.Admin.Controllers
                 E_thongsokythuat = E_thongsokythuat.Remove(0, 3);
                 sanpham.TENSANPHAM = E_tensanpham.ToString();
                 sanpham.HINH = E_anhsanpham;
-                sanpham.GIABAN = E_giaban;
-                sanpham.GIAGIAM = E_giagiam;
                 sanpham.NGAYCAPNHAT = E_ngaycapnhat;
                 sanpham.TRANGTHAI = 1;
                 db.SANPHAMs.InsertOnSubmit(sanpham);
@@ -115,6 +126,7 @@ namespace DoAnWebbb.Areas.Admin.Controllers
             var E_thongsokythuat = collection["thongsokythuat"];
             var E_anhsanpham = collection["anhsanpham"];
             var E_giaban = Convert.ToDecimal(collection["giaban"]);
+            
             var E_giagiam = Convert.ToDouble(collection["giagiam"]);
             var E_ngaycapnhat = DateTime.Now;
 

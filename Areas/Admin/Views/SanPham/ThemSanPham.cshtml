@@ -112,7 +112,7 @@
                 <div class="form-group">
                     <div class="col-md-10">
                         <strong style="color:black">Giá Giảm</strong>
-                        @Html.EditorFor(model => model.GIAGIAM, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", required = true } })
+                        @Html.EditorFor(model => model.GIAGIAM, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0" } })
                         @Html.ValidationMessageFor(model => model.GIAGIAM, "", new { @class = "text-danger" })
                     </div>
                 </div>

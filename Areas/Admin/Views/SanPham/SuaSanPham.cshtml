@@ -10,7 +10,7 @@
     <h2 style="text-align:center; color: black; margin-top:10px">Cập Nhật Thông Tin Sản Phẩm</h2>
     <div class="box-body">
 
-        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "themsanpham" }))
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "suasanpham" }))
         {
             @Html.AntiForgeryToken()
 
@@ -53,8 +53,8 @@
                 <div class="form-group">
                     <div class="col-md-10">
                         <strong style="color:black">Giá Giảm</strong>
-                        <input class="form-control" type="number" min="0" value ="@String.Format("{0:0,0}", Model.GIAGIAM)" />
-                        @Html.ValidationMessageFor(model => model.GIAGIAM, "", new { @class = "text-danger" })
+                        <input class="form-control" type="number" min="0" value ="@String.Format("{0:0,0}", Model.GIABAN)" />
+                        @Html.ValidationMessageFor(model => model.GIABAN, "", new { @class = "text-danger" })
                     </div>
                 </div>
 

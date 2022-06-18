@@ -260,18 +260,14 @@ namespace DoAnWebbb.Controllers
 
         public ActionResult ThanhToanMoMo(FormCollection collection)
         {
-            PHIEUMUA dh = new PHIEUMUA();
-            NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanKH"];
+
+            /*NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanKH"];
             SANPHAM sp = new SANPHAM();
             List<GioHang> gh = Laygiohang();
             var ngaygiao = String.Format("{0:dd/MM/yyyy}", collection["NgayGiao"]);
             var diachi = collection["DIACHIGIAOHANG"];
             var ngaydat = DateTime.Now;
-            var user = Session["TaiKhoanKH"] as NGUOIDUNG;
-
-
-
-
+            var user = Session["TaiKhoanKH"] as NGUOIDUNG;*/
             string endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
             string partnerCode = "MOMOGZB820220616";
             string accessKey = "CrFXKje9gAyhrQ3u";
@@ -315,9 +311,33 @@ namespace DoAnWebbb.Controllers
                 { "requestType", "captureMoMoWallet" },
                 { "signature", signature }
             };
+                       
+            data.SubmitChanges();
+
+
+            string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());
+
+            JObject jmessage = JObject.Parse(responseFromMomo);
+            /*Session["momo"] = jmessage;*/
+            return Redirect(jmessage.GetValue("payUrl").ToString());
+
+        }
+
+
+        public ActionResult returnUrl(FormCollection collection)
+        {
+            NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanKH"];
+            SANPHAM sp = new SANPHAM();
+            List<GioHang> gh = Laygiohang();
+            var ngaygiao = String.Format("{0:dd/MM/yyyy}", collection["NgayGiao"]);
+            var diachi = collection["DIACHIGIAOHANG"];
+            var ngaydat = DateTime.Now;
+            var user = Session["TaiKhoanKH"] as NGUOIDUNG;
 
             foreach (var item in gh)
             {
+                PHIEUMUA dh = new PHIEUMUA();
+
                 var max = data.PHIEUMUAs.Max(i => i.MAPHIEUMUA) + 1;
                 sp = data.SANPHAMs.Single(n => n.MASANPHAM == item.MaSP);
                 CT_PHIEUMUA ctdh = new CT_PHIEUMUA();
@@ -327,7 +347,7 @@ namespace DoAnWebbb.Controllers
                 dh.DIACHIGIAOHANG = diachi;
                 dh.NGAYDAT = ngaydat;
                 dh.USERNAME = user.USERNAME;
-                /*ctdh.MAPHIEUMUA = max;*/
+                ctdh.MAPHIEUMUA = max;
 
                 /*data.SANPHAMs.InsertOnSubmit(sp);*/
                 data.PHIEUMUAs.InsertOnSubmit(dh);
@@ -370,34 +390,81 @@ namespace DoAnWebbb.Controllers
             }
             data.SubmitChanges();
 
-
-            string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());
-
-            JObject jmessage = JObject.Parse(responseFromMomo);
-            Session["momo"] = jmessage;
-            return Redirect(jmessage.GetValue("payUrl").ToString());
-        }
-
-
-        public ActionResult returnUrl()
-        {
             string param = Request.QueryString.ToString().Substring(0, Request.QueryString.ToString().IndexOf("signature") - 1);
             param = Server.UrlDecode(param);
             MoMoSecurity crypto = new MoMoSecurity();
             string serectkey = "H8t28CW4NVT1YgKSuF2ocM91bZUMTOez";
+
             string signture = crypto.signSHA256(param, serectkey);
             if (signture != Request["signature"].ToString())
             {
-                ViewBag.message = "Thong tin Request khong hop le";
+                ViewBag.message = "Thông tin Request không hợp lệ";
             }
-            if (Session["momo"].ToString().Contains("errorCode=0"))
+            if (!param.Contains("errorCode=0"))
             {
-                ViewBag.message = "Thanh toan that bai";
+                ViewBag.message = "Thanh toán thất bại";
             }
             else
             {
-                ViewBag.message = "Thanh toan thanh cong";
+                foreach (var item in gh)
+                {
+
+                    PHIEUMUA dh = new PHIEUMUA();
+
+                    var max = data.PHIEUMUAs.Max(i => i.MAPHIEUMUA) + 1;
+                    sp = data.SANPHAMs.Single(n => n.MASANPHAM == item.MaSP);
+                    CT_PHIEUMUA ctdh = new CT_PHIEUMUA();
+                    ctdh.MASANPHAM = sp.MASANPHAM;
+                    ctdh.SOLUONG = item.SoLuong;
+                    sp.SOLUONGTON -= ctdh.SOLUONG;
+                    dh.DIACHIGIAOHANG = tk.DIACHI;
+                    dh.NGAYDAT = ngaydat;
+                    dh.USERNAME = user.USERNAME;
+                    ctdh.MAPHIEUMUA = max;
+                    dh.TRANGTHAI = 2;
+                    /*data.SANPHAMs.InsertOnSubmit(sp);*/
+                    data.PHIEUMUAs.InsertOnSubmit(dh);
+                    data.CT_PHIEUMUAs.InsertOnSubmit(ctdh);
+                    try
+                    {
+                        if (ModelState.IsValid)
+                        {
+                            var senderEmail = new MailAddress("ngluan161121@gmail.com", "VNBookStore");
+                            var receiverEmail = new MailAddress(tk.GMAIL, "Receiver");
+                            var password = "usgjxlkacnydjaru";
+                            var sub = "VNBookStore - Xác Nhận Thanh Toán Thành Công";
+                            var body = "Đơn hàng " + ctdh.MAPHIEUMUA + " Đã được thanh toán bằng momo và đang giao điến bạn. \nCảm ơn bạn đã mua sản phẩm";
+                            var smtp = new SmtpClient
+                            {
+                                Host = "smtp.gmail.com",
+                                Port = 587,
+                                EnableSsl = true,
+                                DeliveryMethod = SmtpDeliveryMethod.Network,
+                                UseDefaultCredentials = false,
+                                Credentials = new NetworkCredential(senderEmail.Address, password)
+                            };
+                            using (var mess = new MailMessage(senderEmail, receiverEmail)
+                            {
+                                Subject = sub,
+                                Body = body
+                            })
+                            {
+                                smtp.Send(mess);
+                            }
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        return HttpNotFound(ex.Message);
+                    }
+
+                    data.SubmitChanges();
+                }
+                data.SubmitChanges();
+                ViewBag.message = "Thanh toán thành công";
                 Session["GioHang"] = null;
+
             }
 
             return View();
