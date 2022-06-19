@@ -80,7 +80,7 @@
                     <input id="DHHOVATEN" type="text" class="form-control" name="DHHOVATEN" value="@pm.HOVATEN" />
                 </td>
             </tr>
-            
+
             <tr style="height:40px">
                 <td style="color: black;">Email:</td>
                 <td>
@@ -89,7 +89,7 @@
                 </td>
             </tr>
             <tr style="height:40px">
-                <td style="color: black;">Đỉa Chỉ:</td>
+                <td style="color: black;">Địa Chỉ:</td>
                 <td>
                     @*<p style="padding-top:7%">@pm.DIACHI</p>*@
                     <input id="DIACHIGIAOHANG" type="text" class="form-control" name="DIACHIGIAOHANG" value="@pm.DIACHI" />
@@ -109,15 +109,31 @@
                     @*<input type="date" name="ngaydat" id="ngaydat" value="@DateTime.Now" />*@
                 </td>
             </tr>
-
             <tr style="height:40px">
-                <td style="font-weight: bold; color: black">
-                    <input style="margin-left:105%" type="submit" value="Xác Nhận" class="btn btn-success" />
+                <td style="color: black;">Yêu cầu:</td>
+                <td>
+                    @*<p style="padding-top:7%">@pm.DIACHI</p>*@
+                    <input id="YEUCAU" type="text" class="form-control" name="YEUCAU" placeholder="Nhâp yêu cầu của bạn" />
                 </td>
             </tr>
             <tr style="height:40px">
                 <td style="font-weight: bold; color: black">
-                    <a style="margin-left:90%" href="@Url.Action("ThanhToanMoMo","GioHang")" class="btn btn-success">Thanh Toán MoMo</a>
+                    @using DoAnWebbb.Models
+                    @if (Convert.ToInt32(Session["Tongtien"]) > 0)
+                    {
+                        <input style="margin-left: 105%; margin-top: 0.2cm" type="submit" value="Xác Nhận" class="btn btn-success" />
+                    }
+                </td>
+            </tr>
+
+            <tr style="height:40px">
+                <td style="font-weight: bold; color: black">
+                    @using DoAnWebbb.Models
+                    @if (Convert.ToInt32(Session["Tongtien"]) > 0)
+                    {
+                        <a style="margin-left:90%" href="@Url.Action("ThanhToanMoMo","GioHang")" class="btn btn-success">Thanh Toán MoMo</a>
+
+                    }
                 </td>
             </tr>
 

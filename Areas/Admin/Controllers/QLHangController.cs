@@ -93,6 +93,8 @@ namespace DoAnWebbb.Areas.Admin.Controllers
                 {
                     if (D_NCC.MANCC == pk)
                     {   
+                        ViewBag.ErorrD = "Không xóa được do còn sản phẩm thuộc nhà cung cấp này!";
+
                         return View(D_NCC);
                     }
                 }               

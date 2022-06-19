@@ -30,12 +30,12 @@ namespace DoAnWebbb.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertTACVU(TACVU instance);
-    partial void UpdateTACVU(TACVU instance);
-    partial void DeleteTACVU(TACVU instance);
     partial void InsertCHITIETTACVU(CHITIETTACVU instance);
     partial void UpdateCHITIETTACVU(CHITIETTACVU instance);
     partial void DeleteCHITIETTACVU(CHITIETTACVU instance);
+    partial void InsertTACVU(TACVU instance);
+    partial void UpdateTACVU(TACVU instance);
+    partial void DeleteTACVU(TACVU instance);
     partial void InsertCT_HOADON(CT_HOADON instance);
     partial void UpdateCT_HOADON(CT_HOADON instance);
     partial void DeleteCT_HOADON(CT_HOADON instance);
@@ -95,19 +95,19 @@ namespace DoAnWebbb.Models
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<TACVU> TACVUs
-		{
-			get
-			{
-				return this.GetTable<TACVU>();
-			}
-		}
-		
 		public System.Data.Linq.Table<CHITIETTACVU> CHITIETTACVUs
 		{
 			get
 			{
 				return this.GetTable<CHITIETTACVU>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TACVU> TACVUs
+		{
+			get
+			{
+				return this.GetTable<TACVU>();
 			}
 		}
 		
@@ -184,6 +184,348 @@ namespace DoAnWebbb.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CHITIETTACVU")]
+	public partial class CHITIETTACVU : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MACTTACVU;
+		
+		private System.Nullable<int> _MAQUYEN;
+		
+		private System.Nullable<int> _MATACVU;
+		
+		private EntityRef<TACVU> _TACVU;
+		
+		private EntityRef<TACVU> _TACVU1;
+		
+		private EntityRef<TACVU> _TACVU2;
+		
+		private EntityRef<QUYEN> _QUYEN;
+		
+		private EntityRef<QUYEN> _QUYEN1;
+		
+		private EntityRef<QUYEN> _QUYEN2;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMACTTACVUChanging(int value);
+    partial void OnMACTTACVUChanged();
+    partial void OnMAQUYENChanging(System.Nullable<int> value);
+    partial void OnMAQUYENChanged();
+    partial void OnMATACVUChanging(System.Nullable<int> value);
+    partial void OnMATACVUChanged();
+    #endregion
+		
+		public CHITIETTACVU()
+		{
+			this._TACVU = default(EntityRef<TACVU>);
+			this._TACVU1 = default(EntityRef<TACVU>);
+			this._TACVU2 = default(EntityRef<TACVU>);
+			this._QUYEN = default(EntityRef<QUYEN>);
+			this._QUYEN1 = default(EntityRef<QUYEN>);
+			this._QUYEN2 = default(EntityRef<QUYEN>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MACTTACVU", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MACTTACVU
+		{
+			get
+			{
+				return this._MACTTACVU;
+			}
+			set
+			{
+				if ((this._MACTTACVU != value))
+				{
+					this.OnMACTTACVUChanging(value);
+					this.SendPropertyChanging();
+					this._MACTTACVU = value;
+					this.SendPropertyChanged("MACTTACVU");
+					this.OnMACTTACVUChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAQUYEN", DbType="Int")]
+		public System.Nullable<int> MAQUYEN
+		{
+			get
+			{
+				return this._MAQUYEN;
+			}
+			set
+			{
+				if ((this._MAQUYEN != value))
+				{
+					if (((this._QUYEN.HasLoadedOrAssignedValue || this._QUYEN1.HasLoadedOrAssignedValue) 
+								|| this._QUYEN2.HasLoadedOrAssignedValue))
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMAQUYENChanging(value);
+					this.SendPropertyChanging();
+					this._MAQUYEN = value;
+					this.SendPropertyChanged("MAQUYEN");
+					this.OnMAQUYENChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MATACVU", DbType="Int")]
+		public System.Nullable<int> MATACVU
+		{
+			get
+			{
+				return this._MATACVU;
+			}
+			set
+			{
+				if ((this._MATACVU != value))
+				{
+					if (((this._TACVU.HasLoadedOrAssignedValue || this._TACVU1.HasLoadedOrAssignedValue) 
+								|| this._TACVU2.HasLoadedOrAssignedValue))
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMATACVUChanging(value);
+					this.SendPropertyChanging();
+					this._MATACVU = value;
+					this.SendPropertyChanged("MATACVU");
+					this.OnMATACVUChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TACVU_CHITIETTACVU", Storage="_TACVU", ThisKey="MATACVU", OtherKey="MATACVU", IsForeignKey=true)]
+		public TACVU TACVU
+		{
+			get
+			{
+				return this._TACVU.Entity;
+			}
+			set
+			{
+				TACVU previousValue = this._TACVU.Entity;
+				if (((previousValue != value) 
+							|| (this._TACVU.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TACVU.Entity = null;
+						previousValue.CHITIETTACVUs.Remove(this);
+					}
+					this._TACVU.Entity = value;
+					if ((value != null))
+					{
+						value.CHITIETTACVUs.Add(this);
+						this._MATACVU = value.MATACVU;
+					}
+					else
+					{
+						this._MATACVU = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TACVU");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TACVU_CHITIETTACVU1", Storage="_TACVU1", ThisKey="MATACVU", OtherKey="MATACVU", IsForeignKey=true)]
+		public TACVU TACVU1
+		{
+			get
+			{
+				return this._TACVU1.Entity;
+			}
+			set
+			{
+				TACVU previousValue = this._TACVU1.Entity;
+				if (((previousValue != value) 
+							|| (this._TACVU1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TACVU1.Entity = null;
+						previousValue.CHITIETTACVUs1.Remove(this);
+					}
+					this._TACVU1.Entity = value;
+					if ((value != null))
+					{
+						value.CHITIETTACVUs1.Add(this);
+						this._MATACVU = value.MATACVU;
+					}
+					else
+					{
+						this._MATACVU = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TACVU1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TACVU_CHITIETTACVU2", Storage="_TACVU2", ThisKey="MATACVU", OtherKey="MATACVU", IsForeignKey=true)]
+		public TACVU TACVU2
+		{
+			get
+			{
+				return this._TACVU2.Entity;
+			}
+			set
+			{
+				TACVU previousValue = this._TACVU2.Entity;
+				if (((previousValue != value) 
+							|| (this._TACVU2.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TACVU2.Entity = null;
+						previousValue.CHITIETTACVUs2.Remove(this);
+					}
+					this._TACVU2.Entity = value;
+					if ((value != null))
+					{
+						value.CHITIETTACVUs2.Add(this);
+						this._MATACVU = value.MATACVU;
+					}
+					else
+					{
+						this._MATACVU = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TACVU2");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QUYEN_CHITIETTACVU", Storage="_QUYEN", ThisKey="MAQUYEN", OtherKey="MAQUYEN", IsForeignKey=true)]
+		public QUYEN QUYEN
+		{
+			get
+			{
+				return this._QUYEN.Entity;
+			}
+			set
+			{
+				QUYEN previousValue = this._QUYEN.Entity;
+				if (((previousValue != value) 
+							|| (this._QUYEN.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._QUYEN.Entity = null;
+						previousValue.CHITIETTACVUs.Remove(this);
+					}
+					this._QUYEN.Entity = value;
+					if ((value != null))
+					{
+						value.CHITIETTACVUs.Add(this);
+						this._MAQUYEN = value.MAQUYEN;
+					}
+					else
+					{
+						this._MAQUYEN = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("QUYEN");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QUYEN_CHITIETTACVU1", Storage="_QUYEN1", ThisKey="MAQUYEN", OtherKey="MAQUYEN", IsForeignKey=true)]
+		public QUYEN QUYEN1
+		{
+			get
+			{
+				return this._QUYEN1.Entity;
+			}
+			set
+			{
+				QUYEN previousValue = this._QUYEN1.Entity;
+				if (((previousValue != value) 
+							|| (this._QUYEN1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._QUYEN1.Entity = null;
+						previousValue.CHITIETTACVUs1.Remove(this);
+					}
+					this._QUYEN1.Entity = value;
+					if ((value != null))
+					{
+						value.CHITIETTACVUs1.Add(this);
+						this._MAQUYEN = value.MAQUYEN;
+					}
+					else
+					{
+						this._MAQUYEN = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("QUYEN1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QUYEN_CHITIETTACVU2", Storage="_QUYEN2", ThisKey="MAQUYEN", OtherKey="MAQUYEN", IsForeignKey=true)]
+		public QUYEN QUYEN2
+		{
+			get
+			{
+				return this._QUYEN2.Entity;
+			}
+			set
+			{
+				QUYEN previousValue = this._QUYEN2.Entity;
+				if (((previousValue != value) 
+							|| (this._QUYEN2.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._QUYEN2.Entity = null;
+						previousValue.CHITIETTACVUs2.Remove(this);
+					}
+					this._QUYEN2.Entity = value;
+					if ((value != null))
+					{
+						value.CHITIETTACVUs2.Add(this);
+						this._MAQUYEN = value.MAQUYEN;
+					}
+					else
+					{
+						this._MAQUYEN = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("QUYEN2");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TACVU")]
 	public partial class TACVU : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -195,6 +537,10 @@ namespace DoAnWebbb.Models
 		private string _TENTACVU;
 		
 		private EntitySet<CHITIETTACVU> _CHITIETTACVUs;
+		
+		private EntitySet<CHITIETTACVU> _CHITIETTACVUs1;
+		
+		private EntitySet<CHITIETTACVU> _CHITIETTACVUs2;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -209,6 +555,8 @@ namespace DoAnWebbb.Models
 		public TACVU()
 		{
 			this._CHITIETTACVUs = new EntitySet<CHITIETTACVU>(new Action<CHITIETTACVU>(this.attach_CHITIETTACVUs), new Action<CHITIETTACVU>(this.detach_CHITIETTACVUs));
+			this._CHITIETTACVUs1 = new EntitySet<CHITIETTACVU>(new Action<CHITIETTACVU>(this.attach_CHITIETTACVUs1), new Action<CHITIETTACVU>(this.detach_CHITIETTACVUs1));
+			this._CHITIETTACVUs2 = new EntitySet<CHITIETTACVU>(new Action<CHITIETTACVU>(this.attach_CHITIETTACVUs2), new Action<CHITIETTACVU>(this.detach_CHITIETTACVUs2));
 			OnCreated();
 		}
 		
@@ -265,6 +613,32 @@ namespace DoAnWebbb.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TACVU_CHITIETTACVU1", Storage="_CHITIETTACVUs1", ThisKey="MATACVU", OtherKey="MATACVU")]
+		public EntitySet<CHITIETTACVU> CHITIETTACVUs1
+		{
+			get
+			{
+				return this._CHITIETTACVUs1;
+			}
+			set
+			{
+				this._CHITIETTACVUs1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TACVU_CHITIETTACVU2", Storage="_CHITIETTACVUs2", ThisKey="MATACVU", OtherKey="MATACVU")]
+		public EntitySet<CHITIETTACVU> CHITIETTACVUs2
+		{
+			get
+			{
+				return this._CHITIETTACVUs2;
+			}
+			set
+			{
+				this._CHITIETTACVUs2.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -296,197 +670,29 @@ namespace DoAnWebbb.Models
 			this.SendPropertyChanging();
 			entity.TACVU = null;
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CHITIETTACVU")]
-	public partial class CHITIETTACVU : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MACTTACVU;
-		
-		private System.Nullable<int> _MAQUYEN;
-		
-		private System.Nullable<int> _MATACVU;
-		
-		private EntityRef<TACVU> _TACVU;
-		
-		private EntityRef<QUYEN> _QUYEN;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMACTTACVUChanging(int value);
-    partial void OnMACTTACVUChanged();
-    partial void OnMAQUYENChanging(System.Nullable<int> value);
-    partial void OnMAQUYENChanged();
-    partial void OnMATACVUChanging(System.Nullable<int> value);
-    partial void OnMATACVUChanged();
-    #endregion
-		
-		public CHITIETTACVU()
+		private void attach_CHITIETTACVUs1(CHITIETTACVU entity)
 		{
-			this._TACVU = default(EntityRef<TACVU>);
-			this._QUYEN = default(EntityRef<QUYEN>);
-			OnCreated();
+			this.SendPropertyChanging();
+			entity.TACVU1 = this;
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MACTTACVU", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int MACTTACVU
+		private void detach_CHITIETTACVUs1(CHITIETTACVU entity)
 		{
-			get
-			{
-				return this._MACTTACVU;
-			}
-			set
-			{
-				if ((this._MACTTACVU != value))
-				{
-					this.OnMACTTACVUChanging(value);
-					this.SendPropertyChanging();
-					this._MACTTACVU = value;
-					this.SendPropertyChanged("MACTTACVU");
-					this.OnMACTTACVUChanged();
-				}
-			}
+			this.SendPropertyChanging();
+			entity.TACVU1 = null;
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAQUYEN", DbType="Int")]
-		public System.Nullable<int> MAQUYEN
+		private void attach_CHITIETTACVUs2(CHITIETTACVU entity)
 		{
-			get
-			{
-				return this._MAQUYEN;
-			}
-			set
-			{
-				if ((this._MAQUYEN != value))
-				{
-					if (this._QUYEN.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMAQUYENChanging(value);
-					this.SendPropertyChanging();
-					this._MAQUYEN = value;
-					this.SendPropertyChanged("MAQUYEN");
-					this.OnMAQUYENChanged();
-				}
-			}
+			this.SendPropertyChanging();
+			entity.TACVU2 = this;
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MATACVU", DbType="Int")]
-		public System.Nullable<int> MATACVU
+		private void detach_CHITIETTACVUs2(CHITIETTACVU entity)
 		{
-			get
-			{
-				return this._MATACVU;
-			}
-			set
-			{
-				if ((this._MATACVU != value))
-				{
-					if (this._TACVU.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMATACVUChanging(value);
-					this.SendPropertyChanging();
-					this._MATACVU = value;
-					this.SendPropertyChanged("MATACVU");
-					this.OnMATACVUChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TACVU_CHITIETTACVU", Storage="_TACVU", ThisKey="MATACVU", OtherKey="MATACVU", IsForeignKey=true)]
-		public TACVU TACVU
-		{
-			get
-			{
-				return this._TACVU.Entity;
-			}
-			set
-			{
-				TACVU previousValue = this._TACVU.Entity;
-				if (((previousValue != value) 
-							|| (this._TACVU.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TACVU.Entity = null;
-						previousValue.CHITIETTACVUs.Remove(this);
-					}
-					this._TACVU.Entity = value;
-					if ((value != null))
-					{
-						value.CHITIETTACVUs.Add(this);
-						this._MATACVU = value.MATACVU;
-					}
-					else
-					{
-						this._MATACVU = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("TACVU");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QUYEN_CHITIETTACVU", Storage="_QUYEN", ThisKey="MAQUYEN", OtherKey="MAQUYEN", IsForeignKey=true)]
-		public QUYEN QUYEN
-		{
-			get
-			{
-				return this._QUYEN.Entity;
-			}
-			set
-			{
-				QUYEN previousValue = this._QUYEN.Entity;
-				if (((previousValue != value) 
-							|| (this._QUYEN.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._QUYEN.Entity = null;
-						previousValue.CHITIETTACVUs.Remove(this);
-					}
-					this._QUYEN.Entity = value;
-					if ((value != null))
-					{
-						value.CHITIETTACVUs.Add(this);
-						this._MAQUYEN = value.MAQUYEN;
-					}
-					else
-					{
-						this._MAQUYEN = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("QUYEN");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
+			this.SendPropertyChanging();
+			entity.TACVU2 = null;
 		}
 	}
 	
@@ -506,7 +712,15 @@ namespace DoAnWebbb.Models
 		
 		private EntityRef<HOADON> _HOADON;
 		
+		private EntityRef<HOADON> _HOADON1;
+		
+		private EntityRef<HOADON> _HOADON2;
+		
 		private EntityRef<SANPHAM> _SANPHAM;
+		
+		private EntityRef<SANPHAM> _SANPHAM1;
+		
+		private EntityRef<SANPHAM> _SANPHAM2;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -525,7 +739,11 @@ namespace DoAnWebbb.Models
 		public CT_HOADON()
 		{
 			this._HOADON = default(EntityRef<HOADON>);
+			this._HOADON1 = default(EntityRef<HOADON>);
+			this._HOADON2 = default(EntityRef<HOADON>);
 			this._SANPHAM = default(EntityRef<SANPHAM>);
+			this._SANPHAM1 = default(EntityRef<SANPHAM>);
+			this._SANPHAM2 = default(EntityRef<SANPHAM>);
 			OnCreated();
 		}
 		
@@ -580,7 +798,8 @@ namespace DoAnWebbb.Models
 			{
 				if ((this._MAHD != value))
 				{
-					if (this._HOADON.HasLoadedOrAssignedValue)
+					if (((this._HOADON.HasLoadedOrAssignedValue || this._HOADON1.HasLoadedOrAssignedValue) 
+								|| this._HOADON2.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -604,7 +823,8 @@ namespace DoAnWebbb.Models
 			{
 				if ((this._MASANPHAM != value))
 				{
-					if (this._SANPHAM.HasLoadedOrAssignedValue)
+					if (((this._SANPHAM.HasLoadedOrAssignedValue || this._SANPHAM1.HasLoadedOrAssignedValue) 
+								|| this._SANPHAM2.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -651,6 +871,74 @@ namespace DoAnWebbb.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HOADON_CT_HOADON1", Storage="_HOADON1", ThisKey="MAHD", OtherKey="MAHD", IsForeignKey=true)]
+		public HOADON HOADON1
+		{
+			get
+			{
+				return this._HOADON1.Entity;
+			}
+			set
+			{
+				HOADON previousValue = this._HOADON1.Entity;
+				if (((previousValue != value) 
+							|| (this._HOADON1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._HOADON1.Entity = null;
+						previousValue.CT_HOADONs1.Remove(this);
+					}
+					this._HOADON1.Entity = value;
+					if ((value != null))
+					{
+						value.CT_HOADONs1.Add(this);
+						this._MAHD = value.MAHD;
+					}
+					else
+					{
+						this._MAHD = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("HOADON1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HOADON_CT_HOADON2", Storage="_HOADON2", ThisKey="MAHD", OtherKey="MAHD", IsForeignKey=true)]
+		public HOADON HOADON2
+		{
+			get
+			{
+				return this._HOADON2.Entity;
+			}
+			set
+			{
+				HOADON previousValue = this._HOADON2.Entity;
+				if (((previousValue != value) 
+							|| (this._HOADON2.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._HOADON2.Entity = null;
+						previousValue.CT_HOADONs2.Remove(this);
+					}
+					this._HOADON2.Entity = value;
+					if ((value != null))
+					{
+						value.CT_HOADONs2.Add(this);
+						this._MAHD = value.MAHD;
+					}
+					else
+					{
+						this._MAHD = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("HOADON2");
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SANPHAM_CT_HOADON", Storage="_SANPHAM", ThisKey="MASANPHAM", OtherKey="MASANPHAM", IsForeignKey=true)]
 		public SANPHAM SANPHAM
 		{
@@ -681,6 +969,74 @@ namespace DoAnWebbb.Models
 						this._MASANPHAM = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("SANPHAM");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SANPHAM_CT_HOADON1", Storage="_SANPHAM1", ThisKey="MASANPHAM", OtherKey="MASANPHAM", IsForeignKey=true)]
+		public SANPHAM SANPHAM1
+		{
+			get
+			{
+				return this._SANPHAM1.Entity;
+			}
+			set
+			{
+				SANPHAM previousValue = this._SANPHAM1.Entity;
+				if (((previousValue != value) 
+							|| (this._SANPHAM1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SANPHAM1.Entity = null;
+						previousValue.CT_HOADONs1.Remove(this);
+					}
+					this._SANPHAM1.Entity = value;
+					if ((value != null))
+					{
+						value.CT_HOADONs1.Add(this);
+						this._MASANPHAM = value.MASANPHAM;
+					}
+					else
+					{
+						this._MASANPHAM = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("SANPHAM1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SANPHAM_CT_HOADON2", Storage="_SANPHAM2", ThisKey="MASANPHAM", OtherKey="MASANPHAM", IsForeignKey=true)]
+		public SANPHAM SANPHAM2
+		{
+			get
+			{
+				return this._SANPHAM2.Entity;
+			}
+			set
+			{
+				SANPHAM previousValue = this._SANPHAM2.Entity;
+				if (((previousValue != value) 
+							|| (this._SANPHAM2.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SANPHAM2.Entity = null;
+						previousValue.CT_HOADONs2.Remove(this);
+					}
+					this._SANPHAM2.Entity = value;
+					if ((value != null))
+					{
+						value.CT_HOADONs2.Add(this);
+						this._MASANPHAM = value.MASANPHAM;
+					}
+					else
+					{
+						this._MASANPHAM = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("SANPHAM2");
 				}
 			}
 		}
@@ -722,7 +1078,15 @@ namespace DoAnWebbb.Models
 		
 		private EntityRef<PHIEUMUA> _PHIEUMUA;
 		
+		private EntityRef<PHIEUMUA> _PHIEUMUA1;
+		
+		private EntityRef<PHIEUMUA> _PHIEUMUA2;
+		
 		private EntityRef<SANPHAM> _SANPHAM;
+		
+		private EntityRef<SANPHAM> _SANPHAM1;
+		
+		private EntityRef<SANPHAM> _SANPHAM2;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -741,7 +1105,11 @@ namespace DoAnWebbb.Models
 		public CT_PHIEUMUA()
 		{
 			this._PHIEUMUA = default(EntityRef<PHIEUMUA>);
+			this._PHIEUMUA1 = default(EntityRef<PHIEUMUA>);
+			this._PHIEUMUA2 = default(EntityRef<PHIEUMUA>);
 			this._SANPHAM = default(EntityRef<SANPHAM>);
+			this._SANPHAM1 = default(EntityRef<SANPHAM>);
+			this._SANPHAM2 = default(EntityRef<SANPHAM>);
 			OnCreated();
 		}
 		
@@ -776,7 +1144,8 @@ namespace DoAnWebbb.Models
 			{
 				if ((this._MAPHIEUMUA != value))
 				{
-					if (this._PHIEUMUA.HasLoadedOrAssignedValue)
+					if (((this._PHIEUMUA.HasLoadedOrAssignedValue || this._PHIEUMUA1.HasLoadedOrAssignedValue) 
+								|| this._PHIEUMUA2.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -800,7 +1169,8 @@ namespace DoAnWebbb.Models
 			{
 				if ((this._MASANPHAM != value))
 				{
-					if (this._SANPHAM.HasLoadedOrAssignedValue)
+					if (((this._SANPHAM.HasLoadedOrAssignedValue || this._SANPHAM1.HasLoadedOrAssignedValue) 
+								|| this._SANPHAM2.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -867,6 +1237,74 @@ namespace DoAnWebbb.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PHIEUMUA_CT_PHIEUMUA1", Storage="_PHIEUMUA1", ThisKey="MAPHIEUMUA", OtherKey="MAPHIEUMUA", IsForeignKey=true)]
+		public PHIEUMUA PHIEUMUA1
+		{
+			get
+			{
+				return this._PHIEUMUA1.Entity;
+			}
+			set
+			{
+				PHIEUMUA previousValue = this._PHIEUMUA1.Entity;
+				if (((previousValue != value) 
+							|| (this._PHIEUMUA1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PHIEUMUA1.Entity = null;
+						previousValue.CT_PHIEUMUAs1.Remove(this);
+					}
+					this._PHIEUMUA1.Entity = value;
+					if ((value != null))
+					{
+						value.CT_PHIEUMUAs1.Add(this);
+						this._MAPHIEUMUA = value.MAPHIEUMUA;
+					}
+					else
+					{
+						this._MAPHIEUMUA = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("PHIEUMUA1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PHIEUMUA_CT_PHIEUMUA2", Storage="_PHIEUMUA2", ThisKey="MAPHIEUMUA", OtherKey="MAPHIEUMUA", IsForeignKey=true)]
+		public PHIEUMUA PHIEUMUA2
+		{
+			get
+			{
+				return this._PHIEUMUA2.Entity;
+			}
+			set
+			{
+				PHIEUMUA previousValue = this._PHIEUMUA2.Entity;
+				if (((previousValue != value) 
+							|| (this._PHIEUMUA2.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PHIEUMUA2.Entity = null;
+						previousValue.CT_PHIEUMUAs2.Remove(this);
+					}
+					this._PHIEUMUA2.Entity = value;
+					if ((value != null))
+					{
+						value.CT_PHIEUMUAs2.Add(this);
+						this._MAPHIEUMUA = value.MAPHIEUMUA;
+					}
+					else
+					{
+						this._MAPHIEUMUA = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("PHIEUMUA2");
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SANPHAM_CT_PHIEUMUA", Storage="_SANPHAM", ThisKey="MASANPHAM", OtherKey="MASANPHAM", IsForeignKey=true)]
 		public SANPHAM SANPHAM
 		{
@@ -897,6 +1335,74 @@ namespace DoAnWebbb.Models
 						this._MASANPHAM = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("SANPHAM");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SANPHAM_CT_PHIEUMUA1", Storage="_SANPHAM1", ThisKey="MASANPHAM", OtherKey="MASANPHAM", IsForeignKey=true)]
+		public SANPHAM SANPHAM1
+		{
+			get
+			{
+				return this._SANPHAM1.Entity;
+			}
+			set
+			{
+				SANPHAM previousValue = this._SANPHAM1.Entity;
+				if (((previousValue != value) 
+							|| (this._SANPHAM1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SANPHAM1.Entity = null;
+						previousValue.CT_PHIEUMUAs1.Remove(this);
+					}
+					this._SANPHAM1.Entity = value;
+					if ((value != null))
+					{
+						value.CT_PHIEUMUAs1.Add(this);
+						this._MASANPHAM = value.MASANPHAM;
+					}
+					else
+					{
+						this._MASANPHAM = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("SANPHAM1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SANPHAM_CT_PHIEUMUA2", Storage="_SANPHAM2", ThisKey="MASANPHAM", OtherKey="MASANPHAM", IsForeignKey=true)]
+		public SANPHAM SANPHAM2
+		{
+			get
+			{
+				return this._SANPHAM2.Entity;
+			}
+			set
+			{
+				SANPHAM previousValue = this._SANPHAM2.Entity;
+				if (((previousValue != value) 
+							|| (this._SANPHAM2.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SANPHAM2.Entity = null;
+						previousValue.CT_PHIEUMUAs2.Remove(this);
+					}
+					this._SANPHAM2.Entity = value;
+					if ((value != null))
+					{
+						value.CT_PHIEUMUAs2.Add(this);
+						this._MASANPHAM = value.MASANPHAM;
+					}
+					else
+					{
+						this._MASANPHAM = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("SANPHAM2");
 				}
 			}
 		}
@@ -942,7 +1448,15 @@ namespace DoAnWebbb.Models
 		
 		private EntitySet<CT_HOADON> _CT_HOADONs;
 		
+		private EntitySet<CT_HOADON> _CT_HOADONs1;
+		
+		private EntitySet<CT_HOADON> _CT_HOADONs2;
+		
 		private EntityRef<PHIEUMUA> _PHIEUMUA;
+		
+		private EntityRef<PHIEUMUA> _PHIEUMUA1;
+		
+		private EntityRef<PHIEUMUA> _PHIEUMUA2;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -965,7 +1479,11 @@ namespace DoAnWebbb.Models
 		public HOADON()
 		{
 			this._CT_HOADONs = new EntitySet<CT_HOADON>(new Action<CT_HOADON>(this.attach_CT_HOADONs), new Action<CT_HOADON>(this.detach_CT_HOADONs));
+			this._CT_HOADONs1 = new EntitySet<CT_HOADON>(new Action<CT_HOADON>(this.attach_CT_HOADONs1), new Action<CT_HOADON>(this.detach_CT_HOADONs1));
+			this._CT_HOADONs2 = new EntitySet<CT_HOADON>(new Action<CT_HOADON>(this.attach_CT_HOADONs2), new Action<CT_HOADON>(this.detach_CT_HOADONs2));
 			this._PHIEUMUA = default(EntityRef<PHIEUMUA>);
+			this._PHIEUMUA1 = default(EntityRef<PHIEUMUA>);
+			this._PHIEUMUA2 = default(EntityRef<PHIEUMUA>);
 			OnCreated();
 		}
 		
@@ -1080,7 +1598,8 @@ namespace DoAnWebbb.Models
 			{
 				if ((this._MAPHIEUMUA != value))
 				{
-					if (this._PHIEUMUA.HasLoadedOrAssignedValue)
+					if (((this._PHIEUMUA.HasLoadedOrAssignedValue || this._PHIEUMUA1.HasLoadedOrAssignedValue) 
+								|| this._PHIEUMUA2.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1103,6 +1622,32 @@ namespace DoAnWebbb.Models
 			set
 			{
 				this._CT_HOADONs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HOADON_CT_HOADON1", Storage="_CT_HOADONs1", ThisKey="MAHD", OtherKey="MAHD")]
+		public EntitySet<CT_HOADON> CT_HOADONs1
+		{
+			get
+			{
+				return this._CT_HOADONs1;
+			}
+			set
+			{
+				this._CT_HOADONs1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HOADON_CT_HOADON2", Storage="_CT_HOADONs2", ThisKey="MAHD", OtherKey="MAHD")]
+		public EntitySet<CT_HOADON> CT_HOADONs2
+		{
+			get
+			{
+				return this._CT_HOADONs2;
+			}
+			set
+			{
+				this._CT_HOADONs2.Assign(value);
 			}
 		}
 		
@@ -1140,6 +1685,74 @@ namespace DoAnWebbb.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PHIEUMUA_HOADON1", Storage="_PHIEUMUA1", ThisKey="MAPHIEUMUA", OtherKey="MAPHIEUMUA", IsForeignKey=true)]
+		public PHIEUMUA PHIEUMUA1
+		{
+			get
+			{
+				return this._PHIEUMUA1.Entity;
+			}
+			set
+			{
+				PHIEUMUA previousValue = this._PHIEUMUA1.Entity;
+				if (((previousValue != value) 
+							|| (this._PHIEUMUA1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PHIEUMUA1.Entity = null;
+						previousValue.HOADONs1.Remove(this);
+					}
+					this._PHIEUMUA1.Entity = value;
+					if ((value != null))
+					{
+						value.HOADONs1.Add(this);
+						this._MAPHIEUMUA = value.MAPHIEUMUA;
+					}
+					else
+					{
+						this._MAPHIEUMUA = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("PHIEUMUA1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PHIEUMUA_HOADON2", Storage="_PHIEUMUA2", ThisKey="MAPHIEUMUA", OtherKey="MAPHIEUMUA", IsForeignKey=true)]
+		public PHIEUMUA PHIEUMUA2
+		{
+			get
+			{
+				return this._PHIEUMUA2.Entity;
+			}
+			set
+			{
+				PHIEUMUA previousValue = this._PHIEUMUA2.Entity;
+				if (((previousValue != value) 
+							|| (this._PHIEUMUA2.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PHIEUMUA2.Entity = null;
+						previousValue.HOADONs2.Remove(this);
+					}
+					this._PHIEUMUA2.Entity = value;
+					if ((value != null))
+					{
+						value.HOADONs2.Add(this);
+						this._MAPHIEUMUA = value.MAPHIEUMUA;
+					}
+					else
+					{
+						this._MAPHIEUMUA = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("PHIEUMUA2");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1171,6 +1784,30 @@ namespace DoAnWebbb.Models
 			this.SendPropertyChanging();
 			entity.HOADON = null;
 		}
+		
+		private void attach_CT_HOADONs1(CT_HOADON entity)
+		{
+			this.SendPropertyChanging();
+			entity.HOADON1 = this;
+		}
+		
+		private void detach_CT_HOADONs1(CT_HOADON entity)
+		{
+			this.SendPropertyChanging();
+			entity.HOADON1 = null;
+		}
+		
+		private void attach_CT_HOADONs2(CT_HOADON entity)
+		{
+			this.SendPropertyChanging();
+			entity.HOADON2 = this;
+		}
+		
+		private void detach_CT_HOADONs2(CT_HOADON entity)
+		{
+			this.SendPropertyChanging();
+			entity.HOADON2 = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LOAIMAY")]
@@ -1185,6 +1822,10 @@ namespace DoAnWebbb.Models
 		
 		private EntitySet<SANPHAM> _SANPHAMs;
 		
+		private EntitySet<SANPHAM> _SANPHAMs1;
+		
+		private EntitySet<SANPHAM> _SANPHAMs2;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1198,6 +1839,8 @@ namespace DoAnWebbb.Models
 		public LOAIMAY()
 		{
 			this._SANPHAMs = new EntitySet<SANPHAM>(new Action<SANPHAM>(this.attach_SANPHAMs), new Action<SANPHAM>(this.detach_SANPHAMs));
+			this._SANPHAMs1 = new EntitySet<SANPHAM>(new Action<SANPHAM>(this.attach_SANPHAMs1), new Action<SANPHAM>(this.detach_SANPHAMs1));
+			this._SANPHAMs2 = new EntitySet<SANPHAM>(new Action<SANPHAM>(this.attach_SANPHAMs2), new Action<SANPHAM>(this.detach_SANPHAMs2));
 			OnCreated();
 		}
 		
@@ -1254,6 +1897,32 @@ namespace DoAnWebbb.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LOAIMAY_SANPHAM1", Storage="_SANPHAMs1", ThisKey="MALOAI", OtherKey="MALOAI")]
+		public EntitySet<SANPHAM> SANPHAMs1
+		{
+			get
+			{
+				return this._SANPHAMs1;
+			}
+			set
+			{
+				this._SANPHAMs1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LOAIMAY_SANPHAM2", Storage="_SANPHAMs2", ThisKey="MALOAI", OtherKey="MALOAI")]
+		public EntitySet<SANPHAM> SANPHAMs2
+		{
+			get
+			{
+				return this._SANPHAMs2;
+			}
+			set
+			{
+				this._SANPHAMs2.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1285,6 +1954,30 @@ namespace DoAnWebbb.Models
 			this.SendPropertyChanging();
 			entity.LOAIMAY = null;
 		}
+		
+		private void attach_SANPHAMs1(SANPHAM entity)
+		{
+			this.SendPropertyChanging();
+			entity.LOAIMAY1 = this;
+		}
+		
+		private void detach_SANPHAMs1(SANPHAM entity)
+		{
+			this.SendPropertyChanging();
+			entity.LOAIMAY1 = null;
+		}
+		
+		private void attach_SANPHAMs2(SANPHAM entity)
+		{
+			this.SendPropertyChanging();
+			entity.LOAIMAY2 = this;
+		}
+		
+		private void detach_SANPHAMs2(SANPHAM entity)
+		{
+			this.SendPropertyChanging();
+			entity.LOAIMAY2 = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.NGUOIDUNG")]
@@ -1315,9 +2008,21 @@ namespace DoAnWebbb.Models
 		
 		private System.Nullable<int> _TRANGTHAI;
 		
+		private System.Nullable<long> _DIEMTD;
+		
+		private System.Nullable<double> _UUDAI;
+		
 		private EntitySet<PHIEUMUA> _PHIEUMUAs;
 		
+		private EntitySet<PHIEUMUA> _PHIEUMUAs1;
+		
+		private EntitySet<PHIEUMUA> _PHIEUMUAs2;
+		
 		private EntityRef<QUYEN> _QUYEN;
+		
+		private EntityRef<QUYEN> _QUYEN1;
+		
+		private EntityRef<QUYEN> _QUYEN2;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1345,12 +2050,20 @@ namespace DoAnWebbb.Models
     partial void OnNGAYDANGKYChanged();
     partial void OnTRANGTHAIChanging(System.Nullable<int> value);
     partial void OnTRANGTHAIChanged();
+    partial void OnDIEMTDChanging(System.Nullable<long> value);
+    partial void OnDIEMTDChanged();
+    partial void OnUUDAIChanging(System.Nullable<double> value);
+    partial void OnUUDAIChanged();
     #endregion
 		
 		public NGUOIDUNG()
 		{
 			this._PHIEUMUAs = new EntitySet<PHIEUMUA>(new Action<PHIEUMUA>(this.attach_PHIEUMUAs), new Action<PHIEUMUA>(this.detach_PHIEUMUAs));
+			this._PHIEUMUAs1 = new EntitySet<PHIEUMUA>(new Action<PHIEUMUA>(this.attach_PHIEUMUAs1), new Action<PHIEUMUA>(this.detach_PHIEUMUAs1));
+			this._PHIEUMUAs2 = new EntitySet<PHIEUMUA>(new Action<PHIEUMUA>(this.attach_PHIEUMUAs2), new Action<PHIEUMUA>(this.detach_PHIEUMUAs2));
 			this._QUYEN = default(EntityRef<QUYEN>);
+			this._QUYEN1 = default(EntityRef<QUYEN>);
+			this._QUYEN2 = default(EntityRef<QUYEN>);
 			OnCreated();
 		}
 		
@@ -1525,7 +2238,8 @@ namespace DoAnWebbb.Models
 			{
 				if ((this._MAQUYEN != value))
 				{
-					if (this._QUYEN.HasLoadedOrAssignedValue)
+					if (((this._QUYEN.HasLoadedOrAssignedValue || this._QUYEN1.HasLoadedOrAssignedValue) 
+								|| this._QUYEN2.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1578,6 +2292,46 @@ namespace DoAnWebbb.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DIEMTD", DbType="BigInt")]
+		public System.Nullable<long> DIEMTD
+		{
+			get
+			{
+				return this._DIEMTD;
+			}
+			set
+			{
+				if ((this._DIEMTD != value))
+				{
+					this.OnDIEMTDChanging(value);
+					this.SendPropertyChanging();
+					this._DIEMTD = value;
+					this.SendPropertyChanged("DIEMTD");
+					this.OnDIEMTDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UUDAI", DbType="Float")]
+		public System.Nullable<double> UUDAI
+		{
+			get
+			{
+				return this._UUDAI;
+			}
+			set
+			{
+				if ((this._UUDAI != value))
+				{
+					this.OnUUDAIChanging(value);
+					this.SendPropertyChanging();
+					this._UUDAI = value;
+					this.SendPropertyChanged("UUDAI");
+					this.OnUUDAIChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NGUOIDUNG_PHIEUMUA", Storage="_PHIEUMUAs", ThisKey="USERNAME", OtherKey="USERNAME")]
 		public EntitySet<PHIEUMUA> PHIEUMUAs
 		{
@@ -1588,6 +2342,32 @@ namespace DoAnWebbb.Models
 			set
 			{
 				this._PHIEUMUAs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NGUOIDUNG_PHIEUMUA1", Storage="_PHIEUMUAs1", ThisKey="USERNAME", OtherKey="USERNAME")]
+		public EntitySet<PHIEUMUA> PHIEUMUAs1
+		{
+			get
+			{
+				return this._PHIEUMUAs1;
+			}
+			set
+			{
+				this._PHIEUMUAs1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NGUOIDUNG_PHIEUMUA2", Storage="_PHIEUMUAs2", ThisKey="USERNAME", OtherKey="USERNAME")]
+		public EntitySet<PHIEUMUA> PHIEUMUAs2
+		{
+			get
+			{
+				return this._PHIEUMUAs2;
+			}
+			set
+			{
+				this._PHIEUMUAs2.Assign(value);
 			}
 		}
 		
@@ -1625,6 +2405,74 @@ namespace DoAnWebbb.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QUYEN_NGUOIDUNG1", Storage="_QUYEN1", ThisKey="MAQUYEN", OtherKey="MAQUYEN", IsForeignKey=true)]
+		public QUYEN QUYEN1
+		{
+			get
+			{
+				return this._QUYEN1.Entity;
+			}
+			set
+			{
+				QUYEN previousValue = this._QUYEN1.Entity;
+				if (((previousValue != value) 
+							|| (this._QUYEN1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._QUYEN1.Entity = null;
+						previousValue.NGUOIDUNGs1.Remove(this);
+					}
+					this._QUYEN1.Entity = value;
+					if ((value != null))
+					{
+						value.NGUOIDUNGs1.Add(this);
+						this._MAQUYEN = value.MAQUYEN;
+					}
+					else
+					{
+						this._MAQUYEN = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("QUYEN1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QUYEN_NGUOIDUNG2", Storage="_QUYEN2", ThisKey="MAQUYEN", OtherKey="MAQUYEN", IsForeignKey=true)]
+		public QUYEN QUYEN2
+		{
+			get
+			{
+				return this._QUYEN2.Entity;
+			}
+			set
+			{
+				QUYEN previousValue = this._QUYEN2.Entity;
+				if (((previousValue != value) 
+							|| (this._QUYEN2.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._QUYEN2.Entity = null;
+						previousValue.NGUOIDUNGs2.Remove(this);
+					}
+					this._QUYEN2.Entity = value;
+					if ((value != null))
+					{
+						value.NGUOIDUNGs2.Add(this);
+						this._MAQUYEN = value.MAQUYEN;
+					}
+					else
+					{
+						this._MAQUYEN = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("QUYEN2");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1656,6 +2504,30 @@ namespace DoAnWebbb.Models
 			this.SendPropertyChanging();
 			entity.NGUOIDUNG = null;
 		}
+		
+		private void attach_PHIEUMUAs1(PHIEUMUA entity)
+		{
+			this.SendPropertyChanging();
+			entity.NGUOIDUNG1 = this;
+		}
+		
+		private void detach_PHIEUMUAs1(PHIEUMUA entity)
+		{
+			this.SendPropertyChanging();
+			entity.NGUOIDUNG1 = null;
+		}
+		
+		private void attach_PHIEUMUAs2(PHIEUMUA entity)
+		{
+			this.SendPropertyChanging();
+			entity.NGUOIDUNG2 = this;
+		}
+		
+		private void detach_PHIEUMUAs2(PHIEUMUA entity)
+		{
+			this.SendPropertyChanging();
+			entity.NGUOIDUNG2 = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.NHACUNGCAP")]
@@ -1670,6 +2542,10 @@ namespace DoAnWebbb.Models
 		
 		private EntitySet<SANPHAM> _SANPHAMs;
 		
+		private EntitySet<SANPHAM> _SANPHAMs1;
+		
+		private EntitySet<SANPHAM> _SANPHAMs2;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1683,6 +2559,8 @@ namespace DoAnWebbb.Models
 		public NHACUNGCAP()
 		{
 			this._SANPHAMs = new EntitySet<SANPHAM>(new Action<SANPHAM>(this.attach_SANPHAMs), new Action<SANPHAM>(this.detach_SANPHAMs));
+			this._SANPHAMs1 = new EntitySet<SANPHAM>(new Action<SANPHAM>(this.attach_SANPHAMs1), new Action<SANPHAM>(this.detach_SANPHAMs1));
+			this._SANPHAMs2 = new EntitySet<SANPHAM>(new Action<SANPHAM>(this.attach_SANPHAMs2), new Action<SANPHAM>(this.detach_SANPHAMs2));
 			OnCreated();
 		}
 		
@@ -1739,6 +2617,32 @@ namespace DoAnWebbb.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NHACUNGCAP_SANPHAM1", Storage="_SANPHAMs1", ThisKey="MANCC", OtherKey="MANCC")]
+		public EntitySet<SANPHAM> SANPHAMs1
+		{
+			get
+			{
+				return this._SANPHAMs1;
+			}
+			set
+			{
+				this._SANPHAMs1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NHACUNGCAP_SANPHAM2", Storage="_SANPHAMs2", ThisKey="MANCC", OtherKey="MANCC")]
+		public EntitySet<SANPHAM> SANPHAMs2
+		{
+			get
+			{
+				return this._SANPHAMs2;
+			}
+			set
+			{
+				this._SANPHAMs2.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1770,6 +2674,30 @@ namespace DoAnWebbb.Models
 			this.SendPropertyChanging();
 			entity.NHACUNGCAP = null;
 		}
+		
+		private void attach_SANPHAMs1(SANPHAM entity)
+		{
+			this.SendPropertyChanging();
+			entity.NHACUNGCAP1 = this;
+		}
+		
+		private void detach_SANPHAMs1(SANPHAM entity)
+		{
+			this.SendPropertyChanging();
+			entity.NHACUNGCAP1 = null;
+		}
+		
+		private void attach_SANPHAMs2(SANPHAM entity)
+		{
+			this.SendPropertyChanging();
+			entity.NHACUNGCAP2 = this;
+		}
+		
+		private void detach_SANPHAMs2(SANPHAM entity)
+		{
+			this.SendPropertyChanging();
+			entity.NHACUNGCAP2 = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PHIEUMUA")]
@@ -1790,9 +2718,21 @@ namespace DoAnWebbb.Models
 		
 		private EntitySet<CT_PHIEUMUA> _CT_PHIEUMUAs;
 		
+		private EntitySet<CT_PHIEUMUA> _CT_PHIEUMUAs1;
+		
+		private EntitySet<CT_PHIEUMUA> _CT_PHIEUMUAs2;
+		
 		private EntitySet<HOADON> _HOADONs;
 		
+		private EntitySet<HOADON> _HOADONs1;
+		
+		private EntitySet<HOADON> _HOADONs2;
+		
 		private EntityRef<NGUOIDUNG> _NGUOIDUNG;
+		
+		private EntityRef<NGUOIDUNG> _NGUOIDUNG1;
+		
+		private EntityRef<NGUOIDUNG> _NGUOIDUNG2;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1813,8 +2753,14 @@ namespace DoAnWebbb.Models
 		public PHIEUMUA()
 		{
 			this._CT_PHIEUMUAs = new EntitySet<CT_PHIEUMUA>(new Action<CT_PHIEUMUA>(this.attach_CT_PHIEUMUAs), new Action<CT_PHIEUMUA>(this.detach_CT_PHIEUMUAs));
+			this._CT_PHIEUMUAs1 = new EntitySet<CT_PHIEUMUA>(new Action<CT_PHIEUMUA>(this.attach_CT_PHIEUMUAs1), new Action<CT_PHIEUMUA>(this.detach_CT_PHIEUMUAs1));
+			this._CT_PHIEUMUAs2 = new EntitySet<CT_PHIEUMUA>(new Action<CT_PHIEUMUA>(this.attach_CT_PHIEUMUAs2), new Action<CT_PHIEUMUA>(this.detach_CT_PHIEUMUAs2));
 			this._HOADONs = new EntitySet<HOADON>(new Action<HOADON>(this.attach_HOADONs), new Action<HOADON>(this.detach_HOADONs));
+			this._HOADONs1 = new EntitySet<HOADON>(new Action<HOADON>(this.attach_HOADONs1), new Action<HOADON>(this.detach_HOADONs1));
+			this._HOADONs2 = new EntitySet<HOADON>(new Action<HOADON>(this.attach_HOADONs2), new Action<HOADON>(this.detach_HOADONs2));
 			this._NGUOIDUNG = default(EntityRef<NGUOIDUNG>);
+			this._NGUOIDUNG1 = default(EntityRef<NGUOIDUNG>);
+			this._NGUOIDUNG2 = default(EntityRef<NGUOIDUNG>);
 			OnCreated();
 		}
 		
@@ -1889,7 +2835,8 @@ namespace DoAnWebbb.Models
 			{
 				if ((this._USERNAME != value))
 				{
-					if (this._NGUOIDUNG.HasLoadedOrAssignedValue)
+					if (((this._NGUOIDUNG.HasLoadedOrAssignedValue || this._NGUOIDUNG1.HasLoadedOrAssignedValue) 
+								|| this._NGUOIDUNG2.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1935,6 +2882,32 @@ namespace DoAnWebbb.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PHIEUMUA_CT_PHIEUMUA1", Storage="_CT_PHIEUMUAs1", ThisKey="MAPHIEUMUA", OtherKey="MAPHIEUMUA")]
+		public EntitySet<CT_PHIEUMUA> CT_PHIEUMUAs1
+		{
+			get
+			{
+				return this._CT_PHIEUMUAs1;
+			}
+			set
+			{
+				this._CT_PHIEUMUAs1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PHIEUMUA_CT_PHIEUMUA2", Storage="_CT_PHIEUMUAs2", ThisKey="MAPHIEUMUA", OtherKey="MAPHIEUMUA")]
+		public EntitySet<CT_PHIEUMUA> CT_PHIEUMUAs2
+		{
+			get
+			{
+				return this._CT_PHIEUMUAs2;
+			}
+			set
+			{
+				this._CT_PHIEUMUAs2.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PHIEUMUA_HOADON", Storage="_HOADONs", ThisKey="MAPHIEUMUA", OtherKey="MAPHIEUMUA")]
 		public EntitySet<HOADON> HOADONs
 		{
@@ -1945,6 +2918,32 @@ namespace DoAnWebbb.Models
 			set
 			{
 				this._HOADONs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PHIEUMUA_HOADON1", Storage="_HOADONs1", ThisKey="MAPHIEUMUA", OtherKey="MAPHIEUMUA")]
+		public EntitySet<HOADON> HOADONs1
+		{
+			get
+			{
+				return this._HOADONs1;
+			}
+			set
+			{
+				this._HOADONs1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PHIEUMUA_HOADON2", Storage="_HOADONs2", ThisKey="MAPHIEUMUA", OtherKey="MAPHIEUMUA")]
+		public EntitySet<HOADON> HOADONs2
+		{
+			get
+			{
+				return this._HOADONs2;
+			}
+			set
+			{
+				this._HOADONs2.Assign(value);
 			}
 		}
 		
@@ -1982,6 +2981,74 @@ namespace DoAnWebbb.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NGUOIDUNG_PHIEUMUA1", Storage="_NGUOIDUNG1", ThisKey="USERNAME", OtherKey="USERNAME", IsForeignKey=true)]
+		public NGUOIDUNG NGUOIDUNG1
+		{
+			get
+			{
+				return this._NGUOIDUNG1.Entity;
+			}
+			set
+			{
+				NGUOIDUNG previousValue = this._NGUOIDUNG1.Entity;
+				if (((previousValue != value) 
+							|| (this._NGUOIDUNG1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._NGUOIDUNG1.Entity = null;
+						previousValue.PHIEUMUAs1.Remove(this);
+					}
+					this._NGUOIDUNG1.Entity = value;
+					if ((value != null))
+					{
+						value.PHIEUMUAs1.Add(this);
+						this._USERNAME = value.USERNAME;
+					}
+					else
+					{
+						this._USERNAME = default(string);
+					}
+					this.SendPropertyChanged("NGUOIDUNG1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NGUOIDUNG_PHIEUMUA2", Storage="_NGUOIDUNG2", ThisKey="USERNAME", OtherKey="USERNAME", IsForeignKey=true)]
+		public NGUOIDUNG NGUOIDUNG2
+		{
+			get
+			{
+				return this._NGUOIDUNG2.Entity;
+			}
+			set
+			{
+				NGUOIDUNG previousValue = this._NGUOIDUNG2.Entity;
+				if (((previousValue != value) 
+							|| (this._NGUOIDUNG2.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._NGUOIDUNG2.Entity = null;
+						previousValue.PHIEUMUAs2.Remove(this);
+					}
+					this._NGUOIDUNG2.Entity = value;
+					if ((value != null))
+					{
+						value.PHIEUMUAs2.Add(this);
+						this._USERNAME = value.USERNAME;
+					}
+					else
+					{
+						this._USERNAME = default(string);
+					}
+					this.SendPropertyChanged("NGUOIDUNG2");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -2014,6 +3081,30 @@ namespace DoAnWebbb.Models
 			entity.PHIEUMUA = null;
 		}
 		
+		private void attach_CT_PHIEUMUAs1(CT_PHIEUMUA entity)
+		{
+			this.SendPropertyChanging();
+			entity.PHIEUMUA1 = this;
+		}
+		
+		private void detach_CT_PHIEUMUAs1(CT_PHIEUMUA entity)
+		{
+			this.SendPropertyChanging();
+			entity.PHIEUMUA1 = null;
+		}
+		
+		private void attach_CT_PHIEUMUAs2(CT_PHIEUMUA entity)
+		{
+			this.SendPropertyChanging();
+			entity.PHIEUMUA2 = this;
+		}
+		
+		private void detach_CT_PHIEUMUAs2(CT_PHIEUMUA entity)
+		{
+			this.SendPropertyChanging();
+			entity.PHIEUMUA2 = null;
+		}
+		
 		private void attach_HOADONs(HOADON entity)
 		{
 			this.SendPropertyChanging();
@@ -2024,6 +3115,30 @@ namespace DoAnWebbb.Models
 		{
 			this.SendPropertyChanging();
 			entity.PHIEUMUA = null;
+		}
+		
+		private void attach_HOADONs1(HOADON entity)
+		{
+			this.SendPropertyChanging();
+			entity.PHIEUMUA1 = this;
+		}
+		
+		private void detach_HOADONs1(HOADON entity)
+		{
+			this.SendPropertyChanging();
+			entity.PHIEUMUA1 = null;
+		}
+		
+		private void attach_HOADONs2(HOADON entity)
+		{
+			this.SendPropertyChanging();
+			entity.PHIEUMUA2 = this;
+		}
+		
+		private void detach_HOADONs2(HOADON entity)
+		{
+			this.SendPropertyChanging();
+			entity.PHIEUMUA2 = null;
 		}
 	}
 	
@@ -2039,7 +3154,15 @@ namespace DoAnWebbb.Models
 		
 		private EntitySet<CHITIETTACVU> _CHITIETTACVUs;
 		
+		private EntitySet<CHITIETTACVU> _CHITIETTACVUs1;
+		
+		private EntitySet<CHITIETTACVU> _CHITIETTACVUs2;
+		
 		private EntitySet<NGUOIDUNG> _NGUOIDUNGs;
+		
+		private EntitySet<NGUOIDUNG> _NGUOIDUNGs1;
+		
+		private EntitySet<NGUOIDUNG> _NGUOIDUNGs2;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2054,7 +3177,11 @@ namespace DoAnWebbb.Models
 		public QUYEN()
 		{
 			this._CHITIETTACVUs = new EntitySet<CHITIETTACVU>(new Action<CHITIETTACVU>(this.attach_CHITIETTACVUs), new Action<CHITIETTACVU>(this.detach_CHITIETTACVUs));
+			this._CHITIETTACVUs1 = new EntitySet<CHITIETTACVU>(new Action<CHITIETTACVU>(this.attach_CHITIETTACVUs1), new Action<CHITIETTACVU>(this.detach_CHITIETTACVUs1));
+			this._CHITIETTACVUs2 = new EntitySet<CHITIETTACVU>(new Action<CHITIETTACVU>(this.attach_CHITIETTACVUs2), new Action<CHITIETTACVU>(this.detach_CHITIETTACVUs2));
 			this._NGUOIDUNGs = new EntitySet<NGUOIDUNG>(new Action<NGUOIDUNG>(this.attach_NGUOIDUNGs), new Action<NGUOIDUNG>(this.detach_NGUOIDUNGs));
+			this._NGUOIDUNGs1 = new EntitySet<NGUOIDUNG>(new Action<NGUOIDUNG>(this.attach_NGUOIDUNGs1), new Action<NGUOIDUNG>(this.detach_NGUOIDUNGs1));
+			this._NGUOIDUNGs2 = new EntitySet<NGUOIDUNG>(new Action<NGUOIDUNG>(this.attach_NGUOIDUNGs2), new Action<NGUOIDUNG>(this.detach_NGUOIDUNGs2));
 			OnCreated();
 		}
 		
@@ -2111,6 +3238,32 @@ namespace DoAnWebbb.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QUYEN_CHITIETTACVU1", Storage="_CHITIETTACVUs1", ThisKey="MAQUYEN", OtherKey="MAQUYEN")]
+		public EntitySet<CHITIETTACVU> CHITIETTACVUs1
+		{
+			get
+			{
+				return this._CHITIETTACVUs1;
+			}
+			set
+			{
+				this._CHITIETTACVUs1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QUYEN_CHITIETTACVU2", Storage="_CHITIETTACVUs2", ThisKey="MAQUYEN", OtherKey="MAQUYEN")]
+		public EntitySet<CHITIETTACVU> CHITIETTACVUs2
+		{
+			get
+			{
+				return this._CHITIETTACVUs2;
+			}
+			set
+			{
+				this._CHITIETTACVUs2.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QUYEN_NGUOIDUNG", Storage="_NGUOIDUNGs", ThisKey="MAQUYEN", OtherKey="MAQUYEN")]
 		public EntitySet<NGUOIDUNG> NGUOIDUNGs
 		{
@@ -2121,6 +3274,32 @@ namespace DoAnWebbb.Models
 			set
 			{
 				this._NGUOIDUNGs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QUYEN_NGUOIDUNG1", Storage="_NGUOIDUNGs1", ThisKey="MAQUYEN", OtherKey="MAQUYEN")]
+		public EntitySet<NGUOIDUNG> NGUOIDUNGs1
+		{
+			get
+			{
+				return this._NGUOIDUNGs1;
+			}
+			set
+			{
+				this._NGUOIDUNGs1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QUYEN_NGUOIDUNG2", Storage="_NGUOIDUNGs2", ThisKey="MAQUYEN", OtherKey="MAQUYEN")]
+		public EntitySet<NGUOIDUNG> NGUOIDUNGs2
+		{
+			get
+			{
+				return this._NGUOIDUNGs2;
+			}
+			set
+			{
+				this._NGUOIDUNGs2.Assign(value);
 			}
 		}
 		
@@ -2156,6 +3335,30 @@ namespace DoAnWebbb.Models
 			entity.QUYEN = null;
 		}
 		
+		private void attach_CHITIETTACVUs1(CHITIETTACVU entity)
+		{
+			this.SendPropertyChanging();
+			entity.QUYEN1 = this;
+		}
+		
+		private void detach_CHITIETTACVUs1(CHITIETTACVU entity)
+		{
+			this.SendPropertyChanging();
+			entity.QUYEN1 = null;
+		}
+		
+		private void attach_CHITIETTACVUs2(CHITIETTACVU entity)
+		{
+			this.SendPropertyChanging();
+			entity.QUYEN2 = this;
+		}
+		
+		private void detach_CHITIETTACVUs2(CHITIETTACVU entity)
+		{
+			this.SendPropertyChanging();
+			entity.QUYEN2 = null;
+		}
+		
 		private void attach_NGUOIDUNGs(NGUOIDUNG entity)
 		{
 			this.SendPropertyChanging();
@@ -2166,6 +3369,30 @@ namespace DoAnWebbb.Models
 		{
 			this.SendPropertyChanging();
 			entity.QUYEN = null;
+		}
+		
+		private void attach_NGUOIDUNGs1(NGUOIDUNG entity)
+		{
+			this.SendPropertyChanging();
+			entity.QUYEN1 = this;
+		}
+		
+		private void detach_NGUOIDUNGs1(NGUOIDUNG entity)
+		{
+			this.SendPropertyChanging();
+			entity.QUYEN1 = null;
+		}
+		
+		private void attach_NGUOIDUNGs2(NGUOIDUNG entity)
+		{
+			this.SendPropertyChanging();
+			entity.QUYEN2 = this;
+		}
+		
+		private void detach_NGUOIDUNGs2(NGUOIDUNG entity)
+		{
+			this.SendPropertyChanging();
+			entity.QUYEN2 = null;
 		}
 	}
 	
@@ -2201,11 +3428,27 @@ namespace DoAnWebbb.Models
 		
 		private EntitySet<CT_HOADON> _CT_HOADONs;
 		
+		private EntitySet<CT_HOADON> _CT_HOADONs1;
+		
+		private EntitySet<CT_HOADON> _CT_HOADONs2;
+		
 		private EntitySet<CT_PHIEUMUA> _CT_PHIEUMUAs;
+		
+		private EntitySet<CT_PHIEUMUA> _CT_PHIEUMUAs1;
+		
+		private EntitySet<CT_PHIEUMUA> _CT_PHIEUMUAs2;
 		
 		private EntityRef<LOAIMAY> _LOAIMAY;
 		
+		private EntityRef<LOAIMAY> _LOAIMAY1;
+		
+		private EntityRef<LOAIMAY> _LOAIMAY2;
+		
 		private EntityRef<NHACUNGCAP> _NHACUNGCAP;
+		
+		private EntityRef<NHACUNGCAP> _NHACUNGCAP1;
+		
+		private EntityRef<NHACUNGCAP> _NHACUNGCAP2;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2240,9 +3483,17 @@ namespace DoAnWebbb.Models
 		public SANPHAM()
 		{
 			this._CT_HOADONs = new EntitySet<CT_HOADON>(new Action<CT_HOADON>(this.attach_CT_HOADONs), new Action<CT_HOADON>(this.detach_CT_HOADONs));
+			this._CT_HOADONs1 = new EntitySet<CT_HOADON>(new Action<CT_HOADON>(this.attach_CT_HOADONs1), new Action<CT_HOADON>(this.detach_CT_HOADONs1));
+			this._CT_HOADONs2 = new EntitySet<CT_HOADON>(new Action<CT_HOADON>(this.attach_CT_HOADONs2), new Action<CT_HOADON>(this.detach_CT_HOADONs2));
 			this._CT_PHIEUMUAs = new EntitySet<CT_PHIEUMUA>(new Action<CT_PHIEUMUA>(this.attach_CT_PHIEUMUAs), new Action<CT_PHIEUMUA>(this.detach_CT_PHIEUMUAs));
+			this._CT_PHIEUMUAs1 = new EntitySet<CT_PHIEUMUA>(new Action<CT_PHIEUMUA>(this.attach_CT_PHIEUMUAs1), new Action<CT_PHIEUMUA>(this.detach_CT_PHIEUMUAs1));
+			this._CT_PHIEUMUAs2 = new EntitySet<CT_PHIEUMUA>(new Action<CT_PHIEUMUA>(this.attach_CT_PHIEUMUAs2), new Action<CT_PHIEUMUA>(this.detach_CT_PHIEUMUAs2));
 			this._LOAIMAY = default(EntityRef<LOAIMAY>);
+			this._LOAIMAY1 = default(EntityRef<LOAIMAY>);
+			this._LOAIMAY2 = default(EntityRef<LOAIMAY>);
 			this._NHACUNGCAP = default(EntityRef<NHACUNGCAP>);
+			this._NHACUNGCAP1 = default(EntityRef<NHACUNGCAP>);
+			this._NHACUNGCAP2 = default(EntityRef<NHACUNGCAP>);
 			OnCreated();
 		}
 		
@@ -2457,7 +3708,8 @@ namespace DoAnWebbb.Models
 			{
 				if ((this._MALOAI != value))
 				{
-					if (this._LOAIMAY.HasLoadedOrAssignedValue)
+					if (((this._LOAIMAY.HasLoadedOrAssignedValue || this._LOAIMAY1.HasLoadedOrAssignedValue) 
+								|| this._LOAIMAY2.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -2481,7 +3733,8 @@ namespace DoAnWebbb.Models
 			{
 				if ((this._MANCC != value))
 				{
-					if (this._NHACUNGCAP.HasLoadedOrAssignedValue)
+					if (((this._NHACUNGCAP.HasLoadedOrAssignedValue || this._NHACUNGCAP1.HasLoadedOrAssignedValue) 
+								|| this._NHACUNGCAP2.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -2507,6 +3760,32 @@ namespace DoAnWebbb.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SANPHAM_CT_HOADON1", Storage="_CT_HOADONs1", ThisKey="MASANPHAM", OtherKey="MASANPHAM")]
+		public EntitySet<CT_HOADON> CT_HOADONs1
+		{
+			get
+			{
+				return this._CT_HOADONs1;
+			}
+			set
+			{
+				this._CT_HOADONs1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SANPHAM_CT_HOADON2", Storage="_CT_HOADONs2", ThisKey="MASANPHAM", OtherKey="MASANPHAM")]
+		public EntitySet<CT_HOADON> CT_HOADONs2
+		{
+			get
+			{
+				return this._CT_HOADONs2;
+			}
+			set
+			{
+				this._CT_HOADONs2.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SANPHAM_CT_PHIEUMUA", Storage="_CT_PHIEUMUAs", ThisKey="MASANPHAM", OtherKey="MASANPHAM")]
 		public EntitySet<CT_PHIEUMUA> CT_PHIEUMUAs
 		{
@@ -2517,6 +3796,32 @@ namespace DoAnWebbb.Models
 			set
 			{
 				this._CT_PHIEUMUAs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SANPHAM_CT_PHIEUMUA1", Storage="_CT_PHIEUMUAs1", ThisKey="MASANPHAM", OtherKey="MASANPHAM")]
+		public EntitySet<CT_PHIEUMUA> CT_PHIEUMUAs1
+		{
+			get
+			{
+				return this._CT_PHIEUMUAs1;
+			}
+			set
+			{
+				this._CT_PHIEUMUAs1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SANPHAM_CT_PHIEUMUA2", Storage="_CT_PHIEUMUAs2", ThisKey="MASANPHAM", OtherKey="MASANPHAM")]
+		public EntitySet<CT_PHIEUMUA> CT_PHIEUMUAs2
+		{
+			get
+			{
+				return this._CT_PHIEUMUAs2;
+			}
+			set
+			{
+				this._CT_PHIEUMUAs2.Assign(value);
 			}
 		}
 		
@@ -2550,6 +3855,74 @@ namespace DoAnWebbb.Models
 						this._MALOAI = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("LOAIMAY");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LOAIMAY_SANPHAM1", Storage="_LOAIMAY1", ThisKey="MALOAI", OtherKey="MALOAI", IsForeignKey=true)]
+		public LOAIMAY LOAIMAY1
+		{
+			get
+			{
+				return this._LOAIMAY1.Entity;
+			}
+			set
+			{
+				LOAIMAY previousValue = this._LOAIMAY1.Entity;
+				if (((previousValue != value) 
+							|| (this._LOAIMAY1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LOAIMAY1.Entity = null;
+						previousValue.SANPHAMs1.Remove(this);
+					}
+					this._LOAIMAY1.Entity = value;
+					if ((value != null))
+					{
+						value.SANPHAMs1.Add(this);
+						this._MALOAI = value.MALOAI;
+					}
+					else
+					{
+						this._MALOAI = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("LOAIMAY1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LOAIMAY_SANPHAM2", Storage="_LOAIMAY2", ThisKey="MALOAI", OtherKey="MALOAI", IsForeignKey=true)]
+		public LOAIMAY LOAIMAY2
+		{
+			get
+			{
+				return this._LOAIMAY2.Entity;
+			}
+			set
+			{
+				LOAIMAY previousValue = this._LOAIMAY2.Entity;
+				if (((previousValue != value) 
+							|| (this._LOAIMAY2.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LOAIMAY2.Entity = null;
+						previousValue.SANPHAMs2.Remove(this);
+					}
+					this._LOAIMAY2.Entity = value;
+					if ((value != null))
+					{
+						value.SANPHAMs2.Add(this);
+						this._MALOAI = value.MALOAI;
+					}
+					else
+					{
+						this._MALOAI = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("LOAIMAY2");
 				}
 			}
 		}
@@ -2588,6 +3961,74 @@ namespace DoAnWebbb.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NHACUNGCAP_SANPHAM1", Storage="_NHACUNGCAP1", ThisKey="MANCC", OtherKey="MANCC", IsForeignKey=true)]
+		public NHACUNGCAP NHACUNGCAP1
+		{
+			get
+			{
+				return this._NHACUNGCAP1.Entity;
+			}
+			set
+			{
+				NHACUNGCAP previousValue = this._NHACUNGCAP1.Entity;
+				if (((previousValue != value) 
+							|| (this._NHACUNGCAP1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._NHACUNGCAP1.Entity = null;
+						previousValue.SANPHAMs1.Remove(this);
+					}
+					this._NHACUNGCAP1.Entity = value;
+					if ((value != null))
+					{
+						value.SANPHAMs1.Add(this);
+						this._MANCC = value.MANCC;
+					}
+					else
+					{
+						this._MANCC = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("NHACUNGCAP1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NHACUNGCAP_SANPHAM2", Storage="_NHACUNGCAP2", ThisKey="MANCC", OtherKey="MANCC", IsForeignKey=true)]
+		public NHACUNGCAP NHACUNGCAP2
+		{
+			get
+			{
+				return this._NHACUNGCAP2.Entity;
+			}
+			set
+			{
+				NHACUNGCAP previousValue = this._NHACUNGCAP2.Entity;
+				if (((previousValue != value) 
+							|| (this._NHACUNGCAP2.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._NHACUNGCAP2.Entity = null;
+						previousValue.SANPHAMs2.Remove(this);
+					}
+					this._NHACUNGCAP2.Entity = value;
+					if ((value != null))
+					{
+						value.SANPHAMs2.Add(this);
+						this._MANCC = value.MANCC;
+					}
+					else
+					{
+						this._MANCC = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("NHACUNGCAP2");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -2620,6 +4061,30 @@ namespace DoAnWebbb.Models
 			entity.SANPHAM = null;
 		}
 		
+		private void attach_CT_HOADONs1(CT_HOADON entity)
+		{
+			this.SendPropertyChanging();
+			entity.SANPHAM1 = this;
+		}
+		
+		private void detach_CT_HOADONs1(CT_HOADON entity)
+		{
+			this.SendPropertyChanging();
+			entity.SANPHAM1 = null;
+		}
+		
+		private void attach_CT_HOADONs2(CT_HOADON entity)
+		{
+			this.SendPropertyChanging();
+			entity.SANPHAM2 = this;
+		}
+		
+		private void detach_CT_HOADONs2(CT_HOADON entity)
+		{
+			this.SendPropertyChanging();
+			entity.SANPHAM2 = null;
+		}
+		
 		private void attach_CT_PHIEUMUAs(CT_PHIEUMUA entity)
 		{
 			this.SendPropertyChanging();
@@ -2630,6 +4095,30 @@ namespace DoAnWebbb.Models
 		{
 			this.SendPropertyChanging();
 			entity.SANPHAM = null;
+		}
+		
+		private void attach_CT_PHIEUMUAs1(CT_PHIEUMUA entity)
+		{
+			this.SendPropertyChanging();
+			entity.SANPHAM1 = this;
+		}
+		
+		private void detach_CT_PHIEUMUAs1(CT_PHIEUMUA entity)
+		{
+			this.SendPropertyChanging();
+			entity.SANPHAM1 = null;
+		}
+		
+		private void attach_CT_PHIEUMUAs2(CT_PHIEUMUA entity)
+		{
+			this.SendPropertyChanging();
+			entity.SANPHAM2 = this;
+		}
+		
+		private void detach_CT_PHIEUMUAs2(CT_PHIEUMUA entity)
+		{
+			this.SendPropertyChanging();
+			entity.SANPHAM2 = null;
 		}
 	}
 }

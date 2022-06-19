@@ -1,19 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DigitalStore" Class="MyDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=LUAN\SQLEXPRESS;Initial Catalog=DigitalStore;User ID=sa;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DigitalStoreConnectionString1" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.TACVU" Member="TACVUs">
-    <Type Name="TACVU">
-      <Column Name="MATACVU" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TENTACVU" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="TACVU_CHITIETTACVU" Member="CHITIETTACVUs" ThisKey="MATACVU" OtherKey="MATACVU" Type="CHITIETTACVU" />
-    </Type>
-  </Table>
   <Table Name="dbo.CHITIETTACVU" Member="CHITIETTACVUs">
     <Type Name="CHITIETTACVU">
       <Column Name="MACTTACVU" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="MAQUYEN" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MATACVU" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="TACVU_CHITIETTACVU" Member="TACVU" ThisKey="MATACVU" OtherKey="MATACVU" Type="TACVU" IsForeignKey="true" />
+      <Association Name="TACVU_CHITIETTACVU1" Member="TACVU1" ThisKey="MATACVU" OtherKey="MATACVU" Type="TACVU" IsForeignKey="true" />
+      <Association Name="TACVU_CHITIETTACVU2" Member="TACVU2" ThisKey="MATACVU" OtherKey="MATACVU" Type="TACVU" IsForeignKey="true" />
       <Association Name="QUYEN_CHITIETTACVU" Member="QUYEN" ThisKey="MAQUYEN" OtherKey="MAQUYEN" Type="QUYEN" IsForeignKey="true" />
+      <Association Name="QUYEN_CHITIETTACVU1" Member="QUYEN1" ThisKey="MAQUYEN" OtherKey="MAQUYEN" Type="QUYEN" IsForeignKey="true" />
+      <Association Name="QUYEN_CHITIETTACVU2" Member="QUYEN2" ThisKey="MAQUYEN" OtherKey="MAQUYEN" Type="QUYEN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TACVU" Member="TACVUs">
+    <Type Name="TACVU">
+      <Column Name="MATACVU" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TENTACVU" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="TACVU_CHITIETTACVU" Member="CHITIETTACVUs" ThisKey="MATACVU" OtherKey="MATACVU" Type="CHITIETTACVU" />
+      <Association Name="TACVU_CHITIETTACVU1" Member="CHITIETTACVUs1" ThisKey="MATACVU" OtherKey="MATACVU" Type="CHITIETTACVU" />
+      <Association Name="TACVU_CHITIETTACVU2" Member="CHITIETTACVUs2" ThisKey="MATACVU" OtherKey="MATACVU" Type="CHITIETTACVU" />
     </Type>
   </Table>
   <Table Name="dbo.CT_HOADON" Member="CT_HOADONs">
@@ -23,7 +29,11 @@
       <Column Name="MAHD" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MASANPHAM" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="HOADON_CT_HOADON" Member="HOADON" ThisKey="MAHD" OtherKey="MAHD" Type="HOADON" IsForeignKey="true" />
+      <Association Name="HOADON_CT_HOADON1" Member="HOADON1" ThisKey="MAHD" OtherKey="MAHD" Type="HOADON" IsForeignKey="true" />
+      <Association Name="HOADON_CT_HOADON2" Member="HOADON2" ThisKey="MAHD" OtherKey="MAHD" Type="HOADON" IsForeignKey="true" />
       <Association Name="SANPHAM_CT_HOADON" Member="SANPHAM" ThisKey="MASANPHAM" OtherKey="MASANPHAM" Type="SANPHAM" IsForeignKey="true" />
+      <Association Name="SANPHAM_CT_HOADON1" Member="SANPHAM1" ThisKey="MASANPHAM" OtherKey="MASANPHAM" Type="SANPHAM" IsForeignKey="true" />
+      <Association Name="SANPHAM_CT_HOADON2" Member="SANPHAM2" ThisKey="MASANPHAM" OtherKey="MASANPHAM" Type="SANPHAM" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.CT_PHIEUMUA" Member="CT_PHIEUMUAs">
@@ -33,7 +43,11 @@
       <Column Name="MASANPHAM" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="SOLUONG" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="PHIEUMUA_CT_PHIEUMUA" Member="PHIEUMUA" ThisKey="MAPHIEUMUA" OtherKey="MAPHIEUMUA" Type="PHIEUMUA" IsForeignKey="true" />
+      <Association Name="PHIEUMUA_CT_PHIEUMUA1" Member="PHIEUMUA1" ThisKey="MAPHIEUMUA" OtherKey="MAPHIEUMUA" Type="PHIEUMUA" IsForeignKey="true" />
+      <Association Name="PHIEUMUA_CT_PHIEUMUA2" Member="PHIEUMUA2" ThisKey="MAPHIEUMUA" OtherKey="MAPHIEUMUA" Type="PHIEUMUA" IsForeignKey="true" />
       <Association Name="SANPHAM_CT_PHIEUMUA" Member="SANPHAM" ThisKey="MASANPHAM" OtherKey="MASANPHAM" Type="SANPHAM" IsForeignKey="true" />
+      <Association Name="SANPHAM_CT_PHIEUMUA1" Member="SANPHAM1" ThisKey="MASANPHAM" OtherKey="MASANPHAM" Type="SANPHAM" IsForeignKey="true" />
+      <Association Name="SANPHAM_CT_PHIEUMUA2" Member="SANPHAM2" ThisKey="MASANPHAM" OtherKey="MASANPHAM" Type="SANPHAM" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.HOADON" Member="HOADONs">
@@ -45,7 +59,11 @@
       <Column Name="TRANGTHAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MAPHIEUMUA" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="HOADON_CT_HOADON" Member="CT_HOADONs" ThisKey="MAHD" OtherKey="MAHD" Type="CT_HOADON" />
+      <Association Name="HOADON_CT_HOADON1" Member="CT_HOADONs1" ThisKey="MAHD" OtherKey="MAHD" Type="CT_HOADON" />
+      <Association Name="HOADON_CT_HOADON2" Member="CT_HOADONs2" ThisKey="MAHD" OtherKey="MAHD" Type="CT_HOADON" />
       <Association Name="PHIEUMUA_HOADON" Member="PHIEUMUA" ThisKey="MAPHIEUMUA" OtherKey="MAPHIEUMUA" Type="PHIEUMUA" IsForeignKey="true" />
+      <Association Name="PHIEUMUA_HOADON1" Member="PHIEUMUA1" ThisKey="MAPHIEUMUA" OtherKey="MAPHIEUMUA" Type="PHIEUMUA" IsForeignKey="true" />
+      <Association Name="PHIEUMUA_HOADON2" Member="PHIEUMUA2" ThisKey="MAPHIEUMUA" OtherKey="MAPHIEUMUA" Type="PHIEUMUA" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.LOAIMAY" Member="LOAIMAYs">
@@ -53,6 +71,8 @@
       <Column Name="MALOAI" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TENLOAI" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
       <Association Name="LOAIMAY_SANPHAM" Member="SANPHAMs" ThisKey="MALOAI" OtherKey="MALOAI" Type="SANPHAM" />
+      <Association Name="LOAIMAY_SANPHAM1" Member="SANPHAMs1" ThisKey="MALOAI" OtherKey="MALOAI" Type="SANPHAM" />
+      <Association Name="LOAIMAY_SANPHAM2" Member="SANPHAMs2" ThisKey="MALOAI" OtherKey="MALOAI" Type="SANPHAM" />
     </Type>
   </Table>
   <Table Name="dbo.NGUOIDUNG" Member="NGUOIDUNGs">
@@ -68,8 +88,14 @@
       <Column Name="MAQUYEN" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="NGAYDANGKY" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="TRANGTHAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DIEMTD" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="UUDAI" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Association Name="NGUOIDUNG_PHIEUMUA" Member="PHIEUMUAs" ThisKey="USERNAME" OtherKey="USERNAME" Type="PHIEUMUA" />
+      <Association Name="NGUOIDUNG_PHIEUMUA1" Member="PHIEUMUAs1" ThisKey="USERNAME" OtherKey="USERNAME" Type="PHIEUMUA" />
+      <Association Name="NGUOIDUNG_PHIEUMUA2" Member="PHIEUMUAs2" ThisKey="USERNAME" OtherKey="USERNAME" Type="PHIEUMUA" />
       <Association Name="QUYEN_NGUOIDUNG" Member="QUYEN" ThisKey="MAQUYEN" OtherKey="MAQUYEN" Type="QUYEN" IsForeignKey="true" />
+      <Association Name="QUYEN_NGUOIDUNG1" Member="QUYEN1" ThisKey="MAQUYEN" OtherKey="MAQUYEN" Type="QUYEN" IsForeignKey="true" />
+      <Association Name="QUYEN_NGUOIDUNG2" Member="QUYEN2" ThisKey="MAQUYEN" OtherKey="MAQUYEN" Type="QUYEN" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.NHACUNGCAP" Member="NHACUNGCAPs">
@@ -77,6 +103,8 @@
       <Column Name="MANCC" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TENNCCC" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="NHACUNGCAP_SANPHAM" Member="SANPHAMs" ThisKey="MANCC" OtherKey="MANCC" Type="SANPHAM" />
+      <Association Name="NHACUNGCAP_SANPHAM1" Member="SANPHAMs1" ThisKey="MANCC" OtherKey="MANCC" Type="SANPHAM" />
+      <Association Name="NHACUNGCAP_SANPHAM2" Member="SANPHAMs2" ThisKey="MANCC" OtherKey="MANCC" Type="SANPHAM" />
     </Type>
   </Table>
   <Table Name="dbo.PHIEUMUA" Member="PHIEUMUAs">
@@ -87,8 +115,14 @@
       <Column Name="USERNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="TRANGTHAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="PHIEUMUA_CT_PHIEUMUA" Member="CT_PHIEUMUAs" ThisKey="MAPHIEUMUA" OtherKey="MAPHIEUMUA" Type="CT_PHIEUMUA" />
+      <Association Name="PHIEUMUA_CT_PHIEUMUA1" Member="CT_PHIEUMUAs1" ThisKey="MAPHIEUMUA" OtherKey="MAPHIEUMUA" Type="CT_PHIEUMUA" />
+      <Association Name="PHIEUMUA_CT_PHIEUMUA2" Member="CT_PHIEUMUAs2" ThisKey="MAPHIEUMUA" OtherKey="MAPHIEUMUA" Type="CT_PHIEUMUA" />
       <Association Name="PHIEUMUA_HOADON" Member="HOADONs" ThisKey="MAPHIEUMUA" OtherKey="MAPHIEUMUA" Type="HOADON" />
+      <Association Name="PHIEUMUA_HOADON1" Member="HOADONs1" ThisKey="MAPHIEUMUA" OtherKey="MAPHIEUMUA" Type="HOADON" />
+      <Association Name="PHIEUMUA_HOADON2" Member="HOADONs2" ThisKey="MAPHIEUMUA" OtherKey="MAPHIEUMUA" Type="HOADON" />
       <Association Name="NGUOIDUNG_PHIEUMUA" Member="NGUOIDUNG" ThisKey="USERNAME" OtherKey="USERNAME" Type="NGUOIDUNG" IsForeignKey="true" />
+      <Association Name="NGUOIDUNG_PHIEUMUA1" Member="NGUOIDUNG1" ThisKey="USERNAME" OtherKey="USERNAME" Type="NGUOIDUNG" IsForeignKey="true" />
+      <Association Name="NGUOIDUNG_PHIEUMUA2" Member="NGUOIDUNG2" ThisKey="USERNAME" OtherKey="USERNAME" Type="NGUOIDUNG" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.QUYEN" Member="QUYENs">
@@ -96,7 +130,11 @@
       <Column Name="MAQUYEN" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TENQUYEN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="QUYEN_CHITIETTACVU" Member="CHITIETTACVUs" ThisKey="MAQUYEN" OtherKey="MAQUYEN" Type="CHITIETTACVU" />
+      <Association Name="QUYEN_CHITIETTACVU1" Member="CHITIETTACVUs1" ThisKey="MAQUYEN" OtherKey="MAQUYEN" Type="CHITIETTACVU" />
+      <Association Name="QUYEN_CHITIETTACVU2" Member="CHITIETTACVUs2" ThisKey="MAQUYEN" OtherKey="MAQUYEN" Type="CHITIETTACVU" />
       <Association Name="QUYEN_NGUOIDUNG" Member="NGUOIDUNGs" ThisKey="MAQUYEN" OtherKey="MAQUYEN" Type="NGUOIDUNG" />
+      <Association Name="QUYEN_NGUOIDUNG1" Member="NGUOIDUNGs1" ThisKey="MAQUYEN" OtherKey="MAQUYEN" Type="NGUOIDUNG" />
+      <Association Name="QUYEN_NGUOIDUNG2" Member="NGUOIDUNGs2" ThisKey="MAQUYEN" OtherKey="MAQUYEN" Type="NGUOIDUNG" />
     </Type>
   </Table>
   <Table Name="dbo.SANPHAM" Member="SANPHAMs">
@@ -114,9 +152,17 @@
       <Column Name="MALOAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MANCC" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="SANPHAM_CT_HOADON" Member="CT_HOADONs" ThisKey="MASANPHAM" OtherKey="MASANPHAM" Type="CT_HOADON" />
+      <Association Name="SANPHAM_CT_HOADON1" Member="CT_HOADONs1" ThisKey="MASANPHAM" OtherKey="MASANPHAM" Type="CT_HOADON" />
+      <Association Name="SANPHAM_CT_HOADON2" Member="CT_HOADONs2" ThisKey="MASANPHAM" OtherKey="MASANPHAM" Type="CT_HOADON" />
       <Association Name="SANPHAM_CT_PHIEUMUA" Member="CT_PHIEUMUAs" ThisKey="MASANPHAM" OtherKey="MASANPHAM" Type="CT_PHIEUMUA" />
+      <Association Name="SANPHAM_CT_PHIEUMUA1" Member="CT_PHIEUMUAs1" ThisKey="MASANPHAM" OtherKey="MASANPHAM" Type="CT_PHIEUMUA" />
+      <Association Name="SANPHAM_CT_PHIEUMUA2" Member="CT_PHIEUMUAs2" ThisKey="MASANPHAM" OtherKey="MASANPHAM" Type="CT_PHIEUMUA" />
       <Association Name="LOAIMAY_SANPHAM" Member="LOAIMAY" ThisKey="MALOAI" OtherKey="MALOAI" Type="LOAIMAY" IsForeignKey="true" />
+      <Association Name="LOAIMAY_SANPHAM1" Member="LOAIMAY1" ThisKey="MALOAI" OtherKey="MALOAI" Type="LOAIMAY" IsForeignKey="true" />
+      <Association Name="LOAIMAY_SANPHAM2" Member="LOAIMAY2" ThisKey="MALOAI" OtherKey="MALOAI" Type="LOAIMAY" IsForeignKey="true" />
       <Association Name="NHACUNGCAP_SANPHAM" Member="NHACUNGCAP" ThisKey="MANCC" OtherKey="MANCC" Type="NHACUNGCAP" IsForeignKey="true" />
+      <Association Name="NHACUNGCAP_SANPHAM1" Member="NHACUNGCAP1" ThisKey="MANCC" OtherKey="MANCC" Type="NHACUNGCAP" IsForeignKey="true" />
+      <Association Name="NHACUNGCAP_SANPHAM2" Member="NHACUNGCAP2" ThisKey="MANCC" OtherKey="MANCC" Type="NHACUNGCAP" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

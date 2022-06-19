@@ -75,7 +75,7 @@ namespace DoAnWebbb.Areas.Admin.Controllers
             var E_ngaycapnhat = DateTime.Now;
 
 
-            if (string.IsNullOrEmpty(E_soluongton) || string.IsNullOrEmpty(E_anhsanpham) || string.IsNullOrEmpty(E_tensanpham) )
+            if (string.IsNullOrEmpty(E_soluongton) || string.IsNullOrEmpty(E_anhsanpham) || string.IsNullOrEmpty(E_tensanpham) || string.IsNullOrEmpty(E_thongsokythuat))
             {
                 ViewData["Error"] = "Don't empty!";
                 return this.ThemSanPham();
@@ -153,8 +153,21 @@ namespace DoAnWebbb.Areas.Admin.Controllers
         public ActionResult Delete (int id, FormCollection collection)
         {
             var D_sanpham = db.SANPHAMs.First(m => m.MASANPHAM == id);
+            var fk= from i in db.CT_HOADONs where(i.MASANPHAM==id) select i.MASANPHAM;
             if (D_sanpham.MASANPHAM == id)
             {
+
+
+                    foreach (var pk in fk)
+                    {
+                        if (D_sanpham.MASANPHAM == pk)
+                        {
+                            ViewBag.ErorrD = "Không xóa được do sản phẩm đã có trong đơn hàng!";
+
+                            return View(D_sanpham);
+                        }
+                    }
+
                 D_sanpham.TRANGTHAI = 0;
                 db.SANPHAMs.DeleteOnSubmit(D_sanpham);
                 db.SubmitChanges();

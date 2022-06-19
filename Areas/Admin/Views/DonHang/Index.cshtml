@@ -71,13 +71,13 @@
                                     <label class="btn btn-primary">Xác Nhận</label> }
                                 else if (item.TRANGTHAI == 2)
                                 {
-                                    <label class="btn btn-primary">Đã Thanh Toán</label> }
+                                    <label class="btn btn-primary">Thanh Toán MoMo</label> }
                                 else
                                 {
                                     <label class="btn btn-success">Hoàn thành</label>}
                             </td>
                             <td class="chitietdon">
-                                <a class="btn btn-primary" style="font-size:10px;" href="@Url.Action("ChiTietDonHang","DonHang",new { id=item.MAPHIEUMUA })"><i class="fa fa-fw fa-pen"></i></a>
+                                <a class="btn btn-primary" style="font-size:10px;" href="@Url.Action("Detail","DonHang",new { id=item.MAPHIEUMUA-159 })"><i class="fa fa-fw fa-pen"></i></a>
                             </td>
                         </tr>
                     }
@@ -85,5 +85,22 @@
             </table>
         </div>
     </div>
+    <div class="box-footer clearfix">
+        <a href="@Url.Action("Index", "DonHang") " class="btn btn-sm btn-default btn-flat pull-right">Xem Tất Cả Đơn Hàng</a>
+    </div>
+    <div style="color: black; margin-left: 20px">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount</div>
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </div>
+    <style>
+        .MenuTrang li {
+            display: inline;
+            color: #fff;
+            background-color: #337ab7;
+            border-color: #2e6da4;
+            margin-left: 20px;
+            padding-bottom: 10px;
+        }
+    </style>
 </div>
 

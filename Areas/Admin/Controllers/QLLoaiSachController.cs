@@ -90,6 +90,7 @@ namespace DoAnWebbb.Areas.Admin.Controllers
                 {
                     if (D_LM.MALOAI == pk)
                     {
+                        ViewBag.ErorrD = "Không xóa được do còn sản phẩm thuộc loại này";
                         return View(D_LM);
                     }
                 }

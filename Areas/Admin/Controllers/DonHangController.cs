@@ -17,7 +17,12 @@ namespace DoAnWebbb.Areas.Admin.Controllers
         {
             int pageNum = (page ?? 1);
             int pageSize = 10;
-            return View(db.PHIEUMUAs.ToList().OrderBy(n => n.NGAYDAT).ToPagedList(pageNum, pageSize));
+            var all = from a in db.PHIEUMUAs
+                      from b in db.HOADONs
+                      where a.MAPHIEUMUA == b.MAPHIEUMUA
+                      where b.TONGTIEN > 0
+                      select a;
+            return View(all.OrderBy(n => n.NGAYDAT).ToPagedList(pageNum, pageSize));
         }
         public ActionResult ChiTietDonHang(int id)
         {
@@ -29,7 +34,31 @@ namespace DoAnWebbb.Areas.Admin.Controllers
                 Response.StatusCode = 404;
                 return null;
             }
+
             return View(donhang);
+        }
+        public ActionResult Detail(int id, int?page)
+        {
+            /*            SANPHAM sanpham = db.SANPHAMs.SingleOrDefault(n => n.MASANPHAM == id);
+                        ViewBag.MaSanPham = sanpham.MASANPHAM;
+                        if (sanpham == null)
+                        {
+                            Response.StatusCode = 404;
+                            return null;
+                        }
+                        return View(sanpham);*/
+            var donhang = db.CT_HOADONs.Where(m => m.MAHD == id).ToList();
+            /*ViewBag.MaPhieuMua = donhang.MAHD;*/
+            if (donhang == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            int pageNum = (page ?? 1);
+            int pageSize = 10;
+
+            return View(donhang.OrderBy(n=>n.SOLUONG).ToPagedList(pageNum, pageSize));
+
         }
     }
 }

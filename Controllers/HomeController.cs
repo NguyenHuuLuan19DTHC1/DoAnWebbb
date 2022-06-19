@@ -100,6 +100,8 @@ namespace demoWeb.Controllers
                 kh.TRANGTHAI = 1;
                 kh.NGAYDANGKY = DateTime.Now;
                 kh.MAQUYEN = 0;
+                kh.DIEMTD = 0;
+                kh.UUDAI = 0;
                 //kh.GIOITINH = int.Parse(OTP);
                 data.NGUOIDUNGs.InsertOnSubmit(kh);
                 data.SubmitChanges();
