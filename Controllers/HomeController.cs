@@ -72,19 +72,42 @@ namespace demoWeb.Controllers
         {
             //int OTP = new Random().Next(100000, 999999);
             var check = data.NGUOIDUNGs.Where(m => m.GMAIL == kh.GMAIL).FirstOrDefault();
+            var checksdt = data.NGUOIDUNGs.Where(m => m.SDT == kh.SDT).FirstOrDefault();
             if (check != null)
             {
                 ViewData["CheckMail"] = "Tài Khoản Này Đã Được Sử Dụng";
+                return this.Register();
+            }
+            if (checksdt !=null)
+            {
+                ViewBag.er = "Số điện thoại này đã được sử dụng!";
                 return this.Register();
             }
             else
             {
                 var TenKH = collection["HOVATEN"];
                 var pass = collection["PASS"];
+                var repass = collection["rePass"];
                 var Gmail = collection["GMAIL"];
+                if(pass != repass)
+                {
+                    ViewBag.er = "Xác nhận mật khẩu không chính xác!";
+                    return this.Register();
+                }
                 var sdt = collection["SDT"];
                 var GioiTinh = collection["GIOITINH"];
                 var NamSinh = string.Format("{0:dd/MM/yyyy}", collection["NAMSINH"]);
+                if (Convert.ToDateTime(NamSinh) > DateTime.Now)
+                {
+                    ViewBag.er = "Năm sinh không chính xác!";
+                    return this.Register();
+                }
+                if (GioiTinh == null)
+                {
+                    ViewBag.er = "Giới tính không được để trống!";
+                    return this.Register();
+                }
+                
                 var DiaChi = collection["DIACHI"];
                 //int quyen = 0;
 
@@ -99,7 +122,7 @@ namespace demoWeb.Controllers
                 kh.USERNAME = Gmail;
                 kh.TRANGTHAI = 1;
                 kh.NGAYDANGKY = DateTime.Now;
-                kh.MAQUYEN = 0;
+                kh.MAQUYEN = 2;
                 kh.DIEMTD = 0;
                 kh.UUDAI = 0;
                 //kh.GIOITINH = int.Parse(OTP);
@@ -160,11 +183,12 @@ namespace demoWeb.Controllers
             {
                 // Gán giá trị cho đối tượng được tạo mới(kh)
                 NGUOIDUNG kh = data.NGUOIDUNGs.SingleOrDefault(n => n.USERNAME == tendn && n.PASS == matkhau);
-                if (kh != null && kh.MAQUYEN == 0)
+                if (kh != null && kh.MAQUYEN == 2 && kh.TRANGTHAI!=0)
                 {
                     Session["TaiKhoanKH"] = kh;
                     return RedirectToAction("Index", "Home");
                 }
+
                 else
                     ViewBag.Thongbao = "Tên đăng nhập hoặc mật khẩu không đúng";
             }
@@ -178,7 +202,53 @@ namespace demoWeb.Controllers
             //var sp = from s in data.SANPHAMs where s.MASANPHAM == id select s;
             //return View(sp.Single());
         }
+        [HttpGet]
+        public ActionResult ResetPass()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ResetPass(FormCollection collection)
+        {
+            var tk = collection["Username"];
+            var tknd = data.NGUOIDUNGs.SingleOrDefault(u => u.USERNAME.ToUpper() == tk.ToUpper());
+            if (tknd != null)
+            {
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                        SmtpServer.Port = 587;
+                        SmtpServer.Credentials = new System.Net.NetworkCredential("ngluan161121@gmail.com", "usgjxlkacnydjaru");
+                        MailMessage mail = new MailMessage();
+                        mail.From = new MailAddress("ngluan161121@gmail.com");
+                        mail.To.Add(tknd.GMAIL);
+                        mail.Subject = "Thay đổi mật khẩu";
+                        mail.IsBodyHtml = true;
+                        mail.Body = "Mật khẩu của bạn là " + tknd.PASS + " \nTrân trọng!";
+                        mail.Priority = MailPriority.High;
 
+                        SmtpServer.Port = 587;
+                        SmtpServer.Credentials = new System.Net.NetworkCredential("ngluan161121@gmail.com", "usgjxlkacnydjaru");
+                        SmtpServer.EnableSsl = true;
+
+                        SmtpServer.Send(mail);
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    return RedirectToAction("XacNhanDonHangThatBai", "GioHang");
+                }
+            }
+            else
+            {
+                ViewBag.TB = "Hãy điền đúng email bạn đã đăng ký";
+            }
+            return View();
+        }
 
 
     }

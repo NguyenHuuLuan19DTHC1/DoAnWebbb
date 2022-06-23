@@ -17,7 +17,7 @@ namespace DoAnWebbb.Areas.Admin.Controllers
         {
             int pageNum = (page ?? 1);
             int pageSize = 5;
-            return View(db.QUYENs.Where(model => model.MAQUYEN != 0).ToList().ToPagedList(pageNum, pageSize));
+            return View(db.QUYENs.ToList().ToPagedList(pageNum, pageSize));
         }
 
         public ActionResult TaoQuyen()

@@ -20,9 +20,9 @@ namespace DoAnWebbb.Areas.Admin.Controllers
             // Lấy ra tổng số các đơn đặt hàng đang có trong database - tổng số đơn hàng 
             ViewBag.DonHang = db.HOADONs.Count(i=>i.TONGTIEN>0);
             // Lấy ra tổng số tiền các đơn hàng - lợi nhuận
-            ViewBag.LoiNhuan = db.HOADONs.Sum(model => model.TONGTIEN);
+            ViewBag.LoiNhuan = db.HOADONs.Where(m=>m.PHIEUMUA.TRANGTHAI!=1).Sum(model => model.TONGTIEN);
             // Lấy ra tổng số lượng các user khách hàng đang có trong database - tổng số tài khoản hiện tại
-            ViewBag.NguoiDung = db.NGUOIDUNGs.Where(model => model.MAQUYEN == 0).Count();
+            ViewBag.NguoiDung = db.NGUOIDUNGs.Where(model => model.MAQUYEN ==2).Count();
             //// Lấy số lượng người truy cập từ Application đã tạo
             //ViewBag.SoNguoiTruyCap = HttpContext.Application["SoNguoiTruyCap"].ToString();
             // Lấy ra tổng số sản phẩm đang có trong database

@@ -21,7 +21,7 @@ namespace DoAnWebbb.Areas.Admin.Controllers
                       from b in db.HOADONs
                       where a.MAPHIEUMUA == b.MAPHIEUMUA
                       where b.TONGTIEN > 0
-                      select a;
+                      select a ;
             return View(all.OrderBy(n => n.NGAYDAT).ToPagedList(pageNum, pageSize));
         }
         public ActionResult ChiTietDonHang(int id)
@@ -59,6 +59,43 @@ namespace DoAnWebbb.Areas.Admin.Controllers
 
             return View(donhang.OrderBy(n=>n.SOLUONG).ToPagedList(pageNum, pageSize));
 
+        }
+        [HttpPost]
+        public ActionResult Detail(int id, FormCollection collection)
+        {
+            var trangthai = db.PHIEUMUAs.Where(a => a.MAPHIEUMUA-159 == id).SingleOrDefault();
+            var tt = collection["TrangThai"];
+            if (tt != null)
+            {
+                trangthai.TRANGTHAI = Convert.ToInt32(tt);
+                UpdateModel(trangthai);
+                db.SubmitChanges();
+                return RedirectToAction("Index","DonHang");
+
+            }
+            else
+            {
+                ViewBag.erorr = "Hãy chọn trạng thái";
+                return View();
+            }
+        }
+        public ActionResult Edit()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Edit(FormCollection collection)
+        {
+            NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanAD"];
+            var nd = from n in db.NGUOIDUNGs where (n.USERNAME == tk.USERNAME) select n;
+            tk.PASS = collection["PassAD"];
+            foreach (var a in nd)
+            {
+                a.PASS = tk.PASS;
+            }
+            UpdateModel(nd);
+            db.SubmitChanges();
+            return RedirectToAction("Index");
         }
     }
 }

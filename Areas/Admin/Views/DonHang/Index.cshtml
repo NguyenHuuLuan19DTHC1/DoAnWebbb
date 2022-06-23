@@ -13,6 +13,7 @@
             <table id="example1" class="table table-bordered table-hover">
                 <thead style="color:black; text-align:center">
                     <tr>
+
                         <th>
                             Tài Khoản
                         </th>
@@ -44,6 +45,7 @@
                     @foreach (var item in Model)
                     {
                         <tr style="color:black">
+
                             <td>
                                 @Html.DisplayFor(modelItem => item.USERNAME)
                             </td>
@@ -65,19 +67,22 @@
                             <td>
                                 @if (item.TRANGTHAI == 0)
                                 {
-                                    <label class="btn btn-primary">Đang chờ</label> }
+                                    <label style="background-color: red" class="btn btn-primary">Hủy Đơn</label> }
                                 else if (item.TRANGTHAI == 1)
                                 {
-                                    <label class="btn btn-primary">Xác Nhận</label> }
+                                    <label style="background-color: green" class="btn btn-primary">Xác Nhận</label> }
                                 else if (item.TRANGTHAI == 2)
                                 {
-                                    <label class="btn btn-primary">Thanh Toán MoMo</label> }
+                                    <label style="background-color: darkmagenta" class="btn btn-primary">Thanh Toán MoMo</label> }
+                                else if (item.TRANGTHAI == 3)
+                                {
+                                    <label style="background-color: olive" class="btn btn-primary">Đang Giao</label> }
                                 else
                                 {
-                                    <label class="btn btn-success">Hoàn thành</label>}
+                                    <label style="background-color: steelblue" class="btn btn-success">Hoàn thành</label>}
                             </td>
                             <td class="chitietdon">
-                                <a class="btn btn-primary" style="font-size:10px;" href="@Url.Action("Detail","DonHang",new { id=item.MAPHIEUMUA-159 })"><i class="fa fa-fw fa-pen"></i></a>
+                                <a class="btn btn-primary" style="font-size:10px;" href="@Url.Action("Detail","DonHang",new { id=item.MAPHIEUMUA -159 })"><i class="fa fa-fw fa-pen"></i></a>
                             </td>
                         </tr>
                     }

@@ -252,68 +252,102 @@ namespace DoAnWebbb.Controllers
         }
         public ActionResult DatHang(FormCollection collection)
         {
-            Session["YeuCau"] = collection["YEUCAU"];
-
-            PHIEUMUA dh = new PHIEUMUA();
             NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanKH"];
-            SANPHAM sp = new SANPHAM();
+            /*SANPHAM sp = new SANPHAM();*/
             List<GioHang> gh = Laygiohang();
-
             var ngaygiao = String.Format("{0:dd/MM/yyyy}", collection["NgayGiao"]);
-            var diachi = collection["DIACHIGIAOHANG"];
+            var diachi = tk.DIACHI;
             var ngaydat = DateTime.Now;
-            var user = Session["TaiKhoanKH"] as NGUOIDUNG;
-            
+
+
+            PHIEUMUA pm = new PHIEUMUA();
+            pm.DIACHIGIAOHANG = tk.DIACHI;
+            pm.NGAYDAT = ngaydat;
+            pm.USERNAME = tk.USERNAME;
+            pm.TRANGTHAI = 1;
+            data.PHIEUMUAs.InsertOnSubmit(pm);
+
+            var maxdh = data.PHIEUMUAs.Max(i => i.MAPHIEUMUA) + 1;
+
+
+            HOADON hd = new HOADON();
+            hd.YEUCAU = "Không có";
+            hd.TONGTIEN = Convert.ToInt32((Convert.ToDouble(TongTien()) - Convert.ToDouble(TongTien()) * tk.UUDAI));
+            hd.TRANGTHAI = 1;
+            hd.MAPHIEUMUA = maxdh;
+            data.HOADONs.InsertOnSubmit(hd);
+
+            var maxhd = data.HOADONs.Max(i => i.MAHD) + 1;
+
+            var nd = data.NGUOIDUNGs.First(u => u.USERNAME == tk.USERNAME);
+            nd.UUDAI = tk.UUDAI;
+            nd.DIEMTD += Convert.ToInt32((Convert.ToDouble(TongTien()) - Convert.ToDouble(TongTien()) * tk.UUDAI));
+            UpdateModel(nd);
+            data.SubmitChanges();
+
+            /*data.SANPHAMs.InsertOnSubmit(sp);*/
+
 
             foreach (var item in gh)
             {
-
-                sp = data.SANPHAMs.Single(n => n.MASANPHAM == item.MaSP);
                 CT_PHIEUMUA ctdh = new CT_PHIEUMUA();
-                ctdh.MASANPHAM = sp.MASANPHAM;
+                ctdh.MAPHIEUMUA = maxdh;
+                ctdh.MASANPHAM = item.MaSP;
                 ctdh.SOLUONG = item.SoLuong;
-                sp.SOLUONGTON = ctdh.SOLUONG;
-                dh.DIACHIGIAOHANG = diachi;
-                dh.NGAYDAT = ngaydat;
-                dh.USERNAME = user.USERNAME;
-
-
-                //data.SANPHAMs.InsertOnSubmit(sp);
-                data.PHIEUMUAs.InsertOnSubmit(dh);
                 data.CT_PHIEUMUAs.InsertOnSubmit(ctdh);
-                try
+
+                var sp = data.SANPHAMs.Single(s => s.MASANPHAM == item.MaSP);
+                sp.SOLUONGTON -= ctdh.SOLUONG;
+                UpdateModel(sp);
+
+                CT_HOADON cthd = new CT_HOADON();
+                cthd.MAHD = maxhd;
+                cthd.SOLUONG = item.SoLuong;
+                cthd.MASANPHAM = item.MaSP;
+                data.CT_HOADONs.InsertOnSubmit(cthd);
+                data.SubmitChanges();
+
+            }
+
+            try
+            {
+                if (ModelState.IsValid)
                 {
-                    if (ModelState.IsValid)
+                    var senderEmail = new MailAddress("ngluan161121@gmail.com", "VNBookStore");
+                    var receiverEmail = new MailAddress(tk.GMAIL, "Receiver");
+                    var password = "usgjxlkacnydjaru";
+                    var sub = "VNBookStore - Xác Nhận Thành Công";
+                    var body = "Đơn hàng " + hd.MAHD + " Đã được xác nhận. \nCảm ơn bạn đã mua sản phẩm";
+                    var smtp = new SmtpClient
                     {
-                        SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-                        SmtpServer.Port = 587;
-                        SmtpServer.Credentials = new System.Net.NetworkCredential("ngluan161121@gmail.com", "usgjxlkacnydjaru");
-                        MailMessage mail = new MailMessage();
-                        mail.From = new MailAddress("ngluan161121@gmail.com");
-                        mail.To.Add(tk.GMAIL);
-                        mail.Subject = "VNBookStore - Xác nhận đơn hàng";
-                        mail.IsBodyHtml = true;
-                        mail.Body = "Đơn hàng " + ctdh.MAPHIEUMUA + " đang được giao đến bạn \nCảm ơn bạn";
-                        mail.Priority = MailPriority.High;
-
-                        SmtpServer.Port = 587;
-                        SmtpServer.Credentials = new System.Net.NetworkCredential("ngluan161121@gmail.com", "usgjxlkacnydjaru");
-                        SmtpServer.EnableSsl = true;
-
-                        SmtpServer.Send(mail);
-                        return RedirectToAction("Index", "Home");
+                        Host = "smtp.gmail.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential(senderEmail.Address, password)
+                    };
+                    using (var mess = new MailMessage(senderEmail, receiverEmail)
+                    {
+                        Subject = sub,
+                        Body = body
+                    })
+                    {
+                        smtp.Send(mess);
                     }
-                }
-
-                catch (Exception ex)
-                {
-                    return RedirectToAction("XacNhanDonHangThatBai", "GioHang");
-                }
 
                 }
-                    data.SubmitChanges();
-                    Session["GioHang"] = null;
-                    return RedirectToAction("XacNhanDonHang", "GioHang");           
+            }
+            catch (Exception ex)
+            {
+                return HttpNotFound(ex.Message);
+            }
+
+            ViewBag.message = "Thanh toán thành công";
+            Session["GioHang"] = null;
+            /*}*/
+
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult XacNhanDonHangThatBai()
@@ -384,15 +418,8 @@ namespace DoAnWebbb.Controllers
             return Redirect(jmessage.GetValue("payUrl").ToString());
 
         }
-        public ActionResult returnUrl( FormCollection collection)
+        public ActionResult returnUrl()
         {
-            NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanKH"];
-            /*SANPHAM sp = new SANPHAM();*/
-            List<GioHang> gh = Laygiohang();
-            var ngaygiao = String.Format("{0:dd/MM/yyyy}", collection["NgayGiao"]);
-            var diachi = tk.DIACHI;
-            var ngaydat = DateTime.Now;         
-
             string param = Request.QueryString.ToString().Substring(0, Request.QueryString.ToString().IndexOf("signature") - 1);
             param = Server.UrlDecode(param);
             MoMoSecurity crypto = new MoMoSecurity();
@@ -409,12 +436,28 @@ namespace DoAnWebbb.Controllers
             }
             else
             {
-                PHIEUMUA dh = new PHIEUMUA();
-                dh.DIACHIGIAOHANG = tk.DIACHI;
-                dh.NGAYDAT = ngaydat;
-                dh.USERNAME = tk.USERNAME;
-                dh.TRANGTHAI = 2;
-                data.PHIEUMUAs.InsertOnSubmit(dh);
+                ViewBag.message = "Thanh toán thànhh công";
+
+            }
+            return View();
+        }
+            public ActionResult returnUrll( FormCollection collection)
+        {
+            NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanKH"];
+            /*SANPHAM sp = new SANPHAM();*/
+            List<GioHang> gh = Laygiohang();
+            var ngaygiao = String.Format("{0:dd/MM/yyyy}", collection["NgayGiao"]);
+            var diachi = tk.DIACHI;
+            var ngaydat = DateTime.Now;         
+
+            
+                PHIEUMUA pm = new PHIEUMUA();
+                pm.DIACHIGIAOHANG = tk.DIACHI;
+                pm.NGAYDAT = ngaydat;
+                pm.USERNAME = tk.USERNAME;
+                pm.TRANGTHAI = 2;
+                data.PHIEUMUAs.InsertOnSubmit(pm);
+
                 var maxdh = data.PHIEUMUAs.Max(i => i.MAPHIEUMUA) + 1;
                 
 
@@ -424,18 +467,19 @@ namespace DoAnWebbb.Controllers
                 hd.TRANGTHAI = 2;
                 hd.MAPHIEUMUA = maxdh;
                 data.HOADONs.InsertOnSubmit(hd);
+
                 var maxhd = data.HOADONs.Max(i => i.MAHD) + 1;
 
                 var nd = data.NGUOIDUNGs.First(u => u.USERNAME == tk.USERNAME);
                 nd.UUDAI = tk.UUDAI;
                 nd.DIEMTD += Convert.ToInt32((Convert.ToDouble(TongTien()) - Convert.ToDouble(TongTien()) * tk.UUDAI));
                 UpdateModel(nd);
-                data.SubmitChanges();
+            data.SubmitChanges();
 
-                /*data.SANPHAMs.InsertOnSubmit(sp);*/
+            /*data.SANPHAMs.InsertOnSubmit(sp);*/
 
 
-                foreach (var item in gh)
+            foreach (var item in gh)
                 {
                     CT_PHIEUMUA ctdh = new CT_PHIEUMUA();
                     ctdh.MAPHIEUMUA = maxdh;
@@ -453,46 +497,47 @@ namespace DoAnWebbb.Controllers
                     cthd.MASANPHAM = item.MaSP;
                     data.CT_HOADONs.InsertOnSubmit(cthd);
                     data.SubmitChanges();
-                    try
+                    
+                }
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var senderEmail = new MailAddress("ngluan161121@gmail.com", "VNBookStore");
+                    var receiverEmail = new MailAddress(tk.GMAIL, "Receiver");
+                    var password = "usgjxlkacnydjaru";
+                    var sub = "VNBookStore - Xác Nhận Thanh Toán Thành Công";
+                    var body = "Đơn hàng " + hd.MAHD + " Đã được thanh toán bằng momo và đang giao điến bạn. \nCảm ơn bạn đã mua sản phẩm";
+                    var smtp = new SmtpClient
                     {
-                        if (ModelState.IsValid)
-                        {
-                            var senderEmail = new MailAddress("ngluan161121@gmail.com", "VNBookStore");
-                            var receiverEmail = new MailAddress(tk.GMAIL, "Receiver");
-                            var password = "usgjxlkacnydjaru";
-                            var sub = "VNBookStore - Xác Nhận Thanh Toán Thành Công";
-                            var body = "Đơn hàng " + ctdh.MAPHIEUMUA + " Đã được thanh toán bằng momo và đang giao điến bạn. \nCảm ơn bạn đã mua sản phẩm";
-                            var smtp = new SmtpClient
-                            {
-                                Host = "smtp.gmail.com",
-                                Port = 587,
-                                EnableSsl = true,
-                                DeliveryMethod = SmtpDeliveryMethod.Network,
-                                UseDefaultCredentials = false,
-                                Credentials = new NetworkCredential(senderEmail.Address, password)
-                            };
-                            using (var mess = new MailMessage(senderEmail, receiverEmail)
-                            {
-                                Subject = sub,
-                                Body = body
-                            })
-                            {
-                                smtp.Send(mess);
-                            }
-
-                        }
-                    }
-                    catch (Exception ex)
+                        Host = "smtp.gmail.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential(senderEmail.Address, password)
+                    };
+                    using (var mess = new MailMessage(senderEmail, receiverEmail)
                     {
-                        return HttpNotFound(ex.Message);
+                        Subject = sub,
+                        Body = body
+                    })
+                    {
+                        smtp.Send(mess);
                     }
 
                 }
-                ViewBag.message = "Thanh toán thành công";
-                Session["GioHang"] = null;
+            }
+            catch (Exception ex)
+            {
+                return HttpNotFound(ex.Message);
             }
 
-            return View();
+            ViewBag.message = "Thanh toán thành công";
+                Session["GioHang"] = null;
+            /*}*/
+
+            return RedirectToAction("Index","Home");
         }
 
         [HttpPost]

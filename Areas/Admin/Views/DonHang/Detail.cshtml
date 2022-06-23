@@ -13,6 +13,7 @@
         <table class="table no-margin">
             <thead>
                 <tr style="color:black">
+
                     <th>
                         Mã chi tiết HD
                     </th>
@@ -38,19 +39,18 @@
                 </tr>
             </thead>
             <tbody>
+
                 @foreach (var item in Model)
                 {
                     <tr style="color:black">
                         <td>
-                            @Html.DisplayFor(modelItem => item.HOADON.MAHD)
+                            @Html.DisplayFor(modelItem => item.MACTHOADON)
                         </td>
                         @if (Html.DisplayFor(modelItem => item.HOADON.TONGTIEN) != null)
                         {
                             Session["Gia"] = Html.DisplayFor(modelItem => item.HOADON.TONGTIEN);
                         }
-                        @*<td>
-                            @Html.DisplayFor(modelItem => item.HOADON.TONGTIEN)
-                        </td>*@
+
                         <td>
                             @Html.DisplayFor(modelItem => item.HOADON.NGAYGIAO)
                         </td>
@@ -66,13 +66,52 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.SANPHAM.TENSANPHAM)
                         </td>
+                        <td>
+                            @if (item.HOADON.PHIEUMUA.TRANGTHAI == 0)
+                            {
+                                <label style="background-color: red" class="btn btn-primary">Hủy Đơn</label> }
+                            else if (item.HOADON.PHIEUMUA.TRANGTHAI == 1)
+                            {
+                                <label style="background-color: green" class="btn btn-primary">Xác Nhận</label> }
+                            else if (item.HOADON.PHIEUMUA.TRANGTHAI == 2)
+                            {
+                                <label style="background-color: darkmagenta" class="btn btn-primary">Thanh Toán MoMo</label> }
+                            else if (item.HOADON.PHIEUMUA.TRANGTHAI == 3)
+                            {
+                                <label style="background-color: olive" class="btn btn-primary">Đang Giao</label> }
+                            else
+                            {
+                                <label style="background-color: steelblue" class="btn btn-success">Hoàn thành</label>}
+                        </td>
                     </tr>
+
                 }
 
+
             </tbody>
+
         </table>
         <p>Tổng giá tiền</p>
         <input style="margin: 0 2cm" type="text" disabled name="name" value="@Session["Gia"]" />
+        @using (Html.BeginForm())
+        {
+            <div class="editor-field">
+                @Html.AntiForgeryToken()
+                <select id="TrangThai" name="TrangThai">
+                    <option value="0">Hủy đơn</option>
+                    <option value="1">Xác nhận</option>
+                    <option value="2">Thanh Toán MoMo</option>
+                    <option value="3">Đang Giao</option>
+                    <option value="4">Hoàn Thành</option>
+
+                </select>
+                @ViewData["Error"]
+
+            </div>
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        }
         <div style="margin-top: 0.5cm">
             <a class="btn btn-primary" href="@Url.Action("Index")" style="margin-left: 10px; margin-bottom:5px">Quay về</a>
         </div>

@@ -2207,6 +2207,9 @@
     </Content>
     <Content Include="Areas\Admin\Views\DonHang\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\SanPham\SuaSanPham.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoan\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoan\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoan\Create.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2321,13 +2324,14 @@
     <Content Include="Views\NguoiDung\Info.cshtml" />
     <Content Include="Views\NguoiDung\ChangePass.cshtml" />
     <Content Include="Views\SendOTP\SenOTP.cshtml" />
+    <Content Include="Views\GioHang\returnUrll.cshtml" />
+    <Content Include="Views\Home\ResetPass.cshtml" />
     <Content Include="Views\GioHang\returnUrl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Views\Register\" />
-    <Folder Include="Views\TaiKhoanKH\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

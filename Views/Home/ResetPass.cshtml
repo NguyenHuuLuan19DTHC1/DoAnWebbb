@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = null;
+}
+
+<link href="~/Content/styleLogin.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="login-wrap">
+    <div class="login-html">
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Quên mật khẩu</label>
+        <input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab"></label>
+        <div class="login-form">
+
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <div class="sign-in-htm">
+
+                    <div class="group">
+                        <label for="user" class="label">Username or Email</label>
+                        <input id="Username" type="text" class="input" name="USERNAME" required="true">
+                        @ViewData["Error1"]
+                    </div>
+                    <a href="#" class="group">
+                        <input type="submit" class="button" value="Gửi">
+                    </a>
+                    <div class="group" style="margin-top:0.5cm; display: flex;">
+                        @Html.ActionLink("Đăng ký", "Register")
+                        <div style="margin-left:10cm">
+                            @Html.ActionLink("Admin", "Login", "Admin/LoginAdmin")
+                        </div>
+
+                    </div>
+                    <div class="group" style="margin-top:0.5cm; display: flex;">
+                        <div style="margin-left:0cm">
+                            @Html.ActionLink("Home", "Index", "Home")
+                        </div>
+                        <div style="margin-left:9cm; color: blue">
+                            <a href="@Url.Action("ResetPass","Home")">Quên mật khẩu?</a>
+                        </div>
+                    </div>
+
+                    <div class="hr"></div>
+                    <h5 style="color:red; text-align:center"> @ViewBag.ThongBao</h5>
+
+                </div>
+
+            }
+            <div class="for-pwd-htm">
+                <div class="group">
+                    <label for="user" class="label">Username or Email</label>
+                    <input id="tk" name="tk" type="email" class="input" required="true">
+                </div>
+                <a href="@Url.Action("ResetPass","Home")" class="group">
+                    <input type="submit" class="button" value="Reset Password">
+                </a>
+                <div class="hr"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
