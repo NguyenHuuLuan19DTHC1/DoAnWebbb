@@ -59,7 +59,7 @@ namespace DoAnWebbb.Areas.Admin.Controllers
             }
             catch (Exception)
             {
-                ViewBag.err ="Không được xóa!";
+                ViewBag.err ="Không được xóa do còn đơn hàng của tài khoản này!";
                 return View(a);
             }
 

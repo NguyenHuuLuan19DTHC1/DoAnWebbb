@@ -49,7 +49,10 @@
         <hr>
         <p><span>Tổng Số Sản Phẩm</span> <span>@ViewBag.TongSoLuong</span></p>
         <hr>
-        <p><span>Tổng Tiền</span> <span>@String.Format("{0:0,0}", @ViewBag.TongTien) VNĐ</span></p>
+        <p><span>Tổng Tiền</span> <span>@String.Format("{0:0,0}", @ViewBag.TT) VNĐ</span></p>
+
+        <hr>
+        <p><span>Phải Thanh Toán</span> <span>@String.Format("{0:0,0}", @ViewBag.TongTien) VNĐ</span></p>
 
         <hr>
         <a href="@Url.Action("DatHang","GioHang")"><i class="fa fa-shopping-cart"></i>Đặt Hàng</a>
@@ -61,14 +64,14 @@
 
 
 @using DoAnWebbb.Models
-<h2 style="text-align:center;font-family:'Times New Roman' "><br />Thông Tin Đặt Hàng</h2>
+<h2 style="text-align:center;font-family:'Times New Roman'; margin-top: 3cm "><br />Thông Tin Đặt Hàng</h2>
 @{
     NGUOIDUNG pm = (NGUOIDUNG)Session["TaiKhoanKH"];
     //NGUOIDUNG pm = new NGUOIDUNG();
 }
 <form action="/GioHang/DatHang" method="post" id="formInput" onsubmit="return submitValidate(this)">
     <p id="messageValidate" class="text-danger"></p>
-    <table align="center" style="margin-left:35%">
+    <table align="center" style="margin-left:35%" >
         @using (Html.BeginForm())
         {
             @Html.ValidationSummary(true)
@@ -107,13 +110,6 @@
                 <td style="font-weight:bold; color: black">
                     <p name="DHNGAYGIO" id="DHNGAYGIO" style="padding-top:7%">@DateTime.Now.ToShortDateString()</p>
                     @*<input type="date" name="ngaydat" id="ngaydat" value="@DateTime.Now" />*@
-                </td>
-            </tr>
-            <tr style="height:40px">
-                <td style="color: black;">Yêu cầu:</td>
-                <td>
-                    @*<p style="padding-top:7%">@pm.DIACHI</p>*@
-                    <input id="YEUCAU" type="text" class="form-control" name="YEUCAU" placeholder="Nhâp yêu cầu của bạn" />
                 </td>
             </tr>
             <tr style="height:40px">

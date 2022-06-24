@@ -2327,6 +2327,7 @@
     <Content Include="Views\GioHang\returnUrll.cshtml" />
     <Content Include="Views\Home\ResetPass.cshtml" />
     <Content Include="Views\GioHang\returnUrl.cshtml" />
+    <Content Include="Views\GioHang\XacNhanDon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

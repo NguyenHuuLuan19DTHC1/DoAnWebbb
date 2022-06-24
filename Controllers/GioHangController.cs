@@ -87,6 +87,7 @@ namespace DoAnWebbb.Controllers
             NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanKH"];
             List<GioHang> lstGioHang = Laygiohang();
             ViewBag.Tongsoluong = TongSoLuong();
+            ViewBag.TT = TongTien();
             if (Session["GioHang"] != null && Session["TaiKhoanKH"]!=null)
             {
                 if (Convert.ToInt32(tk.DIEMTD) >= 0 && tk.DIEMTD < 500000)
@@ -199,6 +200,7 @@ namespace DoAnWebbb.Controllers
             }
             List<GioHang> lstGioHang = Laygiohang();
             ViewBag.Tongsoluong = TongSoLuong();
+            ViewBag.TT = TongTien();
             if (Session["GioHang"] != null && Session["TaiKhoanKH"] != null)
             {
                 if (Convert.ToInt32(tk.DIEMTD) >= 0 && tk.DIEMTD < 500000)
@@ -249,6 +251,10 @@ namespace DoAnWebbb.Controllers
             }
             ViewBag.Tongsoluongsanpham = TongSoLuongSanPham();
             return View(lstGioHang);
+        }
+        public ActionResult XacNhanDon()
+        {
+            return View();
         }
         public ActionResult DatHang(FormCollection collection)
         {
@@ -347,7 +353,7 @@ namespace DoAnWebbb.Controllers
             Session["GioHang"] = null;
             /*}*/
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("XacNhanDon", "GioHang");
         }
 
         public ActionResult XacNhanDonHangThatBai()
