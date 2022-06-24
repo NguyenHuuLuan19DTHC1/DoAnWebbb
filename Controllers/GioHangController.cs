@@ -285,10 +285,6 @@ namespace DoAnWebbb.Controllers
 
             var maxhd = data.HOADONs.Max(i => i.MAHD) + 1;
 
-            var nd = data.NGUOIDUNGs.First(u => u.USERNAME == tk.USERNAME);
-            nd.UUDAI = tk.UUDAI;
-            nd.DIEMTD += Convert.ToInt32((Convert.ToDouble(TongTien()) - Convert.ToDouble(TongTien()) * tk.UUDAI));
-            UpdateModel(nd);
             data.SubmitChanges();
 
             /*data.SANPHAMs.InsertOnSubmit(sp);*/
@@ -322,7 +318,7 @@ namespace DoAnWebbb.Controllers
                     var senderEmail = new MailAddress("ngluan161121@gmail.com", "VNBookStore");
                     var receiverEmail = new MailAddress(tk.GMAIL, "Receiver");
                     var password = "usgjxlkacnydjaru";
-                    var sub = "VNBookStore - Xác Nhận Thành Công";
+                    var sub = "VNBookStore - Xác Nhận Đơn Hàng Thành Công";
                     var body = "Đơn hàng " + hd.MAHD + " Đã được xác nhận. \nCảm ơn bạn đã mua sản phẩm";
                     var smtp = new SmtpClient
                     {

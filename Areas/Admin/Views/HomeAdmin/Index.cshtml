@@ -173,13 +173,22 @@
                                         <label style="background-color: green" class="btn btn-primary">Xác Nhận</label> }
                                     else if (item.TRANGTHAI == 2)
                                     {
-                                        <label style="background-color: darkmagenta" class="btn btn-primary">Thanh Toán MoMo</label> }
+                                        <label style="background-color: green" class="btn btn-primary">Thanh Toán MoMo</label> }
                                     else if (item.TRANGTHAI == 3)
                                     {
-                                        <label style="background-color: olive" class="btn btn-primary">Đang Giao</label> }
-                                    else
+                                        <label style="background-color: green" class="btn btn-primary">Bàn Giao ĐVVC</label> }
+                                    else if (item.TRANGTHAI == 4)
                                     {
-                                        <label style="background-color: steelblue" class="btn btn-success">Hoàn thành</label>}
+                                        <label style="background-color: green" class="btn btn-success">ĐVVC đã nhận</label>}
+                                    else if (item.TRANGTHAI == 5)
+                                    {
+                                        <label style="background-color: green" class="btn btn-success">Đang Giao</label>}
+                                    else if (item.TRANGTHAI == 6)
+                                    {
+                                        <label style="background-color: green" class="btn btn-success">Hoàn Thành</label>}
+                                    else if (item.TRANGTHAI == 7)
+                                    {
+                                        <label style="background-color: red " class="btn btn-success">Hoàn trả</label>}
                                 </td>
                                 <td class="chitietdon">
                                     <a class="btn btn-primary" style="font-size:10px;" href="@Url.Action("Detail","DonHang",new { id=item.MAPHIEUMUA -159})"><i class="fa fa-fw fa-pen"></i></a>

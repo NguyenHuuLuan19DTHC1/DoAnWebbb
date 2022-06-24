@@ -28,10 +28,12 @@ namespace DoAnWebbb.Areas.Admin.Controllers
         public ActionResult Edit(string id, FormCollection collection)
         {
             var a = db.NGUOIDUNGs.SingleOrDefault(m => m.SDT.ToString() == id.ToString());
-            var tt = collection["MaQuyen"];
-            if (tt != null)
+            var tt = collection["TrangThai"];
+            var q = collection["PhanQuyen"];
+            if (tt != null && q!=null)
             {
                 a.TRANGTHAI =Convert.ToInt32(tt);
+                a.MAQUYEN = Convert.ToInt32(q);
                 UpdateModel(a);
                 db.SubmitChanges();
                 return RedirectToAction("Index", "TaiKhoan");

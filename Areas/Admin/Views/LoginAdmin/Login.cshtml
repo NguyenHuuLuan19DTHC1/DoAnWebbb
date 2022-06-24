@@ -5,14 +5,11 @@
 <link href="~/Areas/Admin/Content/css/StyleLogin.css" rel="stylesheet" />
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 <head>
     <title>Login Admin</title>
 </head>
 <div class="wrapper fadeInDown">
     <div id="formContent">
-        <!-- Tabs Titles -->
-        <!-- Icon -->
         <div class="fadeIn first">
             <img src="~/Areas/Admin/Content/img/logoAdmin3.png" id="icon" alt="User Icon" />
             <h1>Login Admin</h1>
@@ -36,34 +33,8 @@
                 <div>
                     <input type="submit" class="fadeIn fourth" value="Đăng nhập" />
                 </div>
-@*                <div>
-                    @Html.ActionLink("Home", "Index", "Controllers/Home")
-                </div>*@
             </div>
         }
     </div>
 </div>
-@*@section scripts {
-    <script>
-        $(document).ready(function () {
-            $("#formInput").validate({
-                rules: {
-                    username: {
-                        required: true
-                    },
-                    password: {
-                        required: true,
-                    }
-                },
-                messages: {
-                    username: {
-                        required: "Không được để trống"
-                    },
-                    password: {
-                        required: "Không được để trống",
-                    }
-                }
-            })
-        });
-    </script>
-}*@
+

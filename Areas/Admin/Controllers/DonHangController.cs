@@ -24,19 +24,7 @@ namespace DoAnWebbb.Areas.Admin.Controllers
                       select a ;
             return View(all.OrderBy(n => n.NGAYDAT).ToPagedList(pageNum, pageSize));
         }
-        public ActionResult ChiTietDonHang(int id)
-        {
-            //Lấy ra đối tượng sách theo mã
-            PHIEUMUA donhang = db.PHIEUMUAs.SingleOrDefault(n => n.MAPHIEUMUA == id);
-            ViewBag.MaPhieuMua = donhang.MAPHIEUMUA;
-            if (donhang == null)
-            {
-                Response.StatusCode = 404;
-                return null;
-            }
 
-            return View(donhang);
-        }
         public ActionResult Detail(int id, int?page)
         {
             /*            SANPHAM sanpham = db.SANPHAMs.SingleOrDefault(n => n.MASANPHAM == id);

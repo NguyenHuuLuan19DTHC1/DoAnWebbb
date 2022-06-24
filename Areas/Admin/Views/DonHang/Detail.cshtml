@@ -75,13 +75,22 @@
                                 <label style="background-color: green" class="btn btn-primary">Xác Nhận</label> }
                             else if (item.HOADON.PHIEUMUA.TRANGTHAI == 2)
                             {
-                                <label style="background-color: darkmagenta" class="btn btn-primary">Thanh Toán MoMo</label> }
+                                <label style="background-color: green" class="btn btn-primary">Thanh Toán MoMo</label> }
                             else if (item.HOADON.PHIEUMUA.TRANGTHAI == 3)
                             {
-                                <label style="background-color: olive" class="btn btn-primary">Đang Giao</label> }
-                            else
+                                <label style="background-color: green" class="btn btn-primary">Bàn Giao ĐVVC</label> }
+                            else if (item.HOADON.PHIEUMUA.TRANGTHAI == 4)
                             {
-                                <label style="background-color: steelblue" class="btn btn-success">Hoàn thành</label>}
+                                <label style="background-color: green" class="btn btn-primary">ĐVVC Đã Nhận</label> }
+                            else if (item.HOADON.PHIEUMUA.TRANGTHAI == 5)
+                            {
+                                <label style="background-color: green" class="btn btn-primary">Đang Giao</label> }
+                            else if (item.HOADON.PHIEUMUA.TRANGTHAI == 6)
+                            {
+                                <label style="background-color: green" class="btn btn-primary">Hoàn Thành</label> }
+                            else if (item.HOADON.PHIEUMUA.TRANGTHAI == 7)
+                            {
+                                <label style="background-color: red" class="btn btn-primary">Hoàn Trả</label>}
                         </td>
                     </tr>
 
@@ -101,8 +110,11 @@
                     <option value="0">Hủy đơn</option>
                     <option value="1">Xác nhận</option>
                     <option value="2">Thanh Toán MoMo</option>
-                    <option value="3">Đang Giao</option>
-                    <option value="4">Hoàn Thành</option>
+                    <option value="3">Bàn Giao ĐVVC</option>
+                    <option value="4">ĐVVC Đã Nhận</option>
+                    <option value="5">Đang Giao</option>
+                    <option value="6">Hoàn Thành</option>
+                    <option value="7">Hoàn trả</option>
 
                 </select>
                 @ViewData["Error"]

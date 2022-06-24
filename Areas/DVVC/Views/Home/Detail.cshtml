@@ -1,0 +1,120 @@
+﻿@using DoAnWebbb.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<DoAnWebbb.Models.CT_HOADON>
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/DVVC/Views/Shared/_LayoutHomeAdmin.cshtml";
+}
+
+<h2 style="text-align: center">Thông tin đơn hàng</h2>
+
+<div class="box-body">
+    <div class="table-responsive">
+        <table class="table no-margin">
+            <thead>
+                <tr style="color:black">
+
+                    <th>
+                        Mã chi tiết HD
+                    </th>
+                    @*<th>
+                            Tổng tiền
+                        </th>*@
+                    <th>
+                        Ngày giao
+                    </th>
+                    <th>
+                        Yêu cầu
+                    </th>
+                    <th>
+                        Mã sản phẩm
+                    </th>
+                    <th>
+                        Số lượng
+                    </th>
+                    <th>
+                        Tên sản phẩm
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr style="color:black">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MACTHOADON)
+                        </td>
+                        @if (Html.DisplayFor(modelItem => item.HOADON.TONGTIEN) != null)
+                        {
+                            Session["Gia"] = Html.DisplayFor(modelItem => item.HOADON.TONGTIEN);
+                        }
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HOADON.NGAYGIAO)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HOADON.YEUCAU)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MASANPHAM)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SOLUONG)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SANPHAM.TENSANPHAM)
+                        </td>
+                        <td>
+                            @if (item.HOADON.PHIEUMUA.TRANGTHAI == 3)
+                            {
+                                <label style="background-color: green" class="btn btn-primary">Bàn Giao ĐVVC</label> }
+                            else if (item.HOADON.PHIEUMUA.TRANGTHAI == 4)
+                            {
+                                <label style="background-color: green" class="btn btn-primary">ĐVVC Đã Nhận</label> }
+                            else if (item.HOADON.PHIEUMUA.TRANGTHAI == 5)
+                            {
+                                <label style="background-color: green" class="btn btn-primary">Đang Giao</label> }
+                            else if (item.HOADON.PHIEUMUA.TRANGTHAI == 6)
+                            {
+                                <label style="background-color: green" class="btn btn-primary">Hoàn Thành</label> }
+                            else if (item.HOADON.PHIEUMUA.TRANGTHAI == 7)
+                            {
+                                <label style="background-color: red" class="btn btn-primary">Hoàn Trả</label>}
+                        </td>
+                    </tr>
+
+                }
+
+
+            </tbody>
+
+        </table>
+        <p>Tổng giá tiền</p>
+        <input style="margin: 0 2cm" type="text" disabled name="name" value="@Session["Gia"]" />
+        @using (Html.BeginForm())
+        {
+            <div class="editor-field">
+                @Html.AntiForgeryToken()
+                <select id="TrangThaiDH" name="TrangThaiDH">
+                    <option value="3">Bàn Giao ĐVVC</option>
+                    <option value="4">ĐVVC Đã Nhận</option>
+                    <option value="5">Đang Giao</option>
+                    <option value="6">Hoàn Thành</option>
+                    <option value="7">Hoàn trả</option>
+
+                </select>
+                @ViewData["Error"]
+
+            </div>
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        }
+        <div style="margin-top: 0.5cm">
+            <a class="btn btn-primary" href="@Url.Action("Index","Home")" style="margin-left: 10px; margin-bottom:5px">Quay về</a>
+        </div>
+    </div>
+</div>
+

@@ -2,7 +2,7 @@
 @using PagedList.Mvc;
 @model DoAnWebbb.Models.NGUOIDUNG
 @{
-    ViewBag.Title = "Edit Account";
+    ViewBag.Title = "Edit Trạng Thái";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutHomeAdmin.cshtml";
 }
 
@@ -105,13 +105,21 @@
             {
                 <div class="editor-field">
                     @Html.AntiForgeryToken()
-                    <select id="MaQuyen" name="MaQuyen">
-                        <option value="0">Block</option>
+                    Chọn trạng thái
+                    <select id="TrangThai" name="TrangThai" style="margin-right: 0.2cm">
                         <option value="1">Unlock</option>
+                        <option value="0">Block</option>
 
                     </select>
-                    @ViewData["Error"]
+                    @ViewBag.error
+                    Chọn quyền
+                    <select id="PhanQuyen" name="PhanQuyen" style="margin-right: 0.2cm">
+                        <option value="2">User</option>
+                        <option value="0">Đơn Vị Vận Chuyển</option>
+                        <option value="1">Admin</option>
 
+                    </select>
+                    @ViewBag.error
                 </div>
                 <p>
                     <input type="submit" value="Save" />

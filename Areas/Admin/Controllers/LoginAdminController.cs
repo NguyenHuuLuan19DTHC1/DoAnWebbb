@@ -7,7 +7,7 @@ using DoAnWebbb.Models;
 
 namespace DoAnWebbb.Areas.Admin.Controllers
 {
-    public class LoginAdminController : Controller
+    public class LoginDVVCController : Controller
     {
         MyDataDataContext db = new MyDataDataContext();
         [HttpGet]
