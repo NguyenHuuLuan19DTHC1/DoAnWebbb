@@ -225,8 +225,8 @@
     <Compile Include="Areas\Admin\Controllers\QLLoaiSachController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
-    <Compile Include="Areas\DVVC\Controllers\HomeController.cs" />
-    <Compile Include="Areas\DVVC\Controllers\LoginController.cs" />
+    <Compile Include="Areas\DVVC\Controllers\HomeDVVCController.cs" />
+    <Compile Include="Areas\DVVC\Controllers\LoginDVVCController.cs" />
     <Compile Include="Areas\DVVC\DVVCAreaRegistration.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -3864,7 +3864,6 @@
     <Content Include="Areas\Admin\Content\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Areas\Admin\Content\vendor\jquery\jquery.min.map" />
     <Content Include="Areas\Admin\Content\vendor\jquery\jquery.slim.min.map" />
-    <Content Include="Areas\Admin\Views\LoginAdmin\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\Error401.cshtml" />
     <Content Include="Areas\Admin\Views\SanPham\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SanPham\ThemSanPham.cshtml" />
@@ -4083,9 +4082,10 @@
     <Content Include="Areas\DVVC\Content\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Areas\DVVC\Views\Shared\_LayoutHomeAdmin.cshtml" />
     <Content Include="Areas\DVVC\Views\Shared\Error401.cshtml" />
-    <Content Include="Areas\DVVC\Views\Login\Login.cshtml" />
-    <Content Include="Areas\DVVC\Views\Home\Index.cshtml" />
-    <Content Include="Areas\DVVC\Views\Home\Detail.cshtml" />
+    <Content Include="Areas\DVVC\Views\LoginDVVC\LoginDVVC.cshtml" />
+    <Content Include="Areas\DVVC\Views\HomeDVVC\IndexDVVC.cshtml" />
+    <Content Include="Areas\DVVC\Views\HomeDVVC\DetailDVVC.cshtml" />
+    <Content Include="Areas\Admin\Views\LoginAdmin\LoginAdmin.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -4208,7 +4208,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\DVVC\Data\" />
-    <Folder Include="Views\DVVC\" />
     <Folder Include="Views\Register\" />
   </ItemGroup>
   <ItemGroup>

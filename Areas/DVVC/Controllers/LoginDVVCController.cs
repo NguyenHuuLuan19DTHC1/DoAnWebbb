@@ -7,17 +7,17 @@ using System.Web.Mvc;
 
 namespace DoAnWebbb.Areas.DVVC.Controllers
 {
-    public class LoginController : Controller
+    public class LoginDVVCController : Controller
     {
         // GET: DVVC/Login
         MyDataDataContext db = new MyDataDataContext();
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult LoginDVVC()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Login(FormCollection collection)
+        public ActionResult LoginDVVC(FormCollection collection)
         {
             //gán các giá trị người dùng nhập liệu cho các biến
 
@@ -39,17 +39,17 @@ namespace DoAnWebbb.Areas.DVVC.Controllers
                 if (admin != null && admin.QUYEN.MAQUYEN == 0)
                 {
                     Session["TaiKhoanAdmin"] = admin;
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("IndexDVVC", "HomeDVVC");
                 }
                 else
                     ViewBag.ThongBao = "Tên đăng nhập hoặc mật khẩu không đúng";
             }
-            return this.Login();
+            return this.LoginDVVC();
         }
         public ActionResult Logout()
         {
             Session["TaiKhoanAdmin"] = "";
-            return RedirectToAction("Login", "Home");
+            return RedirectToAction("LoginDVVC", "LoginDVVC");
         }
     }
 }

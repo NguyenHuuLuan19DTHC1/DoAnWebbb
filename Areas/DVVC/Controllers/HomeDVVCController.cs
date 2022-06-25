@@ -8,11 +8,11 @@ using System.Web.Mvc;
 
 namespace DoAnWebbb.Areas.DVVC.Controllers
 {
-    public class HomeController : Controller
+    public class HomeDVVCController : Controller
     {
         // GET: DVVC/Home
         MyDataDataContext db = new MyDataDataContext();
-        public ActionResult Index(int? page)
+        public ActionResult IndexDVVC(int? page)
         {
             ViewBag.DonHang = db.HOADONs.Count(i => i.TONGTIEN > 0 && i.PHIEUMUA.TRANGTHAI >=3 );
             var all = from a in db.PHIEUMUAs
@@ -25,7 +25,7 @@ namespace DoAnWebbb.Areas.DVVC.Controllers
             int pageSize = 7;
             return View(all.OrderBy(n => n.NGAYDAT).ToPagedList(pageNum, pageSize));
         }
-        public ActionResult Detail(int id, int? page)
+        public ActionResult DetailDVVC(int id, int? page)
         {
             /*            SANPHAM sanpham = db.SANPHAMs.SingleOrDefault(n => n.MASANPHAM == id);
                         ViewBag.MaSanPham = sanpham.MASANPHAM;
@@ -49,7 +49,7 @@ namespace DoAnWebbb.Areas.DVVC.Controllers
 
         }
         [HttpPost]
-        public ActionResult Detail(int id, FormCollection collection)
+        public ActionResult DetailDVVC(int id, FormCollection collection)
         {
             var trangthai = db.PHIEUMUAs.Where(a => a.MAPHIEUMUA - 159 == id).SingleOrDefault();
             var tt = collection["TrangThaiDH"];
@@ -68,10 +68,10 @@ namespace DoAnWebbb.Areas.DVVC.Controllers
             }
 
         }
-        public ActionResult LogOut()
+        public ActionResult LogOutDVVC()
         {
             Session["TaiKhoanAD"] = null;
-            return RedirectToAction("Login", "Login");
+            return RedirectToAction("LoginDVVC", "LoginDVVC");
         }
     }
 }

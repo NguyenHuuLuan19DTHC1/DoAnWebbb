@@ -7,16 +7,16 @@ using DoAnWebbb.Models;
 
 namespace DoAnWebbb.Areas.Admin.Controllers
 {
-    public class LoginDVVCController : Controller
+    public class LoginAdminController : Controller
     {
         MyDataDataContext db = new MyDataDataContext();
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult LoginAdmin()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Login(FormCollection collection)
+        public ActionResult LoginAdmin(FormCollection collection)
         {
             //gán các giá trị người dùng nhập liệu cho các biến
 
@@ -43,7 +43,7 @@ namespace DoAnWebbb.Areas.Admin.Controllers
                 else
                     ViewBag.ThongBao = "Tên đăng nhập hoặc mật khẩu không đúng";
             }
-            return this.Login();
+            return this.LoginAdmin();
         }
         public ActionResult Logout()
         {

@@ -1,22 +1,24 @@
-﻿@{
-    ViewBag.Title = "ĐĂNG NHẬP TRANG QUẢN TRỊ";
+﻿
+@{
+    ViewBag.Title = "Đăng nhập DVVC";
     Layout = null;
 }
-<link href="~/Areas/Admin/Content/css/StyleLogin.css" rel="stylesheet" />
+
+<link href="~/Areas/DVVC/Content/css/StyleLogin.css" rel="stylesheet" />
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <head>
-    <title>Login Admin</title>
+    <title>Login DVVC</title>
 </head>
 <div class="wrapper fadeInDown">
     <div id="formContent">
         <div class="fadeIn first">
             <img src="~/Areas/Admin/Content/img/logoAdmin3.png" id="icon" alt="User Icon" />
-            <h1>Login Admin</h1>
+            <h1>Login DVVC</h1>
         </div>
         <h5 style="color:red; text-align:center"> @ViewBag.ThongBao</h5>
 
-        @using (Html.BeginForm("Login", "LoginAdmin", FormMethod.Post, new { id = "formInput", @class = "form-control" }))
+        @using (Html.BeginForm("LoginDVVC", "LoginDVVC", FormMethod.Post, new { id = "formInput", @class = "form-control" }))
         {
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div>
@@ -35,6 +37,9 @@
                 </div>
             </div>
         }
+
+
+
     </div>
 </div>
 
