@@ -29,7 +29,6 @@ namespace DoAnWebbb.Areas.Admin.Controllers
         }
         public ActionResult ChiTietSanPham(int id)
         {
-            //Lấy ra đối tượng sách theo mã
             SANPHAM sanpham = db.SANPHAMs.SingleOrDefault(n => n.MASANPHAM == id);
             ViewBag.MaSanPham = sanpham.MASANPHAM;
             if (sanpham == null)
@@ -41,8 +40,6 @@ namespace DoAnWebbb.Areas.Admin.Controllers
         }
         public ActionResult ThemSanPham()
         {
-            //đưa dữ liệu vào dropdownList
-            //Lấy ds từ table chủ đề, sắp xếp tăng dần theo tên chủ đề
             ViewBag.MaNCC = new SelectList(db.NHACUNGCAPs.ToList().OrderBy(n => n.TENNCCC), "MANCC", "TENNCCC");
             ViewBag.MaLoai = new SelectList(db.LOAIMAYs.ToList().OrderBy(n => n.TENLOAI), "MALOAI", "TENLOAI");
             return View();

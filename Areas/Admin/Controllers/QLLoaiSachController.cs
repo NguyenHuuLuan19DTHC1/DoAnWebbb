@@ -10,7 +10,6 @@ namespace DoAnWebbb.Areas.Admin.Controllers
     public class QLLoaiSachController : Controller
     {
         MyDataDataContext db = new MyDataDataContext();
-        // GET: Admin/QLLoaiMay
         public ActionResult Index(string searchString)
         {
             ViewBag.Key = searchString;

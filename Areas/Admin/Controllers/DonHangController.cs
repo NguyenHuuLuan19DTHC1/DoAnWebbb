@@ -12,7 +12,6 @@ namespace DoAnWebbb.Areas.Admin.Controllers
     public class DonHangController : Controller
     {
         MyDataDataContext db = new MyDataDataContext();
-        // GET: Admin/DonHang
         public ActionResult Index(int?page)
         {
             int pageNum = (page ?? 1);

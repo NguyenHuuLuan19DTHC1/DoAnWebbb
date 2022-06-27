@@ -11,13 +11,7 @@ namespace DoAnWebbb.Controllers
     public class NguoiDungController : Controller
     {
         MyDataDataContext data = new MyDataDataContext();
-        // GET: NguoiDung
-        public ActionResult Index()
-        {
-            NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanKH"];
-            
-            return View(tk);
-        }
+
         public ActionResult Info()
         {
             NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanKH"];

@@ -12,7 +12,6 @@ namespace DoAnWebbb.Areas.Admin.Controllers
     public class TaiKhoanController : Controller
     {
         MyDataDataContext db = new MyDataDataContext();
-        // GET: Admin/TaiKhoan
         public ActionResult Index(int? page)
         {
             int pageNum = (page ?? 1);
@@ -111,12 +110,10 @@ namespace DoAnWebbb.Areas.Admin.Controllers
                 }
 
                 var DiaChi = collection["DIACHI"];
-                //int quyen = 0;
                 try
                 {
 
                 
-                //Gán giá trị cho đổi tượng được tạo mới (kh)
                 nd.HOVATEN = TenKH;
                 nd.GMAIL = Gmail;
                 nd.DIACHI = DiaChi;
@@ -130,7 +127,6 @@ namespace DoAnWebbb.Areas.Admin.Controllers
                 nd.MAQUYEN = 2;
                 nd.DIEMTD = 0;
                 nd.UUDAI = 0;
-                //kh.GIOITINH = int.Parse(OTP);
                 db.NGUOIDUNGs.InsertOnSubmit(nd);
                 db.SubmitChanges();
                 }

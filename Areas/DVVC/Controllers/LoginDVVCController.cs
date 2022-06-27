@@ -9,7 +9,6 @@ namespace DoAnWebbb.Areas.DVVC.Controllers
 {
     public class LoginDVVCController : Controller
     {
-        // GET: DVVC/Login
         MyDataDataContext db = new MyDataDataContext();
         [HttpGet]
         public ActionResult LoginDVVC()
@@ -19,7 +18,6 @@ namespace DoAnWebbb.Areas.DVVC.Controllers
         [HttpPost]
         public ActionResult LoginDVVC(FormCollection collection)
         {
-            //gán các giá trị người dùng nhập liệu cho các biến
 
             var tendn = collection["username"];
             var matkhau = collection["password"];
@@ -33,7 +31,6 @@ namespace DoAnWebbb.Areas.DVVC.Controllers
             }
             else
             {
-                // Gán giá trị cho đối tượng được tạo mới(admin)
                 NGUOIDUNG admin = db.NGUOIDUNGs.SingleOrDefault(n => n.USERNAME == tendn && n.PASS == matkhau);
                 Session["TaiKhoanAD"] = admin;
                 if (admin != null && admin.QUYEN.MAQUYEN == 0)

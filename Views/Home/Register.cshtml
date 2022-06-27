@@ -7,7 +7,6 @@
 <link href="~/Content/styleLogin.css" rel="stylesheet" />
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
 <div class="login-wrap">
     <div class="login-html">
@@ -50,7 +49,6 @@
                     <div class="group">
 
                         <label for="gioitinh" class="label">Giới tính</label>
-                        @*<input id="GIOITINH" type="number" class="form-control" name="GIOITINH">*@
                         <input name="GIOITINH" type="radio" value="1" />Nam
                         <input name="GIOITINH" type="radio" value="0" />Nữ
                     </div>
@@ -68,7 +66,6 @@
                     <a href="#" class="group">
                         <input type="submit" class="button" value="Đăng ký">
                     </a>
-                    @*<button class="btnSignUp" type="submit">Đăng Ký</button>*@
 
                     <a href="@Url.Action("Login","Home")" class="group">
                         <input type="button" class="button" value="Đăng Nhập">
@@ -106,8 +103,7 @@
                     SDT: {
                         required: true,
                         minlength: 8,
-                        //length: 12
-                        //phoneValidate: true
+
                     },
                     NAMSINH: {
                         required: true,
@@ -142,7 +138,6 @@
                     SDT: {
                         required: "Số ĐT Không Được Trống",
                         minlength: "Số Điện Thoại Phải Lớn Hơn 8 Chữ Số"
-                        //length: "hihi"
                     },
                     NAMSINH: {
                         required: "Không được để trống",

@@ -23,7 +23,7 @@
                         <div class="box">
                             <img src="@item.Hinh" width="95">
                             <div class="content">
-                                <h2>@Html.DisplayFor(modelItem => item.TenSP) </h2>
+                                <h2 style="font-family:'Times New Roman', Arial, sans-serif">@Html.DisplayFor(modelItem => item.TenSP)   </h2>
                                 @using (Html.BeginForm("CapNhapGioHang", "GioHang", new { @id = item.MaSP }))
                                 {
                                     <h4>
@@ -33,36 +33,32 @@
                                     </h4>
 
 
-                                    @*<p class="unit">Số Lượng: <input type="number" min="1" max="@item.SoLuongTon" name="SoLuong" value="@item.SoLuong"></p>*@
-                                    <p  class="btn-area"><i aria-hidden="true" class="fa fa-trash"></i> <span class="btn2">@Html.ActionLink("Xoá", "XoaGioHang", new { @id = item.MaSP })</span></p>
+                                    <p class="btn-area"><i aria-hidden="true" class="fa fa-trash"></i> <span class="btn2">@Html.ActionLink("Xoá", "XoaGioHang", new { @id = item.MaSP })</span></p>
 
                                 }
                             </div>
                         </div>
 
                     </div>
-                    <!--code ở đây-->
 
                 </div>
             </div>
 
         }
+        <div class="right-bar" style="height: 500px; width:1005px;margin-left:259px">
+
+            <p><span>Tổng Tiền</span> <span>@String.Format("{0:0,0}", @ViewBag.TT) VNĐ</span></p>
+
+            <hr>
+            <p><span>Phải Thanh Toán</span> <span>@String.Format("{0:0,0}", @ViewBag.Tongtien) VNĐ</span></p>
+            <hr>
+            <a href="@Url.Action("DatHang","GioHang")"><i class="fa fa-shopping-cart"></i>Đặt Hàng</a>
+            <hr>
+            @Html.ActionLink("Xoá Giỏ Hàng", "XoaTatCaGioHang")
+        </div>
 
     </table>
-    <div class="right-bar" style="height: 500px">
-        <p><span>Số Loại Sản Phẩm</span> <span>@ViewBag.TongSoLuongSanPham</span></p>
-        <hr>
-        <p><span>Tổng Số Sản Phẩm</span> <span>@ViewBag.TongSoLuong</span></p>
-        <hr>
-        <p><span>Tổng Tiền</span> <span>@String.Format("{0:0,0}", @ViewBag.TT) VNĐ</span></p>
-
-        <hr>
-        <p><span>Phải Thanh Toán</span> <span>@String.Format("{0:0,0}", @ViewBag.Tongtien) VNĐ</span></p>
-        <hr>
-        <a href="@Url.Action("DatHang","GioHang")"><i class="fa fa-shopping-cart"></i>Đặt Hàng</a>
-        <hr>
-        @Html.ActionLink("Xoá Giỏ Hàng", "XoaTatCaGioHang")
-    </div>
+   
 
 </body>
 

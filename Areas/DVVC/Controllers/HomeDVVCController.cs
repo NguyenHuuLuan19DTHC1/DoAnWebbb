@@ -10,7 +10,6 @@ namespace DoAnWebbb.Areas.DVVC.Controllers
 {
     public class HomeDVVCController : Controller
     {
-        // GET: DVVC/Home
         MyDataDataContext db = new MyDataDataContext();
         public ActionResult IndexDVVC(int? page)
         {

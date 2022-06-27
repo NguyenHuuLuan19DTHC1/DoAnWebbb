@@ -10,10 +10,8 @@ namespace DoAnWebbb.Controllers.MoMo
     public class MoMoSecurity
     {
         private static RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
-        //private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public MoMoSecurity()
         {
-            //encrypt and decrypt password using secure
         }
         public string getHash(string partnerCode, string merchantRefId,
             string amount, string paymentCode, string storeId, string storeName, string publicKeyXML)
@@ -25,15 +23,12 @@ namespace DoAnWebbb.Controllers.MoMo
                 paymentCode + "\",\"storeId\":\"" +
                 storeId + "\",\"storeName\":\"" +
                 storeName + "\"}";
-            //log.Debug("Raw hash: " + json);
             byte[] data = Encoding.UTF8.GetBytes(json);
             string result = null;
-            using (var rsa = new RSACryptoServiceProvider(4096)) //KeySize
+            using (var rsa = new RSACryptoServiceProvider(4096)) 
             {
                 try
                 {
-                    // MoMo's public key has format PEM.
-                    // You must convert it to XML format. Recommend tool: https://superdry.apphb.com/tools/online-rsa-key-converter
                     rsa.FromXmlString(publicKeyXML);
                     var encryptedData = rsa.Encrypt(data, false);
                     var base64Encrypted = Convert.ToBase64String(encryptedData);
@@ -56,14 +51,12 @@ namespace DoAnWebbb.Controllers.MoMo
                 partnerCode + "\",\"partnerRefId\":\"" +
                 merchantRefId + "\",\"requestId\":\"" +
                 requestid + "\"}";
-            //log.Debug("Raw hash: " + json);
             byte[] data = Encoding.UTF8.GetBytes(json);
             string result = null;
             using (var rsa = new RSACryptoServiceProvider(2048))
             {
                 try
                 {
-                    // client encrypting data with public key issued by server
                     rsa.FromXmlString(publicKey);
                     var encryptedData = rsa.Encrypt(data, false);
                     var base64Encrypted = Convert.ToBase64String(encryptedData);
@@ -89,14 +82,12 @@ namespace DoAnWebbb.Controllers.MoMo
                 momoTranId + "\",\"amount\":" +
                 amount + ",\"description\":\"" +
                 description + "\"}";
-            //log.Debug("Raw hash: " + json);
             byte[] data = Encoding.UTF8.GetBytes(json);
             string result = null;
             using (var rsa = new RSACryptoServiceProvider(2048))
             {
                 try
                 {
-                    // client encrypting data with public key issued by server
                     rsa.FromXmlString(publicKey);
                     var encryptedData = rsa.Encrypt(data, false);
                     var base64Encrypted = Convert.ToBase64String(encryptedData);

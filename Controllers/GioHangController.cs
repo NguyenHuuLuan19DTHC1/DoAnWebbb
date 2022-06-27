@@ -15,7 +15,6 @@ namespace DoAnWebbb.Controllers
 {
     public class GioHangController : Controller
     {
-        // GET: GioHang
         MyDataDataContext data = new MyDataDataContext();
 
         public List<GioHang> Laygiohang()
@@ -37,12 +36,10 @@ namespace DoAnWebbb.Controllers
             {
                 sanpham = new GioHang(id);
                 lstGioHang.Add(sanpham);
-               /* return Redirect(strURL);*/
             }
             else
             {
                 sanpham.SoLuong++;
-                /*return Redirect(strURL);*/
             }
             return Content("");
         }
@@ -259,7 +256,6 @@ namespace DoAnWebbb.Controllers
         public ActionResult DatHang(FormCollection collection)
         {
             NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanKH"];
-            /*SANPHAM sp = new SANPHAM();*/
             List<GioHang> gh = Laygiohang();
             var ngaygiao = String.Format("{0:dd/MM/yyyy}", collection["NgayGiao"]);
             var diachi = tk.DIACHI;
@@ -287,7 +283,6 @@ namespace DoAnWebbb.Controllers
 
             data.SubmitChanges();
 
-            /*data.SANPHAMs.InsertOnSubmit(sp);*/
 
 
             foreach (var item in gh)
@@ -347,7 +342,6 @@ namespace DoAnWebbb.Controllers
 
             ViewBag.message = "Thanh toán thành công";
             Session["GioHang"] = null;
-            /*}*/
 
             return RedirectToAction("XacNhanDon", "GioHang");
         }
@@ -392,10 +386,8 @@ namespace DoAnWebbb.Controllers
             extraData;
 
             MoMoSecurity crypto = new MoMoSecurity();
-            //sign signature SHA256
             string signature = crypto.signSHA256(rawHash, serectkey);
 
-            //build body json request
             JObject message = new JObject
             {
                 { "partnerCode", partnerCode },
@@ -416,7 +408,6 @@ namespace DoAnWebbb.Controllers
             string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());
 
             JObject jmessage = JObject.Parse(responseFromMomo);
-            /*Session["momo"] = jmessage;*/
             return Redirect(jmessage.GetValue("payUrl").ToString());
 
         }
@@ -446,7 +437,6 @@ namespace DoAnWebbb.Controllers
             public ActionResult returnUrll( FormCollection collection)
         {
             NGUOIDUNG tk = (NGUOIDUNG)Session["TaiKhoanKH"];
-            /*SANPHAM sp = new SANPHAM();*/
             List<GioHang> gh = Laygiohang();
             var ngaygiao = String.Format("{0:dd/MM/yyyy}", collection["NgayGiao"]);
             var diachi = tk.DIACHI;
@@ -478,7 +468,6 @@ namespace DoAnWebbb.Controllers
                 UpdateModel(nd);
             data.SubmitChanges();
 
-            /*data.SANPHAMs.InsertOnSubmit(sp);*/
 
 
             foreach (var item in gh)
@@ -537,17 +526,11 @@ namespace DoAnWebbb.Controllers
 
             ViewBag.message = "Thanh toán thành công";
                 Session["GioHang"] = null;
-            /*}*/
 
             return RedirectToAction("Index","Home");
         }
 
-        [HttpPost]
-        public void SavePayment()
-        {
-            //cập nhật dữ liệu vào db
 
-        }
 
 
     }

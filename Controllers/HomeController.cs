@@ -41,12 +41,7 @@ namespace demoWeb.Controllers
 
             return View();
         }
-        //public class MailInfor{
-        //    public string From { get; set; }
-        //    public string To { get; set; }
-        //    public string Subject { get; set; }
-        //    public string Body { get; set; }
-        //}
+
         public ActionResult Book()
         {
             return View();
@@ -70,7 +65,6 @@ namespace demoWeb.Controllers
         [HttpPost]
         public ActionResult Register(FormCollection collection, NGUOIDUNG kh)
         {
-            //int OTP = new Random().Next(100000, 999999);
             var check = data.NGUOIDUNGs.Where(m => m.GMAIL == kh.GMAIL).FirstOrDefault();
             var checksdt = data.NGUOIDUNGs.Where(m => m.SDT == kh.SDT).FirstOrDefault();
             if (check != null)
@@ -109,9 +103,7 @@ namespace demoWeb.Controllers
                 }
                 
                 var DiaChi = collection["DIACHI"];
-                //int quyen = 0;
 
-                //Gán giá trị cho đổi tượng được tạo mới (kh)
                 kh.HOVATEN = TenKH;
                 kh.GMAIL = Gmail;
                 kh.DIACHI = DiaChi;
@@ -125,7 +117,6 @@ namespace demoWeb.Controllers
                 kh.MAQUYEN = 2;
                 kh.DIEMTD = 0;
                 kh.UUDAI = 0;
-                //kh.GIOITINH = int.Parse(OTP);
                 data.NGUOIDUNGs.InsertOnSubmit(kh);
                 data.SubmitChanges();
 
@@ -140,26 +131,6 @@ namespace demoWeb.Controllers
             Session["GioHang"] = null;
             return RedirectToAction("Login", "Home");
         }
-        //Xác nhận OTP
-        public ActionResult XacNhanOTP()
-        {
-            return View();
-        }
-
-
-        [HttpPost]
-        public JsonResult KiemTraOTP(string otp)
-        {
-            bool result = false;
-
-            string sessionOTP = Session["OTPDK"].ToString();
-            if (otp == sessionOTP)
-            {
-                result = true;
-            }
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
-
 
         [HttpGet]
         public ActionResult Login()
@@ -181,7 +152,6 @@ namespace demoWeb.Controllers
             }
             else
             {
-                // Gán giá trị cho đối tượng được tạo mới(kh)
                 NGUOIDUNG kh = data.NGUOIDUNGs.SingleOrDefault(n => n.USERNAME == tendn && n.PASS == matkhau);
                 if (kh != null && kh.MAQUYEN == 2 && kh.TRANGTHAI!=0)
                 {
@@ -199,8 +169,7 @@ namespace demoWeb.Controllers
         {
             var detail = data.SANPHAMs.Where(m => m.MASANPHAM == id).First();
             return View(detail);
-            //var sp = from s in data.SANPHAMs where s.MASANPHAM == id select s;
-            //return View(sp.Single());
+
         }
         [HttpGet]
         public ActionResult ResetPass()

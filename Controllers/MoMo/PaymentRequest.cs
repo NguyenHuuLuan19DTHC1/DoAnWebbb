@@ -50,9 +50,7 @@ namespace DoAnWebbb.Controllers.MoMo
                 }
 
 
-                //todo parse it
                 return jsonresponse;
-                //return new MomoResponse(mtid, jsonresponse);
 
             }
             catch (WebException e)

@@ -29,14 +29,12 @@
                                         <br />Đặt Mua: <input id="txtSoLuong" type="number" min="1" max="@item.SoLuongTon" name="txtSoLuong" value="@item.SoLuong" />
                                         <br> <input type="submit" value="Cập Nhập" class="btn btn-success" />
                                     </h4>
-                                    @*<p class="unit">Số Lượng: <input type="number" min="1" max="@item.SoLuongTon" name="SoLuong" value="@item.SoLuong"></p>*@
                                     <p class="btn-area"><i aria-hidden="true" class="fa fa-trash"></i> <span class="btn2">@Html.ActionLink("Xoá", "XoaGioHang", new { @id = item.MaSP })</span></p>
                                 }
                             </div>
                         </div>
 
                     </div>
-                    <!--code ở đây-->
 
                 </div>
             </div>
@@ -79,7 +77,6 @@
             <tr style="height:40px">
                 <td style="color: black;">Họ Tên:</td>
                 <td>
-                    @*<p style="padding-top:7%">@pm.HOVATEN</p>*@
                     <input id="DHHOVATEN" type="text" class="form-control" name="DHHOVATEN" value="@pm.HOVATEN" />
                 </td>
             </tr>
@@ -87,21 +84,18 @@
             <tr style="height:40px">
                 <td style="color: black;">Email:</td>
                 <td>
-                    @*<p style="padding-top:7%">@pm.GMAIL</p>*@
                     <input id="DHGMAIL" type="text" class="form-control" name="DHGMAIL" value="@pm.GMAIL" />
                 </td>
             </tr>
             <tr style="height:40px">
                 <td style="color: black;">Địa Chỉ:</td>
                 <td>
-                    @*<p style="padding-top:7%">@pm.DIACHI</p>*@
                     <input id="DIACHIGIAOHANG" type="text" class="form-control" name="DIACHIGIAOHANG" value="@pm.DIACHI" />
                 </td>
             </tr>
             <tr style="height:40px">
                 <td style="color: black;">Điện Thoại:</td>
                 <td>
-                    @*<p style="padding-top:7%">@pm.SDT</p>*@
                     <input id="DHSDT" type="text" class="form-control" name="DHSDT" value="@pm.SDT" />
                 </td>
             </tr>
@@ -109,7 +103,6 @@
                 <td style="color: black;">Ngày Đặt:</td>
                 <td style="font-weight:bold; color: black">
                     <p name="DHNGAYGIO" id="DHNGAYGIO" style="padding-top:7%">@DateTime.Now.ToShortDateString()</p>
-                    @*<input type="date" name="ngaydat" id="ngaydat" value="@DateTime.Now" />*@
                 </td>
             </tr>
             <tr style="height:40px">

@@ -11,7 +11,6 @@ namespace DoAnWebbb.Areas.Admin.Controllers
     public class QLHangController : Controller
     {
         MyDataDataContext db = new MyDataDataContext();
-        // GET: Admin/QLHangMay
         public ActionResult Index( string searchString )
         {
 

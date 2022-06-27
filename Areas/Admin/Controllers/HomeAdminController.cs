@@ -14,18 +14,11 @@ namespace DoAnWebbb.Areas.Admin.Controllers
     public class HomeAdminController : Controller
     {
         MyDataDataContext db = new MyDataDataContext();
-        // GET: Admin/HomeAdmin
         public ActionResult Index(int? page)
         {
-            // Lấy ra tổng số các đơn đặt hàng đang có trong database - tổng số đơn hàng 
             ViewBag.DonHang = db.HOADONs.Count(i=>i.TONGTIEN>0);
-            // Lấy ra tổng số tiền các đơn hàng - lợi nhuận
             ViewBag.LoiNhuan = db.HOADONs.Where(m=>m.PHIEUMUA.TRANGTHAI!=1).Sum(model => model.TONGTIEN);
-            // Lấy ra tổng số lượng các user khách hàng đang có trong database - tổng số tài khoản hiện tại
             ViewBag.NguoiDung = db.NGUOIDUNGs.Where(model => model.MAQUYEN ==2).Count();
-            //// Lấy số lượng người truy cập từ Application đã tạo
-            //ViewBag.SoNguoiTruyCap = HttpContext.Application["SoNguoiTruyCap"].ToString();
-            // Lấy ra tổng số sản phẩm đang có trong database
             ViewBag.SanPham = db.SANPHAMs.Count();
             var all = from a in db.PHIEUMUAs
                       from b in db.HOADONs
@@ -89,7 +82,7 @@ namespace DoAnWebbb.Areas.Admin.Controllers
                             });
                         }*/
             ExcelPackage ep = new ExcelPackage();
-            ExcelWorksheet Sheet = ep.Workbook.Worksheets.Add("Report");
+            ExcelWorksheet Sheet = ep.Workbook.Worksheets.Add("BaoCao");
             Sheet.Cells["A1"].Value = "Tài Khoản";
             Sheet.Cells["B1"].Value = "Họ Và Tên";
             Sheet.Cells["C1"].Value = "Gmail";
@@ -112,7 +105,7 @@ namespace DoAnWebbb.Areas.Admin.Controllers
             Sheet.Cells["A:AZ"].AutoFitColumns();
             Response.Clear();
             Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            Response.AddHeader("content-disposition", "attachment; filename=" + "Report.xlsx");
+            Response.AddHeader("content-disposition", "attachment; filename=" + "BaoCao.xlsx");
             Response.BinaryWrite(ep.GetAsByteArray());
             Response.End();
         }

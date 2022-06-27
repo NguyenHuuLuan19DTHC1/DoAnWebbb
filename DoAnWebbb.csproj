@@ -234,7 +234,6 @@
     <Compile Include="Controllers\MoMo\PaymentRequest.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
     <Compile Include="Controllers\SanPhamBanController.cs" />
-    <Compile Include="Controllers\SendOTPController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -4176,11 +4175,9 @@
     <Content Include="Views\GioHang\DatHang.cshtml" />
     <Content Include="Views\GioHang\Giohang.cshtml" />
     <Content Include="Views\GioHang\GioHangPartial.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
-    <Content Include="Views\Home\XacNhanOTP.cshtml" />
     <Content Include="Views\SanPhamBan\HangMay.cshtml" />
     <Content Include="Views\SanPhamBan\Index.cshtml" />
     <Content Include="Views\SanPhamBan\LoaiMay.cshtml" />
@@ -4196,10 +4193,8 @@
     <Content Include="Views\Home\LienHe.cshtml" />
     <Content Include="Views\SanPhamBan\SearchName.cshtml" />
     <Content Include="Views\Shared\_LayoutNguoiDung.cshtml" />
-    <Content Include="Views\NguoiDung\Index.cshtml" />
     <Content Include="Views\NguoiDung\Info.cshtml" />
     <Content Include="Views\NguoiDung\ChangePass.cshtml" />
-    <Content Include="Views\SendOTP\SenOTP.cshtml" />
     <Content Include="Views\GioHang\returnUrll.cshtml" />
     <Content Include="Views\Home\ResetPass.cshtml" />
     <Content Include="Views\GioHang\returnUrl.cshtml" />

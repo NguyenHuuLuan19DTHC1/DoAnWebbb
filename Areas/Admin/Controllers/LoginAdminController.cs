@@ -18,7 +18,6 @@ namespace DoAnWebbb.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult LoginAdmin(FormCollection collection)
         {
-            //gán các giá trị người dùng nhập liệu cho các biến
 
             var tendn = collection["username"];
             var matkhau = collection["password"];
@@ -32,7 +31,6 @@ namespace DoAnWebbb.Areas.Admin.Controllers
             }
             else
             {
-                // Gán giá trị cho đối tượng được tạo mới(admin)
                 NGUOIDUNG admin = db.NGUOIDUNGs.SingleOrDefault(n => n.USERNAME == tendn && n.PASS == matkhau);
                 Session["TaiKhoanAD"] = admin;
                 if (admin != null && admin.QUYEN.MAQUYEN == 1)
